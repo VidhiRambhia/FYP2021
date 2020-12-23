@@ -9,8 +9,8 @@ w3 = Web3(HTTPProvider("http://localhost:7545"))
 print(w3.isConnected())
 
 # Initialize a local account object from the private key of a valid Ethereum node address
-local_acct = w3.eth.account.from_key("5a6176b5656256b81c08e0fdccb80b797da80292f37c4e06e2a089a93d68ecb4")
-
+# local_acct = w3.eth.account.from_key("5a6176b5656256b81c08e0fdccb80b797da80292f37c4e06e2a089a93d68ecb4")
+local_acct = w3.eth.account.from_key("d369e8188b5900d928bdd2965f39adc6c7cec1c5b510cd5d6f50ffbd8ef3ca5f")
 # compile your smart contract with truffle first
 truffleFile = json.load(open('./build/contracts/Migrations.json'))
 abi = truffleFile['abi']
