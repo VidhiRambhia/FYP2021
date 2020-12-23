@@ -16,6 +16,7 @@ contract FarmerDetails{
     
     //event when farmer is added
     event FarmerAdded(address indexed account);
+    event PlotAdded(address indexed account);
     
     mapping(address =>Farmer) farmers;
     address[] public farmerAccts;
@@ -34,6 +35,7 @@ contract FarmerDetails{
     function addPlot(address _address, string memory _plotOwner, string memory _plotNumber, string memory _plotAddress)
         public{
         farmers[_address].plots.push(Plot(_plotOwner,_plotNumber,_plotAddress));
+        emit PlotAdded(_address);
     }
     
     function getFarmers() view public returns(address[] memory){
