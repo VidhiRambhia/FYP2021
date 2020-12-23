@@ -9,8 +9,14 @@ w3 = Web3(HTTPProvider("http://localhost:7545"))
 print(w3.isConnected())
 
 # Initialize a local account object from the private key of a valid Ethereum node address
+<<<<<<< HEAD
 # local_acct = w3.eth.account.from_key("5a6176b5656256b81c08e0fdccb80b797da80292f37c4e06e2a089a93d68ecb4")
 local_acct = w3.eth.account.from_key("d369e8188b5900d928bdd2965f39adc6c7cec1c5b510cd5d6f50ffbd8ef3ca5f")
+=======
+# Add your own private key here
+local_acct = w3.eth.account.from_key("f6f9d4c2d90707ca947c5dba2eb531659883ec24f69aa5b0ea65c251b99b5e01")
+
+>>>>>>> main
 # compile your smart contract with truffle first
 truffleFile = json.load(open('./build/contracts/Migrations.json'))
 abi = truffleFile['abi']
@@ -20,7 +26,8 @@ bytecode = truffleFile['bytecode']
 contract = w3.eth.contract(bytecode=bytecode, abi=abi)
 
 # build a transaction by invoking the buildTransaction() method from the smart contract constructor function
-construct_txn = contract.constructor(60, '0xA72c3f7E17568BBc5B3D0E4466176fad85180681').buildTransaction({
+# Add your own account address here
+construct_txn = contract.constructor(60, '0x25968ea7d119fea4bb20CFd9e06E737a25e13bE3').buildTransaction({
     'from': local_acct.address,
     'nonce': w3.eth.getTransactionCount(local_acct.address),
     'gas': 1728712,
@@ -49,10 +56,23 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    print(contract_address)
-    print(w3.isConnected())
+    #print(contract_address)
+    #print(w3.isConnected())
+    email = request.form.get('email') #Todo: Add other fields
     return render_template('index.html')
 
+
+@app.route("/registerFarmer")
+def registerFarmer():
+    return render_template('FarmerFunctions.html')
+
+@app.route("/addCrop")
+def addCrop():
+    return render_template('addCropDetails.html')
+
+@app.route("/chooseRole")
+def chooseRole():
+    return render_template('ChooseRole.html')
 
 @app.route("/error")
 def error():
