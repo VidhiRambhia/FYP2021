@@ -9,6 +9,7 @@ w3 = Web3(HTTPProvider("http://localhost:7545"))
 print(w3.isConnected())
 
 # Initialize a local account object from the private key of a valid Ethereum node address
+# Add your own private key here
 local_acct = w3.eth.account.from_key("ddff7ae4990cca4baf964997c1092bdecb505556e5b5a2fbf020f6b3102b61bd")
 
 # compile your smart contract with truffle first
@@ -20,6 +21,7 @@ bytecode = truffleFile['bytecode']
 contract = w3.eth.contract(bytecode=bytecode, abi=abi)
 
 # build a transaction by invoking the buildTransaction() method from the smart contract constructor function
+# Add your own account address here
 construct_txn = contract.constructor(60, '0x23881459cF4C4B8bE41f45980452c803e9A18445').buildTransaction({
     'from': local_acct.address,
     'nonce': w3.eth.getTransactionCount(local_acct.address),
