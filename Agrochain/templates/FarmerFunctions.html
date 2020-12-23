@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Farmer Message</title>
+		<!-- Mobile Specific Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- Font-->
+		<link rel="stylesheet" type="text/css" href="../static/css/montserrat-font.css">
+		<link rel="stylesheet" type="text/css" href="../static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		<!-- Main Style Css -->
+		<link rel="stylesheet" href="../static/css/index.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+
+
+<div class="page-content">
+    <div class="form-v10-content" style=width:750px;>
+        <form class="form-detail" action="{{url_for('upload_user_details')}}" method="POST" enctype="multipart/form-data" id="myform">
+            <div class="form-left">
+                <h2 style="text-align: center; margin-bottom: 40px;"><b>AgriChain-Farmer's Portal</b></h2>
+                <h3 class="text-primary" style="margin-left: 55px; margin-bottom: 35px;">You have successfully logged in as a Farmer</h3>
+
+                <div class="form-group">
+                    <div class="form-row form-row-2">
+                            <label for="exampleFormControlInput1" class="text-primary" style="margin-left: 50px; font-size: 20px;">Choose a function</label>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <button type="button" class="btn btn-primary btn-lg" style="margin-right: 10px;">Update profile</button>
+                    
+                    <button type="button submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">Add crop details</button>
+                
+                    <button type="button submit" class="btn btn-primary btn-lg" style="margin-right: 10px;">Update Crop details</button>
+                </div>
+             
+
+            </div>
+        </form>
+    </div>
+</div>
+</body>
