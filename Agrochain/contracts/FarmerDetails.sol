@@ -19,6 +19,8 @@ contract FarmerDetails{
     event PlotAdded(address indexed account);
     
     mapping(address =>Farmer) farmers;
+
+    //redundant array, functionality can be achieved by the mapping also
     address[] public farmerAccts;
     
     function addFarmer(address _address, string memory _farmerName, string memory _plotOwner, string memory _plotNumber, string memory _plotAddress, bool _approved) 
