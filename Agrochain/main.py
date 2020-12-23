@@ -1,7 +1,7 @@
 import json
 import sys
 from web3 import Web3, HTTPProvider
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 # create a web3.py instance w3 by connecting to the local Ethereum node
 w3 = Web3(HTTPProvider("http://localhost:7545"))
@@ -57,6 +57,11 @@ def index():
 
 @app.route("chooseRole", methods=["GET"])
 def chooseRole():
+    selectedRole = request.form['role']
+    if (selectedRole == 'farmer'):
+        return redirect(url_for('/'))
+    else:
+        return redirect(url_for('/chooseRole'))
     return render_template('ChooseRole.html')
 
 @app.route("cropDetails")

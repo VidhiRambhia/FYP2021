@@ -19,19 +19,19 @@
 
 <div class="page-content">
     <div class="form-v10-content" style=width:750px;>
-        <form class="form-detail" action="{{url_for('upload_user_details')}}" method="POST" enctype="multipart/form-data" id="myform">
+        <form class="form-detail" action="{{url_for('chooseRole')}}" method="POST" enctype="multipart/form-data" id="myform">
             <div class="form-left">
                 <h2 style="text-align: center; margin-bottom: 80px;"><b>Welcome to AgriChain!</b></h2>
                 <h4 class="text-primary" style="margin-left: 60px; margin-bottom: 35px;">Choose your role in the system</h4>
 
                 <div class="form-group">
                     <div class="form-row form-row-2">
-                        <select name="activity1" style="margin-left: 40px;">
+                        <select name="role" style="margin-left: 40px;">
                             <option value="choose">Choose Your Role</option>
-                            <option value="fruits">Farmer</option>
-                            <option value="vegetables">Buying Center Manager</option>
-                            <option value="vegetables">Hub Manager</option>
-                            <option value="vegetables">Retail Store Owner</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="buyingCenter">Buying Center Manager</option>
+                            <option value="hub">Hub Manager</option>
+                            <option value="retailer">Retail Store Owner</option>
                         </select>
                         <span class="select-btn">
                             <i class="zmdi zmdi-chevron-down"></i>
