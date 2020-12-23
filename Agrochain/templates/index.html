@@ -27,13 +27,12 @@
 
                         <div class="form-group">
 							<div class="form-row form-row-1">
-								<input type="text" name="first_name" id="first_name" class="input-text" placeholder="Your Name" required>
+								<input type="email" id="email" class="input-text" placeholder="Your email" required>
                         </div>
                         <!-- <div class="form-right">
                             <div class="form-row">
                                 <img src="../resources/images/signin-image.jpg" style="height: 400px;">
                             </div>
-    
                         </div> -->
 
                         <div class="form-group">
@@ -53,8 +52,9 @@
 
                     <div id="container">
 
-                        
-                        <button id="add_form_field" type="button" class="btn btn-link">+ Add Another Plot</button>
+                        <div class="form-row">
+                            <button id="add_form_field" type="button" class="btn btn-link">+ Add Another Plot</button>
+                        </div>
 
                         <div id="plot_form">
                             
@@ -72,18 +72,14 @@
                                     <input type="text" name="plot_address" id="plot_address" class="input-text" placeholder="Enter Plot Address" required>
                                 </div>
                             </div>
-
                         </div>
-                        
 
                     </div>
 
-
-                    <div class="form-row ">
+                    <div class="form-row form-row-1 " style="margin-top: 15px;">
                         <button type="button submit" class="btn btn-primary btn-lg">Submit</button>
                     </div>
-
-                    
+                   
                 </form>
             </div>
         </div>
@@ -102,7 +98,7 @@ $(document).ready(function() {
         e.preventDefault();
         var plot_form_new = document.createElement('div');
         var plot_form = document.getElementById("plot_form")
-        plot_form_new.innerHTML = "<div>" + plot_form.innerHTML  +"<a href='#' style='color:red;' class='delete'>Delete</a></div";
+        plot_form_new.innerHTML = "<div>" + plot_form.innerHTML  +"<a href='#' style='color:red;' class='delete form-row'>Delete</a></div";
         plot_form_new.id = plot_form.id + toString(x);
         
         if (x < max_fields) {
