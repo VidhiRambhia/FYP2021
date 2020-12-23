@@ -49,11 +49,19 @@ contract_instance = w3.eth.contract(abi=abi, address=contract_address)
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/home",methods=["GET","POST"])
 def index():
     #print(contract_address)
     #print(w3.isConnected())
-    email = request.form.get('email') #Todo: Add other fields
+    email = request.form.get('email') 
+    password = request.form.get('password')
+    print(email)
+    print(password)
+    print(request.form)
+    plot_numbers = request.form.get('plot_number')
+    print(plot_numbers)
+    # for plot in plots:
+    #     print(plot)
     return render_template('index.html')
 
 
