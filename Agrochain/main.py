@@ -72,8 +72,16 @@ def chooseRole():
 def cropDetails():
     return render_template('CropDetails.html')
 
-@app.route("/farmerPage")
+@app.route("/farmerPage", methods=["GET","POST"])
 def farmerPage():
+    if request.method=="POST":
+        if 'profile' in request.form:
+            return redirect(url_for('index'))
+        elif 'addCrop' in request.form:
+            return redirect(url_for('cropDetails'))
+        elif 'updateCrop' in request.form:
+            return redirect(url_for('cropDetails'))
+
     return render_template('FarmerFunctions.html')
 
 @app.route("/login")
