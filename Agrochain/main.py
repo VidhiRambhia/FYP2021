@@ -2,6 +2,7 @@ import json
 import sys
 from web3 import Web3, HTTPProvider
 from flask import Flask, render_template, request, redirect, url_for
+from config import config
 
 # # create a web3.py instance w3 by connecting to the local Ethereum node
 # w3 = Web3(HTTPProvider("http://localhost:7545"))
@@ -48,10 +49,40 @@ from flask import Flask, render_template, request, redirect, url_for
 # #event_filter = contract_instance.events.AuctionEnded.createFilter(fromBlock='latest')
 
 
+
+cropDetails_contract_address = config.cropDetails_contract_address
+farmerDetails_contract_address = config.farmerDetails_contract_address
+login_contract_address = config.login_contract_address 
+
+w3 = Web3(HTTPProvider("http://localhost:7545"))
+
+print(w3.isConnected())
+
+# # Initialize a local account object from the private key of a valid Ethereum node address
+# # Add your own private key here
+local_acct = w3.eth.account.from_key(config.local_acct_key)
+
+# # compile your smart contract with truffle first
+cropDetails_truffleFile = json.load(open('./build/contracts/CropDetails.json'))
+cropDetails_abi = cropDetails_truffleFile['abi']
+
+farmerDetails_truffleFile = json.load(open('./build/contracts/FarmerDetails.json'))
+farmerDetails_abi = farmerDetails_truffleFile['abi']
+
+login_truffleFile = json.load(open('./build/contracts/Login.json'))
+login_abi = login_truffleFile['abi']
+
+
+# # Initialize a contract object with the smart contract compiled artifacts
+cropDetails_contract_instance = w3.eth.contract(abi=cropDetails_abi, address=cropDetails_contract_address)
+farmerDetails_contract_instance = w3.eth.contract(abi=farmerDetails_abi, address=farmerDetails_contract_address)
+login_contract_instance = w3.eth.contract(abi=login_abi, address=login_contract_address)
+
 app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def index():
+    print(farmerDetails_contract_instance.functions.getFarmer(local_acct.address,0).call())
     #print(contract_address)
     #print(w3.isConnected())
     if(request.method == "POST"):
@@ -65,22 +96,33 @@ def registerFarmer():
     #print(contract_address)
     #print(w3.isConnected())
     #print(request.form)
-    email = request.form.get('email') 
-    password = request.form.get('password')
-    plot_number = request.form.get('plot_number')
-    plot_owner = request.form.get('plot_owner')
-    plot_address = request.form.get('plot_address')
-    # Call add plot here
-    if request.form.get('plot_number_1'):
-        plot_number_1 = request.form.get('plot_number_1')
-        plot_owner_1 = request.form.get('plot_owner_1')
-        plot_address_1 = request.form.get('plot_address_1')
-        # Call add plot again 
-    if request.form.get('plot_number_2'):
-        plot_number_2 = request.form.get('plot_number_2')
-        plot_owner_2 = request.form.get('plot_owner_2')
-        plot_address_2 = request.form.get('plot_address_2')
-        # Call add plot again 
+    if request.method == "POST":
+        email = request.form.get('email') 
+        password = request.form.get('password')
+        plot_number = request.form.get('plot_number')
+        plot_owner = request.form.get('plot_owner')
+        plot_address = request.form.get('plot_address')
+        # Call add plot here
+        txn_dict = {
+                'from': local_acct.address,
+                'to': farmerDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        txn_hash = farmerDetails_contract_instance.functions.addPlot(local_acct.address,plot_owner,plot_number,plot_address).transact(txn_dict)
+        print(txn_hash)
+
+        if request.form.get('plot_number_1'):
+            plot_number_1 = request.form.get('plot_number_1')
+            plot_owner_1 = request.form.get('plot_owner_1')
+            plot_address_1 = request.form.get('plot_address_1')
+            # Call add plot again 
+        if request.form.get('plot_number_2'):
+            plot_number_2 = request.form.get('plot_number_2')
+            plot_owner_2 = request.form.get('plot_owner_2')
+            plot_address_2 = request.form.get('plot_address_2')
+            # Call add plot again 
     return render_template('registerFarmer.html')
 
 
