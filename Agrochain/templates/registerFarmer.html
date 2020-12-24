@@ -20,7 +20,7 @@
     <body class="form-v10">
         <div class="page-content">
             <div class="form-v10-content" style="width:750px;height:1000px">
-                <form class="form-detail" action="/home" method="POST" id="myform">
+                <form class="form-detail" action="/registerFarmer" method="POST" id="myform">
                     <div class="form-left">
                         <h2>Please register yourself as a Farmer.</h2>
 
@@ -61,7 +61,7 @@
                                     <input type="text" name="plot_number" id="plot_number" class="input-text" placeholder="Enter Plot Number" required>
                                 </div>
                                 <div class="form-row form-row-1">
-                                    <input type="text" name="plot_name" id="plot_name" class="input-text" placeholder="Enter Plot Name" required>
+                                    <input type="text" name="plot_owner" id="plot_owner" class="input-text" placeholder="Enter Plot Owner" required>
                                 </div>
                             </div>
 
@@ -98,8 +98,27 @@ $(document).ready(function() {
         e.preventDefault();
         var plot_form_new = document.createElement('div');
         var plot_form = document.getElementById("plot_form")
-        plot_form_new.innerHTML = "<div>" + plot_form.innerHTML  +"<a href='#' style='color:red;' class='delete form-row'>Delete</a></div";
-        plot_form_new.id = plot_form.id + toString(x);
+
+        var plot_form_div_content = `<div id='plot_form'>                             
+                            <div class='form-group'> 
+                                <div class='form-row form-row-1'>
+                                    <input type='text' name='plot_number_`  + x.toString() + `' id='plot_number_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Number' required>
+                                </div>
+                                <div class='form-row form-row-1'>
+                                    <input type='text' name='plot_owner_`  + x.toString() + `' id='plot_owner_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Owner' required>
+                                </div>
+                            </div>
+
+                            <div class='form-group'>
+                                <div class='form-row form-row-1'>
+                                    <input type='text' name='plot_address_`  + x.toString() + `' id='plot_address_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Address' required>
+                                </div>
+                            </div>
+                        </div>`;
+
+
+        plot_form_new.innerHTML = "<div>" + plot_form_div_content +"<a href='#' style='color:red;' class='delete form-row'>Delete</a></div>";
+        plot_form_new.id = plot_form.id + '_' + x.toString();
         
         if (x < max_fields) {
             x++;

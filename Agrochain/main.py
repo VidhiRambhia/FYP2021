@@ -49,20 +49,28 @@ contract_instance = w3.eth.contract(abi=abi, address=contract_address)
 app = Flask(__name__)
 
 
-@app.route("/home",methods=["GET","POST"])
+@app.route("/registerFarmer",methods=["GET","POST"])
 def index():
     #print(contract_address)
     #print(w3.isConnected())
+    #print(request.form)
     email = request.form.get('email') 
     password = request.form.get('password')
-    print(email)
-    print(password)
-    print(request.form)
-    plot_numbers = request.form.get('plot_number')
-    print(plot_numbers)
-    # for plot in plots:
-    #     print(plot)
-    return render_template('index.html')
+    plot_number = request.form.get('plot_number')
+    plot_owner = request.form.get('plot_owner')
+    plot_address = request.form.get('plot_address')
+    # Call add plot here
+    if request.form.get('plot_number_1'):
+        plot_number_1 = request.form.get('plot_number_1')
+        plot_owner_1 = request.form.get('plot_owner_1')
+        plot_address_1 = request.form.get('plot_address_1')
+        # Call add plot again 
+    if request.form.get('plot_number_2'):
+        plot_number_2 = request.form.get('plot_number_2')
+        plot_owner_2 = request.form.get('plot_owner_2')
+        plot_address_2 = request.form.get('plot_address_2')
+        # Call add plot again 
+    return render_template('registerFarmer.html')
 
 
 @app.route("/registerFarmer")
