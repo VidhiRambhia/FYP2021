@@ -3,15 +3,12 @@ pragma solidity ^0.7.0;
 struct Crop{
     uint cropID;
     string cropType;
-    string cropName;
-    string cropVariety;
+    string cropName; 
     string fertiliser;
-    string season;
     string sourceTagNo;
     uint quantity;
     uint256 DateSowed;
     uint256 DateHarvested;
-    string cropRegistrationCode;
 }
 
 contract CropDetails{
@@ -22,27 +19,23 @@ contract CropDetails{
     
     mapping(address=>Crop[]) crops;
     
-    function addCrop1(string calldata cropType, string calldata cropName, string calldata cropVariety, string calldata sourceTagNo,
-        string calldata cropRegistrationCode, address farmerAddr) public returns (uint cropID){
+    function addCrop1(string calldata cropType, string calldata cropName, string calldata sourceTagNo,
+         address farmerAddr) public returns (uint cropID){
             Crop memory crop;
             crop.cropID = crops[farmerAddr].length;
             crop.cropType = cropType;
             crop.cropName = cropName;
-            crop.cropVariety = cropVariety;
             crop.sourceTagNo = sourceTagNo;
-            crop.cropRegistrationCode = cropRegistrationCode;
             crops[farmerAddr].push(crop);
             return crop.cropID;
         }
         
-    function addCrop2(uint cropID, string memory fertiliser, string memory season, uint quantity, uint256 DateSowed,
-    uint256 DateHarvested, address farmerAddr) public{
+    function addCrop2(uint cropID, string memory fertiliser, uint quantity, uint256 DateSowed,
+        address farmerAddr) public{
             Crop storage crop = crops[farmerAddr][cropID];
             crop.fertiliser = fertiliser;
-            crop.season = season;
             crop.quantity = quantity;
             crop.DateSowed = DateSowed;
-            crop.DateHarvested = DateHarvested;
             emit CropAdded(farmerAddr);
         }
         
@@ -53,15 +46,14 @@ contract CropDetails{
     }
     
     function getCrop1(address farmerAddr, uint cropID) public returns (string memory cropType, string memory cropName,
-    string memory cropVariety, string memory sourceTagNo, string memory cropRegistrationCode){
+    string memory sourceTagNo){
         return (crops[farmerAddr][cropID].cropType, crops[farmerAddr][cropID].cropName,
-            crops[farmerAddr][cropID].cropVariety, crops[farmerAddr][cropID].sourceTagNo,
-            crops[farmerAddr][cropID].cropRegistrationCode);
-        }
+            crops[farmerAddr][cropID].sourceTagNo);
+    }
         
-    function getCrop2(address farmerAddr, uint cropID) public returns (string memory fertiliser, string memory season,
-    uint quantity, uint256 DateSowed, uint256 DateHarvested){
-        return (crops[farmerAddr][cropID].fertiliser, crops[farmerAddr][cropID].season, crops[farmerAddr][cropID].quantity,
-            crops[farmerAddr][cropID].DateSowed, crops[farmerAddr][cropID].DateHarvested);
+    function getCrop2(address farmerAddr, uint cropID) public returns (string memory fertiliser,uint quantity,
+        uint256 DateSowed, uint256 DateHarvested){
+            return (crops[farmerAddr][cropID].fertiliser, crops[farmerAddr][cropID].quantity,
+                crops[farmerAddr][cropID].DateSowed, crops[farmerAddr][cropID].DateHarvested);
     }
 }
