@@ -1,7 +1,7 @@
 import json
 import sys
 from web3 import Web3, HTTPProvider
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 # create a web3.py instance w3 by connecting to the local Ethereum node
 w3 = Web3(HTTPProvider("http://localhost:7545"))
@@ -10,7 +10,7 @@ print(w3.isConnected())
 
 # Initialize a local account object from the private key of a valid Ethereum node address
 # Add your own private key here
-local_acct = w3.eth.account.from_key("f6f9d4c2d90707ca947c5dba2eb531659883ec24f69aa5b0ea65c251b99b5e01")
+local_acct = w3.eth.account.from_key("3b4a60ab47652548c19663d1ae02703da2eb2f92434f304d87f12abc5fad567b")
 
 # compile your smart contract with truffle first
 truffleFile = json.load(open('./build/contracts/Migrations.json'))
@@ -22,7 +22,9 @@ contract = w3.eth.contract(bytecode=bytecode, abi=abi)
 
 # build a transaction by invoking the buildTransaction() method from the smart contract constructor function
 # Add your own account address here
-construct_txn = contract.constructor(60, '0x25968ea7d119fea4bb20CFd9e06E737a25e13bE3').buildTransaction({
+
+construct_txn = contract.constructor(60, '0x8E73855be1b32A8a3693eB2b15503EDd51939a3E').buildTransaction({
+
     'from': local_acct.address,
     'nonce': w3.eth.getTransactionCount(local_acct.address),
     'gas': 1728712,
@@ -48,6 +50,16 @@ contract_instance = w3.eth.contract(abi=abi, address=contract_address)
 
 app = Flask(__name__)
 
+@app.route("/", methods=["GET","POST"])
+def index():
+
+    print(contract_address)
+    print(w3.isConnected())
+    if(request.method == "POST"):
+        return redirect(url_for('login'))
+    email = request.form.get('email') #Todo: Add other fields
+    return render_template('home.html')
+
 
 @app.route("/registerFarmer",methods=["GET","POST"])
 def index():
@@ -71,6 +83,38 @@ def index():
         plot_address_2 = request.form.get('plot_address_2')
         # Call add plot again 
     return render_template('registerFarmer.html')
+
+
+@app.route("/chooseRole", methods=["GET","POST"])
+def chooseRole():
+    if(request.method=="POST"):
+        selectedRole = request.form.get('role')
+        print('selected role: ', selectedRole)
+        if (selectedRole == 'farmer'):
+            return redirect(url_for('index'))
+        else:
+            return redirect(url_for('chooseRole'))
+    return render_template('ChooseRole.html')
+
+@app.route("/cropDetails")
+def cropDetails():
+    return render_template('CropDetails.html')
+
+@app.route("/farmerPage", methods=["GET","POST"])
+def farmerPage():
+    if request.method=="POST":
+        if 'profile' in request.form:
+            return redirect(url_for('index'))
+        elif 'addCrop' in request.form:
+            return redirect(url_for('cropDetails'))
+        elif 'updateCrop' in request.form:
+            return redirect(url_for('cropDetails'))
+
+    return render_template('FarmerFunctions.html')
+
+@app.route("/login")
+def login():
+    return render_template("Login.html")
 
 
 @app.route("/registerFarmer")
