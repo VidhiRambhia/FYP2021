@@ -11,11 +11,16 @@
         <!-- Main Style Css -->
         <link rel="stylesheet" href="../static/css/index.css" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+
+        <script src="../static/js/jquery-3.5.1.js"></script>
+
     </head>
 
     <body class="form-v10">
         <div class="page-content">
-            <div class="form-v10-content" style=width:750px;>
+
+            <div class="form-v10-content" style=width:750px;height:1000px">
                 <form class="form-detail" action="{{url_for('index')}}" method="POST" id="myform">
                     <div class="form-left">
                         <h2>Please register yourself as a Farmer.</h2>
@@ -40,37 +45,79 @@
                        
 
                     </div>
+
+
                     <div class="form-group">
                         <label for="exampleFormControlInput1" style="margin-left: 70px;">You can add multiple plots</label>
                     </div>
-                    <div class="form-group">
-                        <div class="form-row form-row-1">
-                            <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Enter Plot Number" required>
+
+                    <div id="container">
+
+                        <div class="form-row">
+                            <button id="add_form_field" type="button" class="btn btn-link">+ Add Another Plot</button>
                         </div>
-                        <div class="form-row form-row-1">
-                            <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Enter Plot Name" required>
+
+                        <div id="plot_form">
+                            
+                            <div class="form-group">
+                                <div class="form-row form-row-1">
+                                    <input type="text" name="plot_number" id="plot_number" class="input-text" placeholder="Enter Plot Number" required>
+                                </div>
+                                <div class="form-row form-row-1">
+                                    <input type="text" name="plot_name" id="plot_name" class="input-text" placeholder="Enter Plot Name" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="form-row form-row-1">
+                                    <input type="text" name="plot_address" id="plot_address" class="input-text" placeholder="Enter Plot Address" required>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        
-                        <div class="form-row form-row-1">
-                            <input type="text" name="last_name" id="last_name" class="input-text" placeholder="Enter Plot Address" required>
-                        </div>
-                        
-                    <div class="form-row ">
-                        <button type="button submit" class="btn btn-info btn-lg">+</button>
-                    </div>
+
                     </div>
 
-
-                    <div class="form-row ">
+                    <div class="form-row form-row-1 " style="margin-top: 15px;">
                         <button type="button submit" class="btn btn-primary btn-lg">Submit</button>
                     </div>
-
-                    
+                   
                 </form>
             </div>
         </div>
     </body>
+
+<script>
+
+
+$(document).ready(function() {
+    var max_fields = 3;
+    var wrapper = $("#container");
+    var add_button = $("#add_form_field");
+
+    var x = 1;
+    $(add_button).click(function(e) {
+        e.preventDefault();
+        var plot_form_new = document.createElement('div');
+        var plot_form = document.getElementById("plot_form")
+        plot_form_new.innerHTML = "<div>" + plot_form.innerHTML  +"<a href='#' style='color:red;' class='delete form-row'>Delete</a></div";
+        plot_form_new.id = plot_form.id + toString(x);
+        
+        if (x < max_fields) {
+            x++;
+
+            $(wrapper).append(plot_form_new); //add input box
+
+        } else {
+            alert('You Reached the limits')
+        }
+    });
+
+    $(wrapper).on("click", ".delete", function(e) {
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+    })
+}); 
+</script>
 
 </html>

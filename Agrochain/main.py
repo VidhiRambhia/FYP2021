@@ -22,7 +22,9 @@ contract = w3.eth.contract(bytecode=bytecode, abi=abi)
 
 # build a transaction by invoking the buildTransaction() method from the smart contract constructor function
 # Add your own account address here
+
 construct_txn = contract.constructor(60, '0x8E73855be1b32A8a3693eB2b15503EDd51939a3E').buildTransaction({
+
     'from': local_acct.address,
     'nonce': w3.eth.getTransactionCount(local_acct.address),
     'gas': 1728712,
@@ -51,10 +53,12 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def index():
+
     print(contract_address)
     print(w3.isConnected())
     if(request.method == "POST"):
         return redirect(url_for('login'))
+    email = request.form.get('email') #Todo: Add other fields
     return render_template('index.html')
 
 @app.route("/chooseRole", methods=["GET","POST"])
@@ -88,6 +92,18 @@ def farmerPage():
 def login():
     return render_template("Login.html")
 
+
+@app.route("/registerFarmer")
+def registerFarmer():
+    return render_template('FarmerFunctions.html')
+
+@app.route("/addCrop")
+def addCrop():
+    return render_template('addCropDetails.html')
+
+@app.route("/chooseRole")
+def chooseRole():
+    return render_template('ChooseRole.html')
 
 @app.route("/error")
 def error():
