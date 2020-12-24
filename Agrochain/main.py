@@ -99,7 +99,7 @@ def registerFarmer():
 
 @app.route("/addCrop")
 def addCrop():
-    return render_template('addCropDetails.html')
+    return render_template('CropDetails.html')
 
 @app.route("/chooseRole")
 def chooseRole():
