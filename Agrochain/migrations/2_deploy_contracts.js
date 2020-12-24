@@ -1,8 +1,10 @@
-const Migrations = artifacts.require("Migrations");
+const CropDetails = artifacts.require("CropDetails");
+const FarmerDetails = artifacts.require("FarmerDetails");
+const User = artifacts.require("Login");
 
 module.exports = function (deployer) {
-  biddingTime = 3000;
-  beneficiary = '0x6Ef4724927cca14ac42Cb775fB55a6ab65451A8E';
-  deployer.deploy(Migrations,biddingTime,beneficiary);
+  deployer.deploy(CropDetails);
+  deployer.deploy(FarmerDetails);
+  deployer.deploy(User);  
 };
 
