@@ -1,5 +1,6 @@
 import json
 import sys
+import datetime
 from web3 import Web3, HTTPProvider
 from flask import Flask, render_template, request, redirect, url_for
 from config import config
@@ -82,7 +83,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    #print(farmerDetails_contract_instance.functions.getFarmer(local_acct.address,0).call())
+    print(cropDetails_contract_instance.functions.getCrop2(local_acct.address,11).call())
     #print(contract_address)
     #print(w3.isConnected())
     if(request.method == "POST"):
@@ -157,8 +158,9 @@ def addcropDetails():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         farmer_address = "0x0" #get address
-        sowing_date_int = 0
-        harvesting_date_int= 1
+        sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
+        sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
+        #harvesting_date_int= 1
         crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,local_acct.address).call()
         txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,local_acct.address).transact(txn_dict)
         txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int, local_acct.address).transact(txn_dict)
