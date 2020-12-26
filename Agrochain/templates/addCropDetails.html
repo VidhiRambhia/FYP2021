@@ -17,16 +17,16 @@
 	<body class="form-v10">
 		<div class="page-content">
 			<div class="form-v10-content">
-				<form class="form-detail" action="/register" method="POST" id="myform">
+				<form class="form-detail" action="/addCropDetails" method="POST" id="myform">
 					<div class="form-left">
 						<h2><b>Crop Details - Farmer's Portal</b></h2>
 
 						<div class="form-group">
 							<div class="form-row form-row-1">
-								<input type="text" name="first_name" id="first_name" class="input-text" placeholder="Crop Name" required>
+								<input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
 							</div>
 							<div class="form-row form-row-2">
-								<select name="activity1">
+								<select name="crop_type">
 									<option value="choose">Choose Crop Type</option>
 									<option value="fruits">Fruits</option>
 									<option value="vegetables">Vegetables</option>
@@ -38,15 +38,15 @@
 						</div>
 						<div class="form-group">
 							<div class="form-row form-row-1">
-								<input type="text" name="last_name" id="last_name" class="input-text" placeholder="Fertilizers used" required>
+								<input type="text" name="fertilizer" id="fertilizer" class="input-text" placeholder="Fertilizers used" required>
 							</div>
 							<div class="form-row form-row-2">
-									<input type="text" name="last_name" id="last_name" class="input-text" placeholder="Quantity(in kgs)" required>
+									<input type="text" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" required>
 								</div>
 						</div>
 						<div class="form-group">
 							<div class="form-row form-detail">
-								<input type="text" name="last_name" id="last_name" class="input-text" placeholder="Source Tag Number" required>
+								<input type="text" name="source_tag_number" id="source_tag_number" class="input-text" placeholder="Source Tag Number" required>
 							</div>
 						</div>
 						
@@ -54,14 +54,14 @@
 						<div class="form-group">
 							<label for="example-date-input" class="col-2 col-form-label" style="margin-left: 70px; font-size: large;">Sowing Date</label>
 							<div class="form-row form-row-1">
-							  <input class="form-control" type="date" value="2011-08-19" style="margin-left: 35px;" id="example-date-input">
+							  <input class="form-control" type="date" value="2011-08-19" style="margin-left: 35px;" name="sowing_date" id="sowing_date">
 							</div>
 						</div>
 
 						<div class="form-group">
 							<label for="example-date-input" class="col-2 col-form-label" style="margin-left: 70px; font-size: large;">Harvesting Date</label>
 							<div class="form-row form-row-1">
-							  <input class="form-control" type="date" value="2011-08-19" style="margin-left: 1px;" id="example-date-input">
+							  <input class="form-control" type="date" value="2011-08-19" style="margin-left: 1px;" name="harvesting_date" id="harvesting_date">
 							</div>
 						</div>
 

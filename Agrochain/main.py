@@ -82,7 +82,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET","POST"])
 def index():
-    print(farmerDetails_contract_instance.functions.getFarmer(local_acct.address,0).call())
+    #print(farmerDetails_contract_instance.functions.getFarmer(local_acct.address,0).call())
     #print(contract_address)
     #print(w3.isConnected())
     if(request.method == "POST"):
@@ -102,7 +102,6 @@ def registerFarmer():
         plot_number = request.form.get('plot_number')
         plot_owner = request.form.get('plot_owner')
         plot_address = request.form.get('plot_address')
-        # Call add plot here
         txn_dict = {
                 'from': local_acct.address,
                 'to': farmerDetails_contract_address,
@@ -110,19 +109,22 @@ def registerFarmer():
                 'gas': 2000000,
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
-        txn_hash = farmerDetails_contract_instance.functions.addPlot(local_acct.address,plot_owner,plot_number,plot_address).transact(txn_dict)
+        farmer_address = "0x0" #get address
+        txn_hash = farmerDetails_contract_instance.functions.addFarmer(local_acct.address,email,plot_owner,plot_number,plot_address,True).transact(txn_dict)
         print(txn_hash)
 
         if request.form.get('plot_number_1'):
             plot_number_1 = request.form.get('plot_number_1')
             plot_owner_1 = request.form.get('plot_owner_1')
             plot_address_1 = request.form.get('plot_address_1')
-            # Call add plot again 
+            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+            print(txn_hash)
         if request.form.get('plot_number_2'):
             plot_number_2 = request.form.get('plot_number_2')
             plot_owner_2 = request.form.get('plot_owner_2')
             plot_address_2 = request.form.get('plot_address_2')
-            # Call add plot again 
+            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+            print(txn_hash)
     return render_template('registerFarmer.html')
 
 
@@ -137,9 +139,32 @@ def chooseRole():
             return redirect(url_for('chooseRole'))
     return render_template('ChooseRole.html')
 
-@app.route("/cropDetails")
-def cropDetails():
-    return render_template('CropDetails.html')
+@app.route("/addCropDetails",methods=["GET","POST"])
+def addcropDetails():
+    if request.method=="POST":
+        crop_name = request.form.get('crop_name')
+        crop_type = request.form.get('crop_type')
+        fertilizer = request.form.get('fertilizer')
+        quantity = int(request.form.get('quantity'))
+        source_tag_number = request.form.get('source_tag_number')
+        sowing_date = request.form.get('sowing_date')
+        harvesting_date = request.form.get('harvesting_date')
+        txn_dict = {
+                'from': local_acct.address,
+                'to': cropDetails_contract_address,
+                'value': '0',
+                'gas': 3000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        farmer_address = "0x0" #get address
+        sowing_date_int = 0
+        harvesting_date_int= 1
+        crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,local_acct.address).call()
+        txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,local_acct.address).transact(txn_dict)
+        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int, local_acct.address).transact(txn_dict)
+        #print(txn_hash)
+        print(crop_id)
+    return render_template('addCropDetails.html')
 
 @app.route("/farmerPage", methods=["GET","POST"])
 def farmerPage():
@@ -157,14 +182,6 @@ def farmerPage():
 def login():
     return render_template("Login.html")
 
-
-# @app.route("/registerFarmer")
-# def registerFarmer():
-#     return render_template('FarmerFunctions.html')
-
-@app.route("/addCrop")
-def addCrop():
-    return render_template('CropDetails.html')
 
 @app.route("/error")
 def error():
