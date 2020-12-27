@@ -1,6 +1,7 @@
 import json
 import sys
-from web3 import Web3, HTTPProvider
+import hashlib
+from web3 import Web3, HTTPProvider, IPCProvider
 from flask import Flask, render_template, request, redirect, url_for
 from config import config
 
@@ -55,6 +56,8 @@ farmerDetails_contract_address = config.farmerDetails_contract_address
 login_contract_address = config.login_contract_address 
 
 w3 = Web3(HTTPProvider("http://localhost:7545"))
+# IPC Provider error here
+eth = Web3(IPCProvider()).eth
 
 print(w3.isConnected())
 
@@ -80,9 +83,34 @@ login_contract_instance = w3.eth.contract(abi=login_abi, address=login_contract_
 
 app = Flask(__name__)
 
+def addNewUser(email, pwd_hash, role):
+    user_dict = {
+            'from': local_acct.address,
+            'to': login_contract_address,
+            'value': 0,
+            'gas':2000000,
+            'gasPrice': w3.toWei('40', 'gwei')
+        }
+    txn_hash = login_contract_instance.functions.addUser(local_acct.address, email, pwd_hash, role).transact(user_dict)
+    print('new user added', txn_hash)
+
+def verifyUser(address):
+    user_dict = {
+            'from': local_acct.address,
+            'to': login_contract_address,
+            'value': 0,
+            'gas':2000000,
+            'gasPrice': w3.toWei('40', 'gwei')
+        }
+    print('creating transaction')
+    txn_hash = login_contract_instance.functions.getUser(address).transact(user_dict)
+    print(eth.getTransactionReceipt(txn_hash))
+
+
+@app.route("/home")
 @app.route("/", methods=["GET","POST"])
 def index():
-    print(farmerDetails_contract_instance.functions.getFarmer(local_acct.address,0).call())
+    # print(farmerDetails_contract_instance.functions.getFarmer(local_acct.address,0).call())
     #print(contract_address)
     #print(w3.isConnected())
     if(request.method == "POST"):
@@ -99,6 +127,9 @@ def registerFarmer():
     if request.method == "POST":
         email = request.form.get('email') 
         password = request.form.get('password')
+        pwd_hash = hashlib.sha256(password.encode()).hexdigest()
+        addNewUser(email, pwd_hash, 'farmer')
+
         plot_number = request.form.get('plot_number')
         plot_owner = request.form.get('plot_owner')
         plot_address = request.form.get('plot_address')
@@ -132,7 +163,7 @@ def chooseRole():
         selectedRole = request.form.get('role')
         print('selected role: ', selectedRole)
         if (selectedRole == 'farmer'):
-            return redirect(url_for('index'))
+            return redirect(url_for('registerFarmer'))
         else:
             return redirect(url_for('chooseRole'))
     return render_template('ChooseRole.html')
@@ -145,7 +176,7 @@ def cropDetails():
 def farmerPage():
     if request.method=="POST":
         if 'profile' in request.form:
-            return redirect(url_for('index'))
+            return redirect(url_for('registerFarmer'))
         elif 'addCrop' in request.form:
             return redirect(url_for('cropDetails'))
         elif 'updateCrop' in request.form:
@@ -153,8 +184,16 @@ def farmerPage():
 
     return render_template('FarmerFunctions.html')
 
-@app.route("/login")
+@app.route("/login", methods=["POST", "GET"])
 def login():
+    if request.method == "POST":
+        email = request.form.get('email')
+        print(email)
+        password = request.form.get('password')
+        pwd_hash = hashlib.sha256(password.encode()).hexdigest()
+
+        verifyUser(email)
+        redirect(url_for('farmerPage'))
     return render_template("Login.html")
 
 

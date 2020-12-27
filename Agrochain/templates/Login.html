@@ -16,14 +16,14 @@
     <body class="form-v10">
         <div class="page-content">
             <div class="form-v10-content" style=width:750px;>
-                <form class="form-detail" action="/home" method="POST" id="myform">
+                <form class="form-detail" action="{{url_for('login')}}" method="POST" id="myform">
                     <div class="form-left">
                         <h2>Enter credentials to login</h2>
 
 
                         <div class="form-group">
 							<div class="form-row form-row-1">
-								<input type="email" id="email" class="input-text" placeholder="Your email id" required>
+								<input type="email" id="email" name="email" class="input-text" placeholder="Your email address" required>
                         </div>
                         <!-- <div class="form-right">
                             <div class="form-row">
