@@ -321,90 +321,120 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
-/*--------------------------------------------------------------	
-# Hero Section	
---------------------------------------------------------------*/	
-#hero {	
-  width: 100%;	
-  height: calc(100vh - 72px);	
-  background: url("../img/hero-bg.jpg") center center;	
-  background-size: cover;	
-  position: relative;	
-  margin-top: 72px;	
-  padding: 0;	
-}	
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: calc(100vh - 72px);
+  background: url("../img/hero-bg.jpg") center center;
+  background-size: cover;
+  position: relative;
+  margin-top: 72px;
+  padding: 0;
+}
 
-#hero:before {	
-  content: "";	
-  background: rgba(0, 0, 0, 0.4);	
-  position: absolute;	
-  bottom: 0;	
-  top: 0;	
-  left: 0;	
-  right: 0;	
-}	
+#hero:before {
+  content: "";
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+}
 
-#hero .container {	
-  z-index: 2;	
-}	
+#hero .container {
+  z-index: 2;
+}
 
-#hero h1 {	
-  margin: 0 0 10px 0;	
-  font-size: 48px;	
-  font-weight: 700;	
-  line-height: 56px;	
-  color: #fff;	
-}	
+#hero h1 {
+  margin: 0 0 10px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+}
 
-#hero h2 {	
-  color: rgba(255, 255, 255, 0.7);	
-  margin-bottom: 35px;	
-  font-size: 24px;	
-}	
+#hero h2 {
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 35px;
+  font-size: 24px;
+}
 
-#hero .btn-get-started {	
-  font-family: "Raleway", sans-serif;	
-  text-transform: uppercase;	
-  font-weight: 500;	
-  font-size: 16px;	
-  letter-spacing: 1px;	
-  display: inline-block;	
-  padding: 8px 28px;	
-  border-radius: 4px;	
-  transition: 0.5s;	
-  border: 2px solid #fff;	
-  color: #fff;	
-}	
+#hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 8px 28px;
+  border-radius: 4px;
+  transition: 0.5s;
+  border: 2px solid #fff;
+  color: #fff;
+}
 
-#hero .btn-get-started:hover {	
-  border-color:  rgba(167, 223, 245, 0.6);	
-  background:  rgba(167, 223, 245, 0.6);	
-}	
+#hero .btn-get-started:hover {
+  border-color:  rgba(167, 223, 245, 0.6);
+  background:  rgba(167, 223, 245, 0.6);
+}
 
-@media (min-width: 1024px) {	
-  #hero {	
-    background-attachment: fixed;	
-  }	
-}	
+@media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+}
 
-@media (max-width: 992px) {	
-  #hero {	
-    margin-top: 60px;	
-    height: calc(100vh - 60px);	
-  }	
-}	
+@media (max-width: 992px) {
+  #hero {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+  }
+}
 
-@media (max-width: 768px) {	
-  #hero h1 {	
-    font-size: 28px;	
-    line-height: 36px;	
-  }	
-  #hero h2 {	
-    font-size: 18px;	
-    line-height: 24px;	
-    margin-bottom: 30px;	
-  }	
-}	
+@media (max-width: 768px) {
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 30px;
+  }
+}
+
+/*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-bg {
+  background-color:rgba(167, 223, 245, 0.4);
+}
+
+.section-title {
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.section-title h2 {
+  font-size: 36px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: #21413c;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
 
 /*--------------------------------------------------------------
 # About
@@ -412,7 +442,7 @@ h1, h2, h3, h4, h5, h6 {
 .about h3 {
   font-weight: 400;
   font-size: 34px;
-  color: black;
+  color: #21413c;
 }
 
 .about .icon-box {
@@ -429,7 +459,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 22px;
   font-weight: 500;
   margin-left: 60px;
-  color: black;
+  color: #21413c;
 }
 
 .about .icon-box p {
@@ -468,7 +498,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
   padding: 0;
   margin: 20px 0;
-  color: black;
+  color: #21413c;
 }
 
 .steps .content-item p {
@@ -482,6 +512,64 @@ h1, h2, h3, h4, h5, h6 {
   .steps .content-item {
     padding: 40px 0;
   }
+}
+
+
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.services .icon-box {
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  border-radius: 15px;
+  text-align: center;
+  border-bottom: 3px solid #fff;
+}
+
+.services .icon-box:hover {
+  box-shadow: 0 2px 29px 0 rgba(37, 37, 37, 0.1);
+}
+
+.services .icon i {
+  font-size: 48px;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.services .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+
+.services .title a {
+  color: #111;
+}
+
+.services .description {
+  font-size: 15px;
+  line-height: 28px;
+  margin-bottom: 0;
+}
+
+.services .icon-box-pink .icon i {
+  color: #ff689b;
+}
+
+.services .icon-box-cyan .icon i {
+  color: #3fcdc7;
+}
+
+.services .icon-box-green .icon i {
+  color: #41cf2e;
+}
+
+.services .icon-box-blue .icon i {
+  color: #2282ff;
 }
 
 
@@ -571,6 +659,184 @@ h1, h2, h3, h4, h5, h6 {
   transition: left ease-in-out 0.3s;
 }
 
+
+/*--------------------------------------------------------------
+# Contact
+--------------------------------------------------------------*/
+.contact .info {
+  padding: 30px;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact .info i {
+  font-size: 20px;
+  color: #1bac91;
+  float: left;
+  width: 44px;
+  height: 44px;
+  background: #e1f0ee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  transition: all 0.3s ease-in-out;
+}
+
+.contact .info h4 {
+  padding: 0 0 0 60px;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #21413c;
+}
+
+.contact .info p {
+  padding: 0 0 0 60px;
+  margin-bottom: 0;
+  font-size: 14px;
+  color: #43857a;
+}
+
+.contact .info .email p {
+  padding-top: 5px;
+}
+
+.contact .info .social-links {
+  padding-left: 60px;
+}
+
+.contact .info .social-links a {
+  font-size: 18px;
+  display: inline-block;
+  background: #333;
+  color: #fff;
+  line-height: 1;
+  padding: 8px 0;
+  border-radius: 50%;
+  text-align: center;
+  width: 36px;
+  height: 36px;
+  transition: 0.3s;
+  margin-right: 10px;
+}
+
+.contact .info .social-links a:hover {
+  background: #1bac91;
+  color: #fff;
+}
+
+.contact .info .email:hover i, .contact .info .address:hover i, .contact .info .phone:hover i {
+  background: #1bac91;
+  color: #fff;
+}
+
+.contact .php-email-form {
+  width: 100%;
+  padding: 30px;
+  background: #fff;
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
+}
+
+.contact .php-email-form .form-group {
+  padding-bottom: 8px;
+}
+
+.contact .php-email-form .validate {
+  display: none;
+  color: red;
+  margin: 0 0 15px 0;
+  font-weight: 400;
+  font-size: 13px;
+}
+
+.contact .php-email-form .error-message {
+  display: none;
+  color: #fff;
+  background: #ed3c0d;
+  text-align: left;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact .php-email-form .error-message br + br {
+  margin-top: 25px;
+}
+
+.contact .php-email-form .sent-message {
+  display: none;
+  color: #fff;
+  background: #18d26e;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+}
+
+.contact .php-email-form .loading {
+  display: none;
+  background: #fff;
+  text-align: center;
+  padding: 15px;
+}
+
+.contact .php-email-form .loading:before {
+  content: "";
+  display: inline-block;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  margin: 0 10px -6px 0;
+  border: 3px solid #18d26e;
+  border-top-color: #eee;
+  -webkit-animation: animate-loading 1s linear infinite;
+  animation: animate-loading 1s linear infinite;
+}
+
+.contact .php-email-form input, .contact .php-email-form textarea {
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 14px;
+}
+
+.contact .php-email-form input {
+  height: 44px;
+}
+
+.contact .php-email-form textarea {
+  padding: 10px 12px;
+}
+
+.contact .php-email-form button[type="submit"] {
+  background: rgb(149, 153, 226);
+  border: 0;
+  padding: 10px 24px;
+  color: #fff;
+  transition: 0.4s;
+  border-radius: 4px;
+}
+
+.contact .php-email-form button[type="submit"]:hover {
+  background: rgb(149, 153, 226);
+}
+
+@-webkit-keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes animate-loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 
 /*--------------------------------------------------------------
 # Footer

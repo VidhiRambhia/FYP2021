@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Choose Role</title>
+		<!-- Mobile Specific Metas -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<!-- Font-->
+		<link rel="stylesheet" type="text/css" href="../static/css/montserrat-font.css">
+		<link rel="stylesheet" type="text/css" href="../static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+		<!-- Main Style Css -->
+		<link rel="stylesheet" href="../static/css/index.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    </head>
+    <body>
+
+
+<div class="page-content">
+    <div class="form-v10-content" style=width:750px;>
+        <form class="form-detail" action="{{url_for('farmer.chooseRole')}}" method="POST" enctype="multipart/form-data" id="myform">
+            <div class="form-left">
+                <h2 style="text-align: center; margin-bottom: 80px;"><b>Welcome to AgriChain!</b></h2>
+                <h4 class="text-primary" style="margin-left: 60px; margin-bottom: 35px;">Choose your role in the system</h4>
+
+                <div class="form-group">
+                    <div class="form-row form-row-2">
+                        <select name="role" style="margin-left: 40px;">
+                            <option value="choose">Choose Your Role</option>
+                            <option value="farmer">Farmer</option>
+                            <option value="buyingCenter">Buying Center Manager</option>
+                            <option value="hub">Hub Manager</option>
+                            <option value="retailer">Retail Store Owner</option>
+                        </select>
+                        <span class="select-btn">
+                            <i class="zmdi zmdi-chevron-down"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <button type="button submit" class="btn btn-primary btn-lg">Register</button>
+                </div>
+                <div class="form-right">
+                    <div class="form-row">
+                        <img src="https://t3.ftcdn.net/jpg/02/12/82/12/360_F_212821250_A7fY72OL8WB7SFJ2gWKhnY0qWCelslis.jpg" 
+                        style="height: 150px; margin-left: 400px; margin-top: -300px;">
+                    </div>
+
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+</body>

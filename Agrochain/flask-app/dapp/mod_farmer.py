@@ -3,8 +3,10 @@ import sys
 import datetime
 import hashlib
 from web3 import Web3, HTTPProvider,IPCProvider
-from flask import Flask, render_template, request, redirect, url_for
-from config import config
+from flask import Flask, Blueprint, render_template, request, redirect, url_for
+from dapp.configurations import config
+from dapp import w3,eth,db
+from dapp.models import User
 
 # # create a web3.py instance w3 by connecting to the local Ethereum node
 # w3 = Web3(HTTPProvider("http://localhost:7545"))
@@ -50,30 +52,26 @@ from config import config
 
 # #event_filter = contract_instance.events.AuctionEnded.createFilter(fromBlock='latest')
 
-
+#User = models.User
+mod_farmer = Blueprint('farmer', __name__, url_prefix='')
 
 cropDetails_contract_address = config.cropDetails_contract_address
 farmerDetails_contract_address = config.farmerDetails_contract_address
 login_contract_address = config.login_contract_address 
 
-w3 = Web3(HTTPProvider("http://localhost:7545"))
-# IPC Provider error here
-eth = Web3(IPCProvider()).eth
-
-print(w3.isConnected())
 
 # # Initialize a local account object from the private key of a valid Ethereum node address
 # # Add your own private key here
 local_acct = w3.eth.account.from_key(config.local_acct_key)
 
 # # compile your smart contract with truffle first
-cropDetails_truffleFile = json.load(open('./build/contracts/CropDetails.json'))
+cropDetails_truffleFile = json.load(open('../build/contracts/CropDetails.json'))
 cropDetails_abi = cropDetails_truffleFile['abi']
 
-farmerDetails_truffleFile = json.load(open('./build/contracts/FarmerDetails.json'))
+farmerDetails_truffleFile = json.load(open('../build/contracts/FarmerDetails.json'))
 farmerDetails_abi = farmerDetails_truffleFile['abi']
 
-login_truffleFile = json.load(open('./build/contracts/Login.json'))
+login_truffleFile = json.load(open('../build/contracts/Login.json'))
 login_abi = login_truffleFile['abi']
 
 
@@ -82,7 +80,6 @@ cropDetails_contract_instance = w3.eth.contract(abi=cropDetails_abi, address=cro
 farmerDetails_contract_instance = w3.eth.contract(abi=farmerDetails_abi, address=farmerDetails_contract_address)
 login_contract_instance = w3.eth.contract(abi=login_abi, address=login_contract_address)
 
-app = Flask(__name__)
 
 def addNewUser(email, pwd_hash, role):
     user_dict = {
@@ -108,8 +105,8 @@ def verifyUser(address):
     print(eth.getTransactionReceipt(txn_hash))
 
 
-@app.route("/home")
-@app.route("/", methods=["GET","POST"])
+@mod_farmer.route("/home")
+@mod_farmer.route("/", methods=["GET","POST"])
 def index():
     #print(cropDetails_contract_instance.functions.getCrop2(local_acct.address,11).call())
     #print(contract_address)
@@ -120,7 +117,7 @@ def index():
     return render_template('home.html')
 
 
-@app.route("/registerFarmer",methods=["GET","POST"])
+@mod_farmer.route("/registerFarmer",methods=["GET","POST"])
 def registerFarmer():
     #print(contract_address)
     #print(w3.isConnected())
@@ -160,18 +157,18 @@ def registerFarmer():
     return render_template('registerFarmer.html')
 
 
-@app.route("/chooseRole", methods=["GET","POST"])
+@mod_farmer.route("/chooseRole", methods=["GET","POST"])
 def chooseRole():
     if(request.method=="POST"):
         selectedRole = request.form.get('role')
         print('selected role: ', selectedRole)
         if (selectedRole == 'farmer'):
-            return redirect(url_for('registerFarmer'))
+            return redirect(url_for('farmer.registerFarmer'))
         else:
-            return redirect(url_for('chooseRole'))
+            return redirect(url_for('farmer.chooseRole'))
     return render_template('ChooseRole.html')
 
-@app.route("/addCropDetails",methods=["GET","POST"])
+@mod_farmer.route("/addCropDetails",methods=["GET","POST"])
 def addcropDetails():
     if request.method=="POST":
         crop_name = request.form.get('crop_name')
@@ -199,7 +196,7 @@ def addcropDetails():
         print(crop_id)
     return render_template('addCropDetails.html')
 
-@app.route("/farmerPage", methods=["GET","POST"])
+@mod_farmer.route("/farmerPage", methods=["GET","POST"])
 def farmerPage():
     if request.method=="POST":
         if 'profile' in request.form:
@@ -211,7 +208,7 @@ def farmerPage():
 
     return render_template('FarmerFunctions.html')
 
-@app.route("/login", methods=["POST", "GET"])
+@mod_farmer.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
         email = request.form.get('email')
@@ -224,11 +221,7 @@ def login():
     return render_template("Login.html")
 
 
-@app.route("/error")
+@mod_farmer.route("/error")
 def error():
     return render_template('error.html')
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
 
