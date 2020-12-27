@@ -1,0 +1,4 @@
+local_acct_key = '5a6176b5656256b81c08e0fdccb80b797da80292f37c4e06e2a089a93d68ecb4'
+cropDetails_contract_address = '0x9793ae3BE1DbccC644bcA824EE74549961d5C388'
+farmerDetails_contract_address = '0x1510F0caf394E77c483183F5eA7Adc7aaA1AC8d4'
+login_contract_address = '0x80179355f038E1AD8E69E00C45cb3D0D3fDDAf80'
