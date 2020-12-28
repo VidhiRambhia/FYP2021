@@ -4,20 +4,15 @@ body {
 }
 
 a {
-  color: rgb(139, 198, 236);
+  color:  rgb(139, 198, 236);
 }
 
 a:hover {
-  color: rgb(139, 198, 236);
+  color:  rgb(139, 198, 236);
   text-decoration: none;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
 }
 
@@ -32,7 +27,7 @@ h6 {
   border-radius: 3px;
   right: 15px;
   bottom: 15px;
-  background: rgb(139, 198, 236);
+  background:  rgb(139, 198, 236);
   color: #fff;
   transition: display 0.5s ease-in-out;
   z-index: 99999;
@@ -66,23 +61,22 @@ h6 {
 #header .logo h1 {
   font-size: 30px;
   margin: 0;
-  padding: 10px 0;
-  line-height: 1.25;
+  padding: 6px 0;
+  line-height: 1;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
-#header .logo h1 a,
-#header .logo h1 a:hover {
+#header .logo h1 a, #header .logo h1 a:hover {
   color: #fff;
   text-decoration: none;
 }
 
 #header .logo img {
-  padding: 2px;
+  padding: 0;
   margin: 0;
-  max-height: 35px;
+  max-height: 40px;
 }
 
 @media (max-width: 992px) {
@@ -96,14 +90,13 @@ h6 {
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
-.nav-menu,
-.nav-menu * {
+.nav-menu, .nav-menu * {
   margin: 0;
   padding: 0;
   list-style: none;
 }
 
-.nav-menu>ul>li {
+.nav-menu > ul > li {
   position: relative;
   white-space: nowrap;
   float: left;
@@ -119,11 +112,11 @@ h6 {
   font-family: "Open Sans", sans-serif;
 }
 
-.nav-menu>ul>li+li {
+.nav-menu > ul > li + li {
   margin-left: 30px;
 }
 
-.nav-menu>ul>li>a:before {
+.nav-menu > ul > li > a:before {
   content: "";
   position: absolute;
   width: 100%;
@@ -136,16 +129,12 @@ h6 {
   transition: all 0.3s ease-in-out 0s;
 }
 
-.nav-menu a:hover:before,
-.nav-menu li:hover>a:before,
-.nav-menu .active>a:before {
+.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .active > a:before {
   visibility: visible;
   width: 100%;
 }
 
-.nav-menu a:hover,
-.nav-menu .active>a,
-.nav-menu li:hover>a {
+.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
   color: #fff;
 }
 
@@ -163,7 +152,7 @@ h6 {
   transition: ease all 0.3s;
 }
 
-.nav-menu .drop-down:hover>ul {
+.nav-menu .drop-down:hover > ul {
   opacity: 1;
   visibility: visible;
 }
@@ -181,13 +170,11 @@ h6 {
   color: #062822;
 }
 
-.nav-menu .drop-down ul a:hover,
-.nav-menu .drop-down ul .active>a,
-.nav-menu .drop-down ul li:hover>a {
+.nav-menu .drop-down ul a:hover, .nav-menu .drop-down ul .active > a, .nav-menu .drop-down ul li:hover > a {
   color: rgb(139, 198, 236);
 }
 
-.nav-menu .drop-down>a:after {
+.nav-menu .drop-down > a:after {
   content: "\ea99";
   font-family: IcoFont;
   padding-left: 5px;
@@ -198,17 +185,17 @@ h6 {
   left: calc(100% - 30px);
 }
 
-.nav-menu .drop-down .drop-down:hover>ul {
+.nav-menu .drop-down .drop-down:hover > ul {
   opacity: 1;
   top: 0;
   left: 100%;
 }
 
-.nav-menu .drop-down .drop-down>a {
+.nav-menu .drop-down .drop-down > a {
   padding-right: 35px;
 }
 
-.nav-menu .drop-down .drop-down>a:after {
+.nav-menu .drop-down .drop-down > a:after {
   content: "\eaa0";
   font-family: IcoFont;
   position: absolute;
@@ -219,12 +206,10 @@ h6 {
   .nav-menu .drop-down .drop-down ul {
     left: -90%;
   }
-
-  .nav-menu .drop-down .drop-down:hover>ul {
+  .nav-menu .drop-down .drop-down:hover > ul {
     left: -100%;
   }
-
-  .nav-menu .drop-down .drop-down>a:after {
+  .nav-menu .drop-down .drop-down > a:after {
     content: "\ea9d";
   }
 }
@@ -280,14 +265,12 @@ h6 {
   outline: none;
 }
 
-.mobile-nav a:hover,
-.mobile-nav .active>a,
-.mobile-nav li:hover>a {
+.mobile-nav a:hover, .mobile-nav .active > a, .mobile-nav li:hover > a {
   color: #1bac91;
   text-decoration: none;
 }
 
-.mobile-nav .drop-down>a:after {
+.mobile-nav .drop-down > a:after {
   content: "\ea99";
   font-family: IcoFont;
   padding-left: 10px;
@@ -295,11 +278,11 @@ h6 {
   right: 15px;
 }
 
-.mobile-nav .active.drop-down>a:after {
+.mobile-nav .active.drop-down > a:after {
   content: "\eaa1";
 }
 
-.mobile-nav .drop-down>a {
+.mobile-nav .drop-down > a {
   padding-right: 35px;
 }
 
@@ -338,8 +321,8 @@ h6 {
   color: #fff;
 }
 
-/*--------------------------------------------------------------	
-# Hero Section	
+/*--------------------------------------------------------------
+# Hero Section
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
@@ -394,8 +377,8 @@ h6 {
 }
 
 #hero .btn-get-started:hover {
-  border-color: rgba(167, 223, 245, 0.6);
-  background: rgba(167, 223, 245, 0.6);
+  border-color:  rgba(167, 223, 245, 0.6);
+  background:  rgba(167, 223, 245, 0.6);
 }
 
 @media (min-width: 1024px) {
@@ -416,7 +399,6 @@ h6 {
     font-size: 28px;
     line-height: 36px;
   }
-
   #hero h2 {
     font-size: 18px;
     line-height: 24px;
@@ -425,12 +407,42 @@ h6 {
 }
 
 /*--------------------------------------------------------------
+# Sections General
+--------------------------------------------------------------*/
+section {
+  padding: 60px 0;
+  overflow: hidden;
+}
+
+.section-bg {
+  background-color:rgba(167, 223, 245, 0.4);
+}
+
+.section-title {
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.section-title h2 {
+  font-size: 36px;
+  font-weight: 300;
+  margin-bottom: 20px;
+  padding-bottom: 0;
+  color: black;
+}
+
+.section-title p {
+  margin-bottom: 0;
+}
+
+
+/*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
 .about h3 {
   font-weight: 400;
   font-size: 34px;
-  color: black;
+  color: #21413c;
 }
 
 .about .icon-box {
@@ -447,7 +459,7 @@ h6 {
   font-size: 22px;
   font-weight: 500;
   margin-left: 60px;
-  color: black;
+  color: #21413c;
 }
 
 .about .icon-box p {
