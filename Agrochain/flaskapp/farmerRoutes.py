@@ -97,7 +97,7 @@ def registerFarmer():
             return redirect(url_for('login'))
 
         # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = local_acct.address)
+        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = email)
 
         # add the new user to the database
         db.session.add(new_user)
@@ -168,11 +168,11 @@ def addCropDetails():
 def farmerPage():
     if request.method=="POST":
         if 'profile' in request.form:
-            return redirect(url_for('registerFarmer'))
+            return redirect(url_for('farmer.registerFarmer'))
         elif 'addCrop' in request.form:
-            return redirect(url_for('addcropDetails'))
+            return redirect(url_for('farmer.addCropDetails'))
         elif 'updateCrop' in request.form:
-            return redirect(url_for('addcropDetails'))
+            return redirect(url_for('farmer.addCropDetails'))
 
     return render_template('FarmerFunctions.html', current_user=current_user)
 

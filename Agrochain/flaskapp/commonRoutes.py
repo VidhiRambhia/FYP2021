@@ -40,8 +40,7 @@ def chooseRole():
         print('selected role: ', selectedRole)
         if (selectedRole == 'farmer'):
             return redirect(url_for('farmer.registerFarmer'))
-        else:
-            return redirect(url_for('farmer.chooseRole'))
+
     return render_template('ChooseRole.html')
 
 
@@ -61,6 +60,7 @@ def login():
 
         login_user(user, remember=False)
 
+        # Conditions for different entities
         return redirect(url_for('farmer.farmerPage'))
 
     return render_template("Login.html")
