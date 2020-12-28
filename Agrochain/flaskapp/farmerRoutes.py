@@ -11,6 +11,8 @@ from flask_sqlalchemy import SQLAlchemy
 from flaskapp.config import config
 from flaskapp.models import User
 from flaskapp import db,w3,eth,app
+from flaskapp.Role import ROLE
+from eth_account import Account
 
 mod_farmer = Blueprint('farmer', __name__, url_prefix='')
 
@@ -94,10 +96,13 @@ def registerFarmer():
         user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
 
         if user: # if a user is found, we want to redirect back to signup page so user can try again
-            return redirect(url_for('login'))
+            return redirect(url_for('common.login'))
+
+        acct = Account.create(password)
+        print(acct.address)
 
         # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = email)
+        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FARMER)
 
         # add the new user to the database
         db.session.add(new_user)
@@ -113,8 +118,8 @@ def registerFarmer():
                 'gas': 2000000,
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
-        farmer_address = "0x0" #get address
-        txn_hash = farmerDetails_contract_instance.functions.addFarmer(local_acct.address,email,plot_owner,plot_number,plot_address,True).transact(txn_dict)
+        farmer_address = acct.address
+        txn_hash = farmerDetails_contract_instance.functions.addFarmer(farmer_address,email,plot_owner,plot_number,plot_address,True).transact(txn_dict)
         print(txn_hash)
 
         if request.form.get('plot_number_1'):
@@ -155,9 +160,9 @@ def addCropDetails():
         sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
         sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
         #harvesting_date_int= 1
-        crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,local_acct.address).call()
-        txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,local_acct.address).transact(txn_dict)
-        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int, local_acct.address).transact(txn_dict)
+        crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).call()
+        txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).transact(txn_dict)
+        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int, current_user.address).transact(txn_dict)
         #print(txn_hash)
         print(crop_id)
     return render_template('addCropDetails.html')
@@ -168,7 +173,7 @@ def addCropDetails():
 def farmerPage():
     if request.method=="POST":
         if 'profile' in request.form:
-            return redirect(url_for('farmer.registerFarmer'))
+            return redirect(url_for('farmer.updateFarmerProfile'))
         elif 'addCrop' in request.form:
             return redirect(url_for('farmer.addCropDetails'))
         elif 'updateCrop' in request.form:
@@ -177,6 +182,45 @@ def farmerPage():
     return render_template('FarmerFunctions.html', current_user=current_user)
 
 
+
+@mod_farmer.route("/updateFarmerProfile", methods=["GET","POST"])
+@login_required
+def updateFarmerProfile():
+    i = 0
+    plots = []
+    while True:
+        try:
+            farmerData = farmerDetails_contract_instance.functions.getFarmer(current_user.address,i).call()
+            plot = [farmerData[1],farmerData[2],farmerData[3]]
+            plots.append(plot)
+            i = i+1
+        except :
+            break
+    print(plots)
+    if request.method == "GET":
+        # send data to be displayed
+        print("GET")
+    if request.method == "POST":
+        print("POST")
+        # get data from forms
+        # update fields
+        # commit to blockchain / db in case of password change
+    return render_template('home.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
+
+@mod_farmer.route("/getCrops", methods=["GET","POST"])
+@login_required
+def getCrops():
+    i = 0
+    crops = []
+    while True:
+        try:
+            crops.append(cropDetails_contract_instance.functions.crops(current_user.address,i).call())
+            i = i+1
+        except :
+            break
+
+    print(crops)
+    return render_template('home.html', current_user=current_user,crops=crops) #Add html page
 
 
 

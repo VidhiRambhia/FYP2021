@@ -31,4 +31,4 @@ from flaskapp.models import User
 app.register_blueprint(mod_farmer)
 app.register_blueprint(mod_common)
 
-#db.create_all()
+db.create_all()
