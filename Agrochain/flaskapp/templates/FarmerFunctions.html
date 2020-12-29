@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html>
 
+{% block content %}
+
 	<head>
 		<meta charset="utf-8">
 		<title>Farmer Message</title>
@@ -29,6 +31,8 @@
     
     
     </head>
+
+    
     <body>
 
 <!-- ======= Navbar ======= -->
@@ -45,11 +49,16 @@
         <nav class="nav-menu d-none d-lg-block">
             <ul>
             <li class="active"><a href="home">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#steps">Model</a></li>
-            <li><a href="login">Login</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#steps">Model</a></li>
+            {% if not current_user.is_authenticated %}
+            <li><a href="/login">Login</a></li>
             <li><a href="chooseRole">Register</a></li>
-            <li><a href="/#team">Team</a></li>
+            {% endif %}
+            <li><a href="#team">Team</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -58,7 +67,7 @@
 
 <div class="page-content">
     <div class="form-v10-content" style=width:750px;>
-        <form class="form-detail" action="{{url_for('farmerPage')}}" method="POST" enctype="multipart/form-data" id="myform">
+        <form class="form-detail" action="{{url_for('farmer.farmerPage')}}" method="POST" enctype="multipart/form-data" id="myform">
             <div class="form-left">
                 <h2 style="text-align: center; margin-bottom: 40px;"><b>AgriChain-Farmer's Portal</b></h2>
                 <h3 class="text-dark" style="margin-left: 55px; margin-bottom: 35px;">You have successfully logged in as a Farmer</h3>
@@ -83,3 +92,6 @@
     </div>
 </div>
 </body>
+
+{% endblock %}
+</html>

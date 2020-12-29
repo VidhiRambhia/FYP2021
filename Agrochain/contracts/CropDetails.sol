@@ -17,7 +17,7 @@ contract CropDetails{
     event CropAdded(address indexed account);
     event CropUpdated(address indexed account);
     
-    mapping(address=>Crop[]) crops;
+    mapping(address=>Crop[]) public crops;
     
     function addCrop1(string calldata cropType, string calldata cropName, string calldata sourceTagNo,
          address farmerAddr) public returns (uint cropID){
@@ -44,6 +44,8 @@ contract CropDetails{
         crop.DateHarvested = DateHarvested;
         emit CropUpdated(farmerAddr);
     }
+
+    // Update Crop Quantity 
     
     function getCrop1(address farmerAddr, uint cropID) public returns (string memory cropType, string memory cropName,
     string memory sourceTagNo){
