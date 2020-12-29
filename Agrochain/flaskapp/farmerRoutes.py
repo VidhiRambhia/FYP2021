@@ -79,7 +79,7 @@ def verifyUser(address):
         }
     print('creating transaction')
     txn_hash = login_contract_instance.functions.getUser(address).call()
-    print(eth.getTransactionReceipt(txn_hash))
+    print(w3.eth.getTransactionReceipt(txn_hash))
 
 
 @mod_farmer.route("/registerFarmer",methods=["GET","POST"])
