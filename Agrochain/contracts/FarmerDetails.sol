@@ -23,7 +23,6 @@ contract FarmerDetails{
     
     function addFarmer(address _address, string memory _farmerName, string memory _plotOwner, string memory _plotNumber, string memory _plotAddress, bool _approved) 
         public{
-        
         farmers[_address].plots.push(Plot(_plotOwner,_plotNumber,_plotAddress));
         farmers[_address].name = _farmerName;
         farmers[_address].approved = _approved;
@@ -38,10 +37,8 @@ contract FarmerDetails{
         emit PlotAdded(_address);
     }
     
-    function updatePlot(address _address, string memory _plotOwner, uint index)
-        public{
-        farmers[_address].plots[index].owner = _plotOwner;
-        emit PlotUpdated(_address);
+    function deletePlot(address _address) public{
+        delete farmers[_address].plots;
     }
     
     function getFarmers() view public returns(address[] memory){
