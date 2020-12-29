@@ -167,6 +167,10 @@ def addCropDetails():
         print(crop_id)
     return render_template('addCropDetails.html')
 
+@mod_farmer.route("/updateCropDetails", methods=["GET","POST"])
+@login_required
+def updateCropDetails():
+    return render_template('displayCrops.html')
 
 @mod_farmer.route("/farmerPage", methods=["GET","POST"])
 @login_required
@@ -177,7 +181,7 @@ def farmerPage():
         elif 'addCrop' in request.form:
             return redirect(url_for('farmer.addCropDetails'))
         elif 'updateCrop' in request.form:
-            return redirect(url_for('farmer.addCropDetails'))
+            return redirect(url_for('farmer.updateCropDetails'))
 
     return render_template('FarmerFunctions.html', current_user=current_user)
 
