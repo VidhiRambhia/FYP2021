@@ -315,7 +315,7 @@ def getCrops():
             break
 
     print(crops)
-    return render_template('displayCrops.html', current_user=current_user,crops=crops) 
+    return render_template('displayCrops.html', current_user=current_user,crops=crops) #Add html page
 
 
 

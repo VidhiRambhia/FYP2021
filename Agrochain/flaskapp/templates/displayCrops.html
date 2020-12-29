@@ -45,19 +45,12 @@
             <!-- Uncomment below if you prefer to use an image logo -->
           </div>
 
-          <nav class="nav-menu d-none d-lg-block">
+        <nav class="nav-menu d-none d-lg-block">
             <ul>
             <li class="active"><a href="home">Home</a></li>
             <li><a href="/#about">About</a></li>
             <li><a href="/#steps">Model</a></li>
-            {% if not current_user.is_authenticated %}
-            <li><a href="/login">Login</a></li>
-            <li><a href="chooseRole">Register</a></li>
-            {% endif %}
             <li><a href="/#team">Team</a></li>
-            {% if current_user.is_authenticated %}
-            <li><a href="/logout">Logout</a></li>
-            {% endif %}
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -68,50 +61,35 @@
     <div class="page-wrapper chiller-theme toggled">
         <body class="form-v10">
             <div class="page-content">
+
+            <!--Crop List section starts-->
               <div class="form-v10-content" style="width: 80%;">
                     <h2 style="text-align: center; margin-bottom: 8px;"><b>Your Crop List</b></h2>
                     
-                  
-                <!--Crop List section starts-->
-                {% if crops %}
                     <div class="row">
-                        {% for crop in crops %}
-                            <div class="card" style="width: 65%; margin: 3%">
-                                <div class="row card-body" style="padding: 18px 24px">
-                                  <div class="col-md-6 ">
-                                    <h5 class="card-title">Crop type : {{crop.crop_type}}</h5>
-                                    <p class="card-text">Crop name : {{crop.crop_name}}</p>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="row">
-                                      <a href="/addCropDetails?crop_id={{crop.crop_id}}" class="btn btn-lg btn-primary" style="font-size: medium;margin:3%">Update</a>
 
-                                      <a class="btn btn-lg btn-secondary" style="font-size: medium;margin:3%" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                                        See more details
-                                      </a>
-                                    </div>
-                                  </div>
+                        <!--Create a for loop here, for each crop this div will be generated-->
+                            <!--Card 1-->
+                            <div class="card" style="width: 18rem; margin: 3%">
+                                <div class="card-body">
+                                <h5 class="card-title">Crop type</h5>
+                                <p class="card-text">Crop name</p>
                                 </div>
-
-                                <div class="collapse" id="collapseExample">
-                                  <div class="card card-body">
-                                    <ul class="list-group list-group-flush">
-                                      <li class="list-group-item">Fertilizers : {{crop.crop_fertilizer}}</li>
-                                      <li class="list-group-item">Source tag Number : {{crop.crop_source_tag_number}}</li>
-                                      <li class="list-group-item">Quantity : {{crop.crop_quantity}}</li>
-                                      <li class="list-group-item">Sowing Date : {{crop.crop_sowing_date}}</li>
-                                      <li class="list-group-item">Harvesting date : {{crop.crop_harvesting_date }}</li>
-                                      </ul>
-                                  </div>
+                                <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Crop ID</li>
+                                <li class="list-group-item">Fertilizers</li>
+                                <li class="list-group-item">Source tag Number</li>
+                                <li class="list-group-item">Quantity</li>
+                                <li class="list-group-item">Sowing Date</li>
+                                <li class="list-group-item">Harvesting date</li>
+                                </ul>
+                                <div class="card-body">
+                                    <a href="#" class="btn btn-lg btn-primary">Update</a>
                                 </div>
                             </div>
-
-                            {% endfor %}                            
+                            
                     </div>
-                    {% else %}
-                    <h3 style="text-align: center; margin-top: 16px;">You have not added any crops. <a href="/addCropDetails">Click here to add crops</a> </h3>
-                    {% endif %}
-                <!--Crop List section ends-->
+            <!--Crop List section ends-->
 
            
 
@@ -119,18 +97,12 @@
           <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
 
-              <div class="logo mr-auto">
-                <h1 class="text-light">
-                  <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
-            </h1>
-            </div>
-
               <div class="sidebar-header">
                 <div class="user-info">
                   <span class="user-name">
-                    <strong><h3>{{current_user.email}}</h3></strong>
+                    <strong><h3>Ruchi Mehta</h3></strong>
                   </span>
-                  <span class="user-role">{{current_user.role}}</span>
+                  <span class="user-role">Farmer</span>
                 </div>
               </div>
               
@@ -140,22 +112,28 @@
                   <li class="header-menu">
                     <span>General</span>
                   </li>
-                  <li class="sidebar">  
-                    <a href="/addCropDetails">
+                  <li class="sidebar">
+                    <a href="#">
                       <i class="fas fa-plus-circle"></i>
                       <span>Add Crop Details</span>
                     </a>
                   </li>
                   <li class="sidebar">
-                    <a href="/getCrops">
+                    <a href="#">
                       <i class="fas fa-pen-square"></i>
-                      <span>My Crop Details</span>
+                      <span>Update Crop Details</span>
                     </a>
                   </li>
                   <li class="sidebar">
-                    <a href="/updateFarmerProfile">
+                    <a href="#">
                       <i class="far fa-id-badge"></i>
-                      <span>Update Profile</span>
+                      <span>Profile</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-book"></i>
+                      <span>Crops issued</span>
                     </a>
                   </li>
                   <li>
