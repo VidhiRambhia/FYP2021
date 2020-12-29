@@ -14,13 +14,11 @@ struct Farmer{
 
 contract FarmerDetails{
     
-    //event when farmer is added
     event FarmerAdded(address indexed account);
     event PlotAdded(address indexed account);
+    event PlotUpdated(address indexed account);
     
     mapping(address =>Farmer) farmers;
-
-    //redundant array, functionality can be achieved by the mapping also
     address[] public farmerAccts;
     
     function addFarmer(address _address, string memory _farmerName, string memory _plotOwner, string memory _plotNumber, string memory _plotAddress, bool _approved) 
@@ -38,6 +36,12 @@ contract FarmerDetails{
         public{
         farmers[_address].plots.push(Plot(_plotOwner,_plotNumber,_plotAddress));
         emit PlotAdded(_address);
+    }
+    
+    function updatePlot(address _address, string memory _plotOwner, uint index)
+        public{
+        farmers[_address].plots[index].owner = _plotOwner;
+        emit PlotUpdated(_address);
     }
     
     function getFarmers() view public returns(address[] memory){

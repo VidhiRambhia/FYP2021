@@ -31,21 +31,21 @@ contract CropDetails{
         }
         
     function addCrop2(uint cropID, string memory fertiliser, uint quantity, uint256 DateSowed,
-        address farmerAddr) public{
+        uint256 DateHarvested, address farmerAddr) public{
             Crop storage crop = crops[farmerAddr][cropID];
             crop.fertiliser = fertiliser;
             crop.quantity = quantity;
             crop.DateSowed = DateSowed;
+            crop.DateHarvested = DateHarvested;
             emit CropAdded(farmerAddr);
         }
         
-    function updateHarvestDate(uint cropID, address farmerAddr, uint256 DateHarvested) public{
+    function updateCrop(uint cropID, address farmerAddr, uint256 DateHarvested, uint quantity) public{
         Crop storage crop = crops[farmerAddr][cropID];
         crop.DateHarvested = DateHarvested;
+        crop.quantity = quantity;
         emit CropUpdated(farmerAddr);
     }
-
-    // Update Crop Quantity 
     
     function getCrop1(address farmerAddr, uint cropID) public returns (string memory cropType, string memory cropName,
     string memory sourceTagNo){
