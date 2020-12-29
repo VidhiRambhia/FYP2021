@@ -56,7 +56,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"pwdHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"role\",\"type\":\"string\"}],\"name\":\"addUser\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"email\",\"type\":\"string\"}],\"name\":\"getUser\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"pwdHash\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"role\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/User.sol\":\"Login\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/User.sol\":{\"keccak256\":\"0xb02420e0ed9c7b6127a7c818c9314cda9df41826942581bbbf2afaf9a859dfd4\",\"urls\":[\"bzz-raw://3983d938f9f6a82a3414ee0ec91c05228468abe426120d6b3b2a9c8e068b5209\",\"dweb:/ipfs/QmYqVSyh11mPCr5Dndwzi2H6qX1Sf9FijVNznsrhbaAAwc\"]}},\"version\":1}",
@@ -2041,12 +2042,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0x4817771b524c203Fa1Bd808dB98A1496AD654b86",
-      "transactionHash": "0x2face8e0f59877fcc8a195a72d32e6db39cf127ab1b11d01e1ecdcea0312ce60"
+      "address": "0x44CD5d6d933Ff1b160C6eDA00De9DAcB7684aCF9",
+      "transactionHash": "0x3a862c4c4f5da59904cd9a686cbe8c2f68063544712f14e1461ac1ff1dc551bc"
     }
   },
   "schemaVersion": "3.3.3",
-  "updatedAt": "2020-12-29T09:08:08.868Z",
+  "updatedAt": "2020-12-29T11:59:19.439Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
