@@ -1,10 +1,10 @@
 body {
-	height: 100vh;
+	/* height: 120vh; */
 	background: url("../img/hero-bg.jpg") center center;
 	/* background-image: -moz-linear-gradient( 136deg, rgb(149, 153, 226) 0%, rgb(139, 198, 236) 100%);
 	background-image: -webkit-linear-gradient( 136deg, rgb(149, 153, 226) 0%, rgb(139, 198, 236) 100%);
 	background-image: -ms-linear-gradient( 136deg, rgb(149, 153, 226) 0%, rgb(139, 198, 236) 100%); */
-	/* background-repeat: cover; */
+	background-repeat: cover; */
 }
 
 .page-content {
@@ -30,7 +30,8 @@ body {
 
 .form-v10-content {
 	background: #fff;
-	width: 1000px;
+	/* margin-top: 30px; */
+	width: 900px;
 	border-radius: 10px;
 	-o-border-radius: 10px;
 	-ms-border-radius: 10px;
