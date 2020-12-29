@@ -3,6 +3,7 @@ import sys
 import datetime
 import hashlib
 import os
+import time
 from web3 import Web3, HTTPProvider,IPCProvider
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask,Blueprint, render_template, request, redirect, url_for,flash
@@ -208,12 +209,15 @@ def updateFarmerProfile():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         farmer_address = current_user.address
-        if "submit" in request.form:
+        if 'update' in request.form:
+            print('here')
             txn_hash = farmerDetails_contract_instance.functions.deletePlot(farmer_address).transact(txn_dict)
             print(txn_hash)
             i = 0
             while True:
                 try:
+                    if(request.form.get('plot_number_' + str(i)) == ""):
+                        break
                     plot_number = request.form.get('plot_number_' + str(i))
                     # print(plot_number)
                     plot_owner = request.form.get('plot_owner_' + str(i))
@@ -228,7 +232,8 @@ def updateFarmerProfile():
         elif "changePassword" in request.form:
             # Change password code
             print("Change Password")
-    return render_template('home.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
+        
+    return render_template('updateFarmer.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
 
 @mod_farmer.route("/getCrops", methods=["GET","POST"])
 @login_required

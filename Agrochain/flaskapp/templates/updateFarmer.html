@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-v10-content" style="width:80%; margin-top: -80px;">
-                    <form class="form-detail" action="/registerFarmer" method="POST" id="myform">
+                    <form class="form-detail" action="{{url_for('farmer.updateFarmerProfile')}}" method="POST" enctype="multipart/form-data" id="myform">
                         <div class="form-left">
                             <div class="form-group">
                                 <label for="exampleFormControlInput1" style="margin-left: 70px;"><h3 style="color: black;"><b>Change Password</b></h3></label>
@@ -75,17 +75,13 @@
     
                         <div class="form-group">
                                 <div class="form-row form-row-1">
-                                    <input type="password" id="current_password" name="current_password" class="input-text" placeholder="Current Password" required>
+                                    <input type="password" id="current_password" name="current_password" class="input-text" placeholder="Current Password">
                                  </div>
-                            <!-- <div class="form-right">
-                                <div class="form-row">
-                                    <img src="../resources/images/signin-image.jpg" style="height: 400px;">
-                                </div>
-                            </div> -->
+                            
                                 <div class="form-row">
                                     <input type="password" name="new_password" class="input-text" placeholder="New Password">
                                 </div>
-                                <button type="button submit" class="btn-xs btn-primary" style="height: 40px; margin-top: 10px;"><h4>Update</h4></button>
+                                <button type="button submit" name="changePassword" class="btn-xs btn-primary" style="height: 40px; margin-top: 10px;"><h4>Update</h4></button>
                         </div>
     
     
@@ -96,16 +92,16 @@
                         <div id="container">
 
                             <div id="plots">
-                                {% if plots is defined %}
+                                {% if plots %}
                                 {% for i in range(0, plots|length) %}
                                 <div class="form-group">
                                     <div class="form-row form-row-1" style="width: 45%;">
                                         <label for="plot_number_{{i}}" style="margin-left: 10px;"><h5>Plot Number</h5></label>
-                                        <input type="text" name="plot_number_{{i}}" class="input-text" value="value here">
+                                        <input type="text" name="plot_number_{{i}}" class="input-text" value="{{plots[i].plot_number}}">
                                     </div>
                                     <div class="form-row form-row-1" style="width: 45%;">
                                         <label for="plot_owner_{{i}}"><h5>Plot Owner</h5></label>
-                                        <input type="text" name="plot_owner_{{i}}" class="input-text" value="value here">
+                                        <input type="text" name="plot_owner_{{i}}" class="input-text" value="{{plots[i].plot_owner}}">
                                     </div>
                                 </div>
                                 
@@ -113,17 +109,16 @@
                                 <div class="form-group">
                                     <div class="form-row form-row-1" style="width: 45%;">
                                         <label for="plot_address_{{i}}" style="margin-left: 10px;"><h5>Plot Address</h5></label>
-                                        <input type="text" name="plot_address_{{i}}" class="input-text" value="value here">
+                                        <input type="text" name="plot_address_{{i}}" class="input-text" value="{{plots[i].plot_address}}">
                                     </div>
-                                    <!-- <button type="button submit" id="updatePlot" name="updatePlot" class="btn btn-xs btn-success" style="height: 50px; margin-left: 25px;">
-                                        <h4>Update Plot</h4></button> -->
+                                    
                                 </div>
                                 {% endfor %}
                                 {% endif %}
                             </div>
     
                             <div id="plot_form">
-                                <div hidden>
+                                <!-- <div hidden>
     
                                 <div class="form-group">
                                     <div class="form-row form-row-1">
@@ -139,7 +134,7 @@
                                         <input type="text" name="plot_address" id="plot_address" class="input-text" placeholder="Enter Plot Address" required>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
         
                                 
                                 <div class="form-row">
@@ -148,13 +143,12 @@
                                 
                             </div>
     
-                        </div>
+                        </div> 
     
                         <div class="form-row form-row-1 " style="margin-top: 15px;">
-                            <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;"><h3>Submit</h3></button>
+                            <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;" name="update" ><h3>Submit</h3></button>
                         </div>
-    
-                       
+                        </div>
                     </form>
                 </div>
 
@@ -221,8 +215,10 @@
     var max_fields = 3;
     var wrapper = $("#container");
     var add_button = $("#add_form_field");
-
-    var x = 1;
+    var plots_json = {{plots | safe}};
+    console.log(plots_json.length);
+    console.log(plots_json);
+    var x = plots_json.length;
     $(add_button).click(function(e) {
         e.preventDefault();
         var plot_form_new = document.createElement('div');
