@@ -1,0 +1,270 @@
+<html>
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+        <title>Update Profile</title>
+        
+        <!-- Mobile Specific Metas -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <!-- Font-->
+        <link rel="stylesheet" type="text/css" href="../static/css/montserrat-font.css">
+        <link rel="stylesheet" type="text/css" href="../static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+        <!-- Main Style Css -->
+        <link rel="stylesheet" href="../static/css/index.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        
+        <!-- Vendor CSS Files -->
+        <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../static/vendor/icofont/icofont.min.css" rel="stylesheet">
+        <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="../static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="../static/vendor/venobox/venobox.css" rel="stylesheet">
+        <link href="../static/vendor/aos/aos.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="../static/css/style.css" rel="stylesheet">
+        <link href="../static/css/sidebarCombined.css" rel="stylesheet">
+
+
+<!-- ======= Navbar ======= -->
+<header id="header" class="fixed-top">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a href="home">
+              
+            </a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+          </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+            <li class="active"><a href="home">Home</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#steps">Model</a></li>
+            <li><a href="/#team">Team</a></li>
+            </ul>
+        </nav><!-- .nav-menu -->
+
+    </div>
+</header><!-- End Navbar -->
+
+<body>
+    <div class="page-wrapper chiller-theme toggled">
+        <body class="form-v10">
+            <div class="page-content">
+              <div class="form-v10-content" style="width: 80%; margin-top: 60px;">
+                    <h2 style="text-align: center; margin-bottom: 8px;"><b>Your Profile</b></h2>
+                    <h3 style="text-align: center; margin-bottom: 8px; color: gray;">{{current_user.email}}</h3>
+                </div>
+
+                <div class="form-v10-content" style="width:80%; margin-top: -80px;">
+                    <form class="form-detail" action="/registerFarmer" method="POST" id="myform">
+                        <div class="form-left">
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1" style="margin-left: 70px;"><h3 style="color: black;"><b>Change Password</b></h3></label>
+                            </div>
+    
+                        <div class="form-group">
+                                <div class="form-row form-row-1">
+                                    <input type="password" id="current_password" name="current_password" class="input-text" placeholder="Current Password" required>
+                                 </div>
+                            <!-- <div class="form-right">
+                                <div class="form-row">
+                                    <img src="../resources/images/signin-image.jpg" style="height: 400px;">
+                                </div>
+                            </div> -->
+                                <div class="form-row">
+                                    <input type="password" name="new_password" class="input-text" placeholder="New Password">
+                                </div>
+                                <button type="button submit" class="btn-xs btn-primary" style="height: 40px; margin-top: 10px;"><h4>Update</h4></button>
+                        </div>
+    
+    
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1" style="margin-left: 70px;"><h3 style="color: black;"><b>Your plots</b></h3></label>
+                        </div>
+    
+                        <div id="container">
+
+                            <div id="plots">
+                                {% if plots is defined %}
+                                {% for i in range(0, plots|length) %}
+                                <div class="form-group">
+                                    <div class="form-row form-row-1" style="width: 45%;">
+                                        <label for="plot_number_{{i}}" style="margin-left: 10px;"><h5>Plot Number</h5></label>
+                                        <input type="text" name="plot_number_{{i}}" class="input-text" value="value here">
+                                    </div>
+                                    <div class="form-row form-row-1" style="width: 45%;">
+                                        <label for="plot_owner_{{i}}"><h5>Plot Owner</h5></label>
+                                        <input type="text" name="plot_owner_{{i}}" class="input-text" value="value here">
+                                    </div>
+                                </div>
+                                
+    
+                                <div class="form-group">
+                                    <div class="form-row form-row-1" style="width: 45%;">
+                                        <label for="plot_address_{{i}}" style="margin-left: 10px;"><h5>Plot Address</h5></label>
+                                        <input type="text" name="plot_address_{{i}}" class="input-text" value="value here">
+                                    </div>
+                                    <!-- <button type="button submit" id="updatePlot" name="updatePlot" class="btn btn-xs btn-success" style="height: 50px; margin-left: 25px;">
+                                        <h4>Update Plot</h4></button> -->
+                                </div>
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+    
+                            <div id="plot_form">
+                                <div hidden>
+    
+                                <div class="form-group">
+                                    <div class="form-row form-row-1">
+                                        <input type="text" name="plot_number" id="plot_number" class="input-text" placeholder="Enter Plot Number" required>
+                                    </div>
+                                    <div class="form-row form-row-1">
+                                        <input type="text" name="plot_owner" id="plot_owner" class="input-text" placeholder="Enter Plot Owner" required>
+                                    </div>
+                                </div>
+    
+                                <div class="form-group">
+                                    <div class="form-row form-row-1">
+                                        <input type="text" name="plot_address" id="plot_address" class="input-text" placeholder="Enter Plot Address" required>
+                                    </div>
+                                </div>
+                            </div>
+        
+                                
+                                <div class="form-row">
+                                    <button id="add_form_field" type="button" class="btn btn-link"><h3 style="color: green;">+ Add Another Plot</h3></button>
+                                </div>
+                                
+                            </div>
+    
+                        </div>
+    
+                        <div class="form-row form-row-1 " style="margin-top: 15px;">
+                            <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;"><h3>Submit</h3></button>
+                        </div>
+    
+                       
+                    </form>
+                </div>
+
+          <!--Sidebar for navigation starts-->
+          <nav id="sidebar" class="sidebar-wrapper">
+            <div class="sidebar-content">
+
+              <div class="sidebar-header">
+                <div class="user-info">
+                  <span class="user-name">
+                    <strong><h3>{{current_user.email}}</h3></strong>
+                  </span>
+                  <span class="user-role">{{current_user.role}}</span>
+                </div>
+              </div>
+              
+              <!-- sidebar-links  -->
+              <div class="sidebar-menu">
+                <ul>
+                  <li class="header-menu">
+                    <span>General</span>
+                  </li>
+                  <li class="sidebar">
+                    <a href="#">
+                      <i class="fas fa-plus-circle"></i>
+                      <span>Add Crop Details</span>
+                    </a>
+                  </li>
+                  <li class="sidebar">
+                    <a href="#">
+                      <i class="fas fa-pen-square"></i>
+                      <span>Update Crop Details</span>
+                    </a>
+                  </li>
+                  <li class="sidebar">
+                    <a href="#">
+                      <i class="far fa-id-badge"></i>
+                      <span>Profile</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-book"></i>
+                      <span>Crops issued</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-calendar"></i>
+                      <span>Calendar</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- sidebar-menu  -->
+            </div>
+          </nav>
+        </div>
+    </body>
+
+
+<script>
+    $(document).ready(function() {
+    var max_fields = 3;
+    var wrapper = $("#container");
+    var add_button = $("#add_form_field");
+
+    var x = 1;
+    $(add_button).click(function(e) {
+        e.preventDefault();
+        var plot_form_new = document.createElement('div');
+        var plot_form = document.getElementById("plot_form")
+
+        var plot_form_div_content = `<div id='plot_form'>                             
+                            <div class='form-group'> 
+                                <div class='form-row form-row-1'>
+                                    <input type='text' name='plot_number_`  + x.toString() + `' id='plot_number_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Number' required>
+                                </div>
+                                <div class='form-row form-row-1'>
+                                    <input type='text' name='plot_owner_`  + x.toString() + `' id='plot_owner_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Owner' required>
+                                </div>
+                            </div>
+
+                            <div class='form-group'>
+                                <div class='form-row form-row-1'>
+                                    <input type='text' name='plot_address_`  + x.toString() + `' id='plot_address_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Address' required>
+                                </div>
+                            </div>
+                        </div>`;
+
+
+        plot_form_new.innerHTML = "<div>" + plot_form_div_content +"<a href='#' style='color:red;' class='delete form-row'><h3>Delete<h3></a></div>";
+        plot_form_new.id = plot_form.id + '_' + x.toString();
+        
+        if (x < max_fields) {
+            x++;
+
+            $(wrapper).append(plot_form_new); //add input box
+
+        } else {
+            alert('You Reached the limits')
+        }
+    });
+
+    $(wrapper).on("click", ".delete", function(e) {
+        e.preventDefault();
+        $(this).parent('div').remove();
+        x--;
+    })
+}); 
+
+</script>
+</html>
