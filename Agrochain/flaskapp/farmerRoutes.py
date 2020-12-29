@@ -3,6 +3,7 @@ import sys
 import datetime
 import hashlib
 import os
+import time
 from web3 import Web3, HTTPProvider,IPCProvider
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask,Blueprint, render_template, request, redirect, url_for,flash
@@ -79,7 +80,7 @@ def verifyUser(address):
         }
     print('creating transaction')
     txn_hash = login_contract_instance.functions.getUser(address).call()
-    print(eth.getTransactionReceipt(txn_hash))
+    print(w3.eth.getTransactionReceipt(txn_hash))
 
 
 @mod_farmer.route("/registerFarmer",methods=["GET","POST"])
@@ -189,7 +190,7 @@ def addCropDetails():
                 'gas': 3000000,
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
-        farmer_address = "0x0" #get address
+        farmer_address = current_user.address #get address
         sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
         sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
         harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
@@ -201,7 +202,6 @@ def addCropDetails():
         print(crop_id)
     return render_template('addCropDetails.html',current_user=current_user,crop=crop)
 
-
 @mod_farmer.route("/farmerPage", methods=["GET","POST"])
 @login_required
 def farmerPage():
@@ -211,7 +211,7 @@ def farmerPage():
         elif 'addCrop' in request.form:
             return redirect(url_for('farmer.addCropDetails'))
         elif 'updateCrop' in request.form:
-            return redirect(url_for('farmer.addCropDetails'))
+            return redirect(url_for('farmer.getCrops'))
 
     return render_template('FarmerFunctions.html')
 
@@ -225,21 +225,59 @@ def updateFarmerProfile():
     while True:
         try:
             farmerData = farmerDetails_contract_instance.functions.getFarmer(current_user.address,i).call()
-            plot = [farmerData[1],farmerData[2],farmerData[3]]
+            plot = {"plot_owner" : farmerData[1],
+                "plot_number" : farmerData[2],
+                "plot_address" : farmerData[3]}
             plots.append(plot)
             i = i+1
         except :
             break
     print(plots)
-    if request.method == "GET":
-        # send data to be displayed
-        print("GET")
     if request.method == "POST":
-        print("POST")
-        # get data from forms
-        # update fields
-        # commit to blockchain / db in case of password change
-    return render_template('home.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
+        print("POST")        
+        txn_dict = {
+                'from': local_acct.address,
+                'to': farmerDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        farmer_address = current_user.address
+        if 'update' in request.form:
+            print('here')
+            txn_hash = farmerDetails_contract_instance.functions.deletePlot(farmer_address).transact(txn_dict)
+            print(txn_hash)
+            i = 0
+            while True:
+                try:
+                    if(request.form.get('plot_number_' + str(i)) == ""):
+                        break
+                    plot_number = request.form.get('plot_number_' + str(i))
+                    # print(plot_number)
+                    plot_owner = request.form.get('plot_owner_' + str(i))
+                    # print(plot_owner)
+                    plot_address = request.form.get('plot_address_' + str(i))
+                    # print(plot_address)
+                    txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+                    print(txn_hash)
+                    i = i + 1
+                except :
+                    break
+        elif "changePassword" in request.form:
+            current_password = request.form.get('current_password')
+            new_password = request.form.get('new_password')
+            user = User.query.filter_by(email=current_user.email).first()
+            if not check_password_hash(user.password_hash, current_password):
+                flash('Current Password does not match')
+                print("Hi")
+            else:
+                user.password_hash = generate_password_hash(new_password, method='sha256')
+                db.session.commit()
+                flash('Password Updated Successfully')
+                print("Bye")
+
+        
+    return render_template('updateFarmer.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
 
 @mod_farmer.route("/getCrops", methods=["GET","POST"])
 @login_required
