@@ -234,6 +234,7 @@ def updateFarmerProfile():
             break
     print(plots)
     if request.method == "POST":
+        plots = []
         print("POST")        
         txn_dict = {
                 'from': local_acct.address,
@@ -261,6 +262,10 @@ def updateFarmerProfile():
                     txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
                     print(txn_hash)
                     i = i + 1
+                    plot = {"plot_owner" : plot_owner,
+                            "plot_number" : plot_number,
+                            "plot_address" : plot_address}
+                    plots.append(plot)
                 except :
                     break
         elif "changePassword" in request.form:
@@ -269,24 +274,14 @@ def updateFarmerProfile():
             user = User.query.filter_by(email=current_user.email).first()
             if not check_password_hash(user.password_hash, current_password):
                 flash('Current Password does not match')
-<<<<<<< HEAD
-=======
-                print("Hi")
->>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
+
             else:
                 user.password_hash = generate_password_hash(new_password, method='sha256')
                 db.session.commit()
                 flash('Password Updated Successfully')
-<<<<<<< HEAD
 
         
     return render_template('updateFarmer.html', current_user=current_user,plots=plots) 
-=======
-                print("Bye")
-
-        
-    return render_template('updateFarmer.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
->>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
 
 @mod_farmer.route("/getCrops", methods=["GET","POST"])
 @login_required
@@ -316,7 +311,7 @@ def getCrops():
             break
 
     print(crops)
-    return render_template('displayCrops.html', current_user=current_user,crops=crops) #Add html page
+    return render_template('displayCrops.html', current_user=current_user,crops=crops) 
 
 
 
