@@ -211,10 +211,25 @@ def updateFarmerProfile():
 @login_required
 def getCrops():
     i = 0
-    crops = []
+    crops = dict()
     while True:
         try:
-            crops.append(cropDetails_contract_instance.functions.crops(current_user.address,i).call())
+            cropData = cropDetails_contract_instance.functions.crops(current_user.address,i).call()
+            crop_sowing_date = list(str(cropData[6]))
+            crop_harvesting_date = list(str(cropData[7]))
+            crop_sowing_date = ''.join(crop_sowing_date[6:8]) + '-'  + ''.join(crop_sowing_date[4:6]) +  '-' + ''.join(crop_sowing_date[0:4]) 
+            crop_harvesting_date = ''.join(crop_harvesting_date[6:8]) + '-'  + ''.join(crop_harvesting_date[4:6]) +  '-' + ''.join(crop_harvesting_date[0:4])
+            crop = {
+                "crop_id": cropData[0],
+                "crop_type": cropData[1],
+                "crop_name":cropData[2],
+                "crop_fertilizer":cropData[3],
+                "crop_source_tag_number":cropData[4],
+                "crop_quantity": cropData[5],
+                "crop_sowing_date" : crop_sowing_date,
+                "crop_harvesting_date": crop_harvesting_date
+            }
+            crops[cropData[0]] = crop
             i = i+1
         except :
             break
