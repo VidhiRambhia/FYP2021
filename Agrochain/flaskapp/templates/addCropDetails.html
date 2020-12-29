@@ -29,7 +29,10 @@
         <!-- Template Main CSS File -->
         <link href="../static/css/style.css" rel="stylesheet">
         <link href="../static/css/sidebarCombined.css" rel="stylesheet">
+<<<<<<< HEAD
 </head>
+=======
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
 
 <!-- ======= Navbar ======= -->
 <header id="header" class="fixed-top">
@@ -61,17 +64,30 @@
           <body class="form-v10">
             <div class="page-content">
               <div class="form-v10-content">
+<<<<<<< HEAD
                 <form class="form-detail" {% if crop %} action="/addCropDetails?crop_id={{crop.crop_id}}" {% else %} action="/addCropDetails"{% endif %} method="POST" id="myform">
+=======
+                <form class="form-detail" action="/addCropDetails" method="POST" id="myform">
+
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
                   <div class="form-left">
                     <h2><b>Crop Details - Farmer's Portal</b></h2>
         
                     <div class="form-group">
                       <div class="form-row form-row-1">
+<<<<<<< HEAD
                         <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" {% if crop %} value = "{{crop.crop_name}}" disabled {% endif %} required>
                       </div>
                       <div class="form-row form-row-2">
                         <select name="crop_type" {% if crop %} disabled  {% endif %} required>
                           <option {% if crop %} value = "{{crop.crop_type}}"  {% else %} value = "Choose Crop Type" {% endif %}>{% if crop %} {{crop.crop_type}} {% else %} Choose Crop Type {% endif %}</option>
+=======
+                        <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                      </div>
+                      <div class="form-row form-row-2">
+                        <select name="crop_type">
+                          <option value="choose">Choose Crop Type</option>
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
                           <option value="fruits">Fruits</option>
                           <option value="vegetables">Vegetables</option>
                         </select>
@@ -80,6 +96,7 @@
                         </span>
                       </div>
                     </div>
+<<<<<<< HEAD
                     <div class="form-group">
                       <div class="form-row form-row-1">
                         <input type="text" name="fertilizer" id="fertilizer" class="input-text" placeholder="Fertilizers used" {% if crop %} value = "{{crop.crop_fertilizer}}" disabled{% endif %} required>
@@ -95,11 +112,33 @@
                     </div>
                     
         
+=======
+
+                    <div class="form-group">
+                      <div class="form-row form-row-1">
+                        <input type="text" name="fertilizer" id="fertilizer" class="input-text" placeholder="Fertilizers used" required>
+                      </div>
+                      <div class="form-row form-row-2">
+                          <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="form-row form-detail">
+                        <input type="text" name="source_tag_number" id="source_tag_number" class="input-text" placeholder="Source Tag Number" required>
+                      </div>
+                    </div>
+                           
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
                     <div class="form-group">
                       <!-- <label for="example-date-input" class="col-2 col-form-label" style="margin-left: 50px; font-size: large;">SowingDate</label> -->
                       <p style="margin-left: 65px; font-size: large;"><b>Sowing date</b></p>
                       <div class="form-row form-row-1">
+<<<<<<< HEAD
                         <input class="form-control" type="date" style="margin-left: 35px;" name="sowing_date" id="sowing_date" {% if crop %} value = "{{crop.crop_sowing_date}}" disabled {% endif %}>
+=======
+                        <input class="form-control" type="date" value="2011-08-19" style="margin-left: 35px;" name="sowing_date" id="sowing_date">
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
                       </div>
                     </div>
         
@@ -107,11 +146,16 @@
                       <!-- <label for="example-date-input" class="col-4 col-form-label" style="margin-left: 50px; font-size: large;">HarvestingDate</label> -->
                       <p style="margin-left: 65px; font-size: large;"><b>Harvesting date</b></p>
                       <div class="form-row form-row-1">
+<<<<<<< HEAD
                         <input class="form-control" type="date"  style="margin-left: 1px;" name="harvesting_date" id="harvesting_date" {% if crop %} value = "{{crop.crop_harvesting_date}}"{% endif %}>
+=======
+                        <input class="form-control" type="date" value="2011-08-19" style="margin-left: 1px;" name="harvesting_date" id="harvesting_date">
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
                       </div>
                     </div>
         
                     <div class="form-row">
+<<<<<<< HEAD
                       <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;"><h3>Submit</h3></button>
                     </div>
         
@@ -123,11 +167,24 @@
                       <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" style="height: 400px; margin-top: 100px; width: 320px;">
                     </div>
         
+=======
+                      <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;"><h3>Register</h3></button>
+                    </div>
+                  </div>
+        
+                  <div class="form-right">
+                    <div class="form-row">
+                      <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" style="height: 350px; margin-top: 100px; width: 200px;">
+                    </div>
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
                   </div>
                 </form>
               </div>
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
             <!--Crop Details section ends-->
 
           <!--Sidebar for navigation starts-->
@@ -185,6 +242,89 @@
             </div>
           </nav>
         </div>
+<<<<<<< HEAD
 
 </html>
 
+=======
+<<<<<<< HEAD
+    </header><!-- End Navbar -->
+
+
+	<body class="form-v10">
+		<div class="page-content">
+			<div class="form-v10-content">
+				<form class="form-detail" {% if crop %} action="/addCropDetails?crop_id={{crop.crop_id}}" {% else %} action="/addCropDetails"{% endif %} method="POST" id="myform">
+					<div class="form-left">
+						<h2><b>Crop Details - Farmer's Portal</b></h2>
+
+						<div class="form-group">
+							<div class="form-row form-row-1">
+								<input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" {% if crop %} value = "{{crop.crop_name}}" disabled {% endif %} required>
+							</div>
+							<div class="form-row form-row-2">
+								<select name="crop_type" {% if crop %} disabled  {% endif %} required>
+									<option {% if crop %} value = "{{crop.crop_type}}"  {% else %} value = "Choose Crop Type" {% endif %}>{% if crop %} {{crop.crop_type}} {% else %} Choose Crop Type {% endif %}</option>
+									<option value="fruits">Fruits</option>
+									<option value="vegetables">Vegetables</option>
+								</select>
+								<span class="select-btn">
+									<i class="zmdi zmdi-chevron-down"></i>
+								</span>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="form-row form-row-1">
+								<input type="text" name="fertilizer" id="fertilizer" class="input-text" placeholder="Fertilizers used" {% if crop %} value = "{{crop.crop_fertilizer}}" disabled{% endif %} required>
+							</div>
+							<div class="form-row form-row-2">
+									<input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+								</div>
+						</div>
+						<div class="form-group">
+							<div class="form-row form-detail">
+								<input type="text" name="source_tag_number" id="source_tag_number" class="input-text" placeholder="Source Tag Number" {% if crop %} value = "{{crop.crop_source_tag_number}}" disabled {% endif %} required>
+							</div>
+						</div>
+						
+
+						<div class="form-group">
+							<!-- <label for="example-date-input" class="col-2 col-form-label" style="margin-left: 50px; font-size: large;">SowingDate</label> -->
+							<p style="margin-left: 65px; font-size: large;"><b>Sowing date</b></p>
+							<div class="form-row form-row-1">
+							  <input class="form-control" type="date" style="margin-left: 35px;" name="sowing_date" id="sowing_date" {% if crop %} value = "{{crop.crop_sowing_date}}" disabled {% endif %}>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<!-- <label for="example-date-input" class="col-4 col-form-label" style="margin-left: 50px; font-size: large;">HarvestingDate</label> -->
+							<p style="margin-left: 65px; font-size: large;"><b>Harvesting date</b></p>
+							<div class="form-row form-row-1">
+							  <input class="form-control" type="date"  style="margin-left: 1px;" name="harvesting_date" id="harvesting_date" {% if crop %} value = "{{crop.crop_harvesting_date}}"{% endif %}>
+							</div>
+						</div>
+
+						<div class="form-row">
+							<button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;"><h3>Register</h3></button>
+						</div>
+
+					</div>
+
+
+					<div class="form-right">
+						<div class="form-row">
+							<img src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" style="height: 400px; margin-top: 100px; width: 350px;">
+						</div>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</body>
+
+</html>
+=======
+    </body>
+</html>
+>>>>>>> main
+>>>>>>> 14b70d3ef6f96c14c66aeb080d23c9946307becd
