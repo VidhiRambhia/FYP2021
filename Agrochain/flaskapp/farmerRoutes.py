@@ -190,21 +190,22 @@ def updateFarmerProfile():
     while True:
         try:
             farmerData = farmerDetails_contract_instance.functions.getFarmer(current_user.address,i).call()
-            plot = [farmerData[1],farmerData[2],farmerData[3]]
+            plot = {
+                "plotOwner":farmerData[1],
+                "plotNumber": farmerData[2],
+                "plotAddress": farmerData[3]
+            }
             plots.append(plot)
             i = i+1
         except :
             break
     print(plots)
-    if request.method == "GET":
-        # send data to be displayed
-        print("GET")
     if request.method == "POST":
         print("POST")
         # get data from forms
         # update fields
         # commit to blockchain / db in case of password change
-    return render_template('home.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
+    return render_template('updateFarmer.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
 
 @mod_farmer.route("/getCrops", methods=["GET","POST"])
 @login_required
