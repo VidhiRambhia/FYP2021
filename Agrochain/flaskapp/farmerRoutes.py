@@ -9,9 +9,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask import Flask,Blueprint, render_template, request, redirect, url_for,flash
 from flask_login import UserMixin, LoginManager, login_user, login_required, current_user, logout_user
 from flask_sqlalchemy import SQLAlchemy
-
-from flaskapp.models import User
 from flaskapp.config import config
+from flaskapp.models import User
 from flaskapp import db,w3,eth,app
 from flaskapp.Role import ROLE
 from eth_account import Account
