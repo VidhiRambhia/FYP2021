@@ -126,13 +126,13 @@ def registerFarmer():
             plot_number_1 = request.form.get('plot_number_1')
             plot_owner_1 = request.form.get('plot_owner_1')
             plot_address_1 = request.form.get('plot_address_1')
-            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner_1,plot_number_1,plot_address_1).transact(txn_dict)
             print(txn_hash)
         if request.form.get('plot_number_2'):
             plot_number_2 = request.form.get('plot_number_2')
             plot_owner_2 = request.form.get('plot_owner_2')
             plot_address_2 = request.form.get('plot_address_2')
-            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner_2,plot_number_2,plot_address_2).transact(txn_dict)
             print(txn_hash)
 
     return render_template('registerFarmer.html')
@@ -141,7 +141,40 @@ def registerFarmer():
 @mod_farmer.route("/addCropDetails",methods=["GET","POST"])
 @login_required
 def addCropDetails():
+    crop_id  = request.args.get('crop_id')
+    crop = None
+    if crop_id:
+        cropData = cropDetails_contract_instance.functions.crops(current_user.address,int(crop_id)).call()
+        crop_sowing_date = list(str(cropData[6]))
+        crop_harvesting_date = list(str(cropData[7]))
+        crop_sowing_date =  ''.join(crop_sowing_date[0:4]) + '-' + ''.join(crop_sowing_date[4:6]) +  '-' + ''.join(crop_sowing_date[6:8])
+        crop_harvesting_date = ''.join(crop_harvesting_date[0:4]) + '-' +  ''.join(crop_harvesting_date[4:6])+ '-' +  ''.join(crop_harvesting_date[6:8])  
+        crop = {
+            "crop_id": cropData[0],
+            "crop_type": cropData[1],
+            "crop_name":cropData[2],
+            "crop_fertilizer":cropData[3],
+            "crop_source_tag_number":cropData[4],
+            "crop_quantity": cropData[5],
+            "crop_sowing_date" : crop_sowing_date,
+            "crop_harvesting_date": crop_harvesting_date
+        }
+    print(crop)
     if request.method=="POST":
+        if crop_id:
+            quantity = int(request.form.get('quantity'))
+            harvesting_date = request.form.get('harvesting_date')
+            harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
+            harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
+            txn_dict = {
+                    'from': local_acct.address,
+                    'to': cropDetails_contract_address,
+                    'value': '0',
+                    'gas': 3000000,
+                    'gasPrice': w3.toWei('40', 'gwei')
+                    }
+            txn_hash = cropDetails_contract_instance.functions.updateCrop(int(crop_id),current_user.address,harvesting_date_int,quantity).transact(txn_dict)
+            return render_template('addCropDetails.html',current_user=current_user,crop=crop)
         crop_name = request.form.get('crop_name')
         crop_type = request.form.get('crop_type')
         fertilizer = request.form.get('fertilizer')
@@ -159,13 +192,14 @@ def addCropDetails():
         farmer_address = "0x0" #get address
         sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
         sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
-        #harvesting_date_int= 1
+        harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
+        harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
         crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).call()
         txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).transact(txn_dict)
-        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int, current_user.address).transact(txn_dict)
+        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int,harvesting_date_int, current_user.address).transact(txn_dict)
         #print(txn_hash)
         print(crop_id)
-    return render_template('addCropDetails.html')
+    return render_template('addCropDetails.html',current_user=current_user,crop=crop)
 
 
 @mod_farmer.route("/farmerPage", methods=["GET","POST"])
@@ -179,7 +213,7 @@ def farmerPage():
         elif 'updateCrop' in request.form:
             return redirect(url_for('farmer.addCropDetails'))
 
-    return render_template('FarmerFunctions.html', current_user=current_user)
+    return render_template('FarmerFunctions.html')
 
 
 
@@ -211,7 +245,7 @@ def updateFarmerProfile():
 @login_required
 def getCrops():
     i = 0
-    crops = dict()
+    crops = []
     while True:
         try:
             cropData = cropDetails_contract_instance.functions.crops(current_user.address,i).call()
@@ -229,7 +263,7 @@ def getCrops():
                 "crop_sowing_date" : crop_sowing_date,
                 "crop_harvesting_date": crop_harvesting_date
             }
-            crops[cropData[0]] = crop
+            crops.append(crop)
             i = i+1
         except :
             break
