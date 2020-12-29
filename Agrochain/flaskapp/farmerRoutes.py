@@ -126,13 +126,13 @@ def registerFarmer():
             plot_number_1 = request.form.get('plot_number_1')
             plot_owner_1 = request.form.get('plot_owner_1')
             plot_address_1 = request.form.get('plot_address_1')
-            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner_1,plot_number_1,plot_address_1).transact(txn_dict)
             print(txn_hash)
         if request.form.get('plot_number_2'):
             plot_number_2 = request.form.get('plot_number_2')
             plot_owner_2 = request.form.get('plot_owner_2')
             plot_address_2 = request.form.get('plot_address_2')
-            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+            txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner_2,plot_number_2,plot_address_2).transact(txn_dict)
             print(txn_hash)
 
     return render_template('registerFarmer.html')
@@ -190,22 +190,45 @@ def updateFarmerProfile():
     while True:
         try:
             farmerData = farmerDetails_contract_instance.functions.getFarmer(current_user.address,i).call()
-            plot = {
-                "plotOwner":farmerData[1],
-                "plotNumber": farmerData[2],
-                "plotAddress": farmerData[3]
-            }
+            plot = {"plot_owner" : farmerData[1],
+                "plot_number" : farmerData[2],
+                "plot_address" : farmerData[3]}
             plots.append(plot)
             i = i+1
         except :
             break
     print(plots)
     if request.method == "POST":
-        print("POST")
-        # get data from forms
-        # update fields
-        # commit to blockchain / db in case of password change
-    return render_template('updateFarmer.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
+        print("POST")        
+        txn_dict = {
+                'from': local_acct.address,
+                'to': farmerDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        farmer_address = current_user.address
+        if "submit" in request.form:
+            txn_hash = farmerDetails_contract_instance.functions.deletePlot(farmer_address).transact(txn_dict)
+            print(txn_hash)
+            i = 0
+            while True:
+                try:
+                    plot_number = request.form.get('plot_number_' + str(i))
+                    # print(plot_number)
+                    plot_owner = request.form.get('plot_owner_' + str(i))
+                    # print(plot_owner)
+                    plot_address = request.form.get('plot_address_' + str(i))
+                    # print(plot_address)
+                    txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+                    print(txn_hash)
+                    i = i + 1
+                except :
+                    break
+        elif "changePassword" in request.form:
+            # Change password code
+            print("Change Password")
+    return render_template('home.html', current_user=current_user,plots=plots) #Add html page - should show list of all added plots, email field should be frozen
 
 @mod_farmer.route("/getCrops", methods=["GET","POST"])
 @login_required
