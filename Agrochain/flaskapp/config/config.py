@@ -1,4 +1,4 @@
 local_acct_key = '5a6176b5656256b81c08e0fdccb80b797da80292f37c4e06e2a089a93d68ecb4'
-cropDetails_contract_address = '0xB82C9649440B6E239Aa4e1AF8DA6d9065b5C3976'
-farmerDetails_contract_address = '0x6972E7381a67Ef7B5Bbe2F4193369633fE8feA18'
-login_contract_address = '0x4817771b524c203Fa1Bd808dB98A1496AD654b86'
+cropDetails_contract_address = '0x25FA7Fd39053A71c5190Ad3b4c16d8Ba677a59E5'
+farmerDetails_contract_address = '0x1ae01E6d23660Bb5C036ddf45a6BD65CbC03Ae8E'
+login_contract_address = '0x5c737CE4EB5BCC47230cD01e467B96bD63422792'
