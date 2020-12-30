@@ -179,10 +179,10 @@
   .sidebar-wrapper .sidebar-header .user-info {
     float: left;
   }
-  
+/*   
   .sidebar-wrapper .sidebar-header .user-info > span {
     display: block;
-  }
+  } */
   
   .sidebar-wrapper .sidebar-header .user-info .user-role {
     font-size: 15px;

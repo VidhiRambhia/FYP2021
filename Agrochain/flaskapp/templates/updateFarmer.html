@@ -45,12 +45,19 @@
             <!-- Uncomment below if you prefer to use an image logo -->
           </div>
 
-        <nav class="nav-menu d-none d-lg-block">
+          <nav class="nav-menu d-none d-lg-block">
             <ul>
             <li class="active"><a href="home">Home</a></li>
             <li><a href="/#about">About</a></li>
             <li><a href="/#steps">Model</a></li>
+            {% if not current_user.is_authenticated %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="chooseRole">Register</a></li>
+            {% endif %}
             <li><a href="/#team">Team</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -166,7 +173,7 @@
 
                 <div class="logo mr-auto">
                     <h1 class="text-light">
-                      <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 70px; padding: 16px 24px;"></a>Agrichain
+                      <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
                 </h1>
                 </div>
 
@@ -186,28 +193,22 @@
                   <li class="header-menu">
                     <span>General</span>
                   </li>
-                  <li class="sidebar">
-                    <a href="#">
+                  <li class="sidebar">  
+                    <a href="/addCropDetails">
                       <i class="fas fa-plus-circle"></i>
                       <span>Add Crop Details</span>
                     </a>
                   </li>
                   <li class="sidebar">
-                    <a href="#">
+                    <a href="/getCrops">
                       <i class="fas fa-pen-square"></i>
-                      <span>Update Crop Details</span>
+                      <span>My Crop Details</span>
                     </a>
                   </li>
                   <li class="sidebar">
-                    <a href="#">
+                    <a href="/updateFarmerProfile">
                       <i class="far fa-id-badge"></i>
-                      <span>Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-book"></i>
-                      <span>Crops issued</span>
+                      <span>Update Profile</span>
                     </a>
                   </li>
                   <li>
