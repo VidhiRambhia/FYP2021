@@ -252,25 +252,25 @@ def updateFarmerProfile():
             txn_hash = farmerDetails_contract_instance.functions.deletePlot(farmer_address).transact(txn_dict)
             print(txn_hash)
             i = 0
-            while True:
-                try:
-                    if(request.form.get('plot_number_' + str(i)) == ""):
-                        break
-                    plot_number = request.form.get('plot_number_' + str(i))
-                    # print(plot_number)
-                    plot_owner = request.form.get('plot_owner_' + str(i))
-                    # print(plot_owner)
-                    plot_address = request.form.get('plot_address_' + str(i))
-                    # print(plot_address)
-                    txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
-                    print(txn_hash)
-                    i = i + 1
-                    plot = {"plot_owner" : plot_owner,
-                            "plot_number" : plot_number,
-                            "plot_address" : plot_address}
-                    plots.append(plot)
-                except :
-                    break
+            while i<3:
+
+                if not request.form.get('plot_number_' + str(i)):
+                    i = i+1
+                    continue
+                plot_number = request.form.get('plot_number_' + str(i))
+                # print(plot_number)
+                plot_owner = request.form.get('plot_owner_' + str(i))
+                # print(plot_owner)
+                plot_address = request.form.get('plot_address_' + str(i))
+                # print(plot_address)
+                txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner,plot_number,plot_address).transact(txn_dict)
+                print(txn_hash)
+                i = i + 1
+                plot = {"plot_owner" : plot_owner,
+                        "plot_number" : plot_number,
+                        "plot_address" : plot_address}
+                plots.append(plot)
+
             flash('Plots Updated')
         elif "changePassword" in request.form:
             current_password = request.form.get('current_password')
