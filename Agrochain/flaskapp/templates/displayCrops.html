@@ -73,8 +73,8 @@
                     
                   
                 <!--Crop List section starts-->
+                {% if crops %}
                     <div class="row">
-
                         {% for crop in crops %}
                             <div class="card" style="width: 65%; margin: 3%">
                                 <div class="row card-body" style="padding: 18px 24px">
@@ -106,9 +106,11 @@
                                 </div>
                             </div>
 
-                            {% endfor %}
-                            
+                            {% endfor %}                            
                     </div>
+                    {% else %}
+                    <h3 style="text-align: center; margin-top: 16px;">You have not added any crops. <a href="/addCropDetails">Click here to add crops</a> </h3>
+                    {% endif %}
                 <!--Crop List section ends-->
 
            

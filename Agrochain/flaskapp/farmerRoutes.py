@@ -136,6 +136,8 @@ def registerFarmer():
             txn_hash = farmerDetails_contract_instance.functions.addPlot(farmer_address,plot_owner_2,plot_number_2,plot_address_2).transact(txn_dict)
             print(txn_hash)
 
+        return redirect(url_for('common.login'))
+
     return render_template('registerFarmer.html')
 
 
@@ -234,7 +236,7 @@ def updateFarmerProfile():
             break
     print(plots)
     if request.method == "POST":
-        plots = []
+        
         print("POST")        
         txn_dict = {
                 'from': local_acct.address,
@@ -244,8 +246,9 @@ def updateFarmerProfile():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         farmer_address = current_user.address
+
         if 'update' in request.form:
-            print('here')
+            plots = []
             txn_hash = farmerDetails_contract_instance.functions.deletePlot(farmer_address).transact(txn_dict)
             print(txn_hash)
             i = 0
@@ -268,6 +271,7 @@ def updateFarmerProfile():
                     plots.append(plot)
                 except :
                     break
+            flash('Plots Updated')
         elif "changePassword" in request.form:
             current_password = request.form.get('current_password')
             new_password = request.form.get('new_password')

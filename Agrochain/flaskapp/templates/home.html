@@ -42,9 +42,10 @@
           <li class="active"><a href="home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#steps">Model</a></li>
-          <li><a href="login">Login</a></li>
-          <li><a href="chooseRole">Register</a></li>
           <li><a href="#team">Team</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="/logout">Logout</a></li>
+          {% endif %}
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -55,9 +56,13 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="container text-center text-md-left" data-aos="fade-up">
       <h1>Welcome to AgriChain</h1>
-      <h2>A blockchain-enabled supply chain management system</h2>
+      <h2>{% if current_user.is_authenticated %} {{current_user.email}} {% endif %}</h2>
+      {% if not current_user.is_authenticated %}
       <a href="login" class="btn-get-started scrollto">Login</a>
       <a href="chooseRole" class="btn-get-started scrollto">Register</a>
+      {% else %}
+      <a href="getCrops" class="btn-get-started scrollto">Go to your Dashboard</a>
+      {% endif %}
     </div>
   </section><!-- End Hero -->
 
