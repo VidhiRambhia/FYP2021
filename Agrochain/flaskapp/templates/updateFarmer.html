@@ -45,12 +45,19 @@
             <!-- Uncomment below if you prefer to use an image logo -->
           </div>
 
-        <nav class="nav-menu d-none d-lg-block">
+          <nav class="nav-menu d-none d-lg-block">
             <ul>
             <li class="active"><a href="home">Home</a></li>
             <li><a href="/#about">About</a></li>
             <li><a href="/#steps">Model</a></li>
+            {% if not current_user.is_authenticated %}
+            <li><a href="/login">Login</a></li>
+            <li><a href="chooseRole">Register</a></li>
+            {% endif %}
             <li><a href="/#team">Team</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="/logout">Logout</a></li>
+            {% endif %}
             </ul>
         </nav><!-- .nav-menu -->
 
@@ -58,10 +65,18 @@
 </header><!-- End Navbar -->
 
 <body>
+
     <div class="page-wrapper chiller-theme toggled">
+
         <body class="form-v10">
             <div class="page-content">
-              <div class="form-v10-content" style="width: 80%; margin-top: 60px;">
+
+                <div style="width: 80%; margin-top: 70px;">
+                    {% for mesg in get_flashed_messages() %}
+                    <h2 class="alert alert-success">{{ mesg }}</h2>
+                    {% endfor %}
+                </div>
+              <div class="form-v10-content" style="width: 80%; margin-top: 0%; ">
                     <h2 style="text-align: center; margin-bottom: 8px;"><b>Your Profile</b></h2>
                     <h3 style="text-align: center; margin-bottom: 8px; color: gray;">{{current_user.email}}</h3>
                 </div>
@@ -79,7 +94,7 @@
                                  </div>
                             
                                 <div class="form-row">
-                                    <input type="password" name="new_password" class="input-text" placeholder="New Password">
+                                    <input type="password" id= "new_password" name="new_password" class="input-text" placeholder="New Password">
                                 </div>
                                 <button type="button submit" name="changePassword" class="btn-xs btn-primary" style="height: 40px; margin-top: 10px;"><h4>Update</h4></button>
                         </div>
@@ -92,31 +107,37 @@
                         <div id="container">
 
                             <div id="plots">
+
                                 {% if plots %}
                                 {% for i in range(0, plots|length) %}
-                                <div class="form-group">
-                                    <div class="form-row form-row-1" style="width: 45%;">
-                                        <label for="plot_number_{{i}}" style="margin-left: 10px;"><h5>Plot Number</h5></label>
-                                        <input type="text" name="plot_number_{{i}}" class="input-text" value="{{plots[i].plot_number}}">
-                                    </div>
-                                    <div class="form-row form-row-1" style="width: 45%;">
-                                        <label for="plot_owner_{{i}}"><h5>Plot Owner</h5></label>
-                                        <input type="text" name="plot_owner_{{i}}" class="input-text" value="{{plots[i].plot_owner}}">
+                                <div id="plot_{{i}}">
+                                    <div class="form-group">
+                                        <div class="form-row form-row-1" style="width: 45%;">
+                                            <label for="plot_number_{{i}}" style="margin-left: 10px;"><h5>Plot Number</h5></label>
+                                            <input type="text" name="plot_number_{{i}}" class="input-text" value="{{plots[i].plot_number}}">
+                                        </div>
+                                        <div class="form-row form-row-1" style="width: 45%;">
+                                            <label for="plot_owner_{{i}}"><h5>Plot Owner</h5></label>
+                                            <input type="text" name="plot_owner_{{i}}" class="input-text" value="{{plots[i].plot_owner}}">
+                                        </div>
+                                        <div class="form-row form-row-1" style="width: 20%;">
+                                        <button type="button " name="delete_plot_{{i}}" id="delete_plot_{{i}}" onclick="removePlot({{i|safe}})"class="btn btn-outline-danger" style="height: 40px; margin-top: 10px;"><h4>Delete Plot</h4></button>
+                                        </div>
+                                    </div>                              
+                                    <div class="form-group">
+                                        <div class="form-row form-row-1" style="width: 85%;">
+                                            <label for="plot_address_{{i}}" style="margin-left: 10px;"><h5>Plot Address</h5></label>
+                                            <input type="text" name="plot_address_{{i}}" class="input-text" value="{{plots[i].plot_address}}">
+                                        </div>                                        
                                     </div>
                                 </div>
-                                
-    
-                                <div class="form-group">
-                                    <div class="form-row form-row-1" style="width: 45%;">
-                                        <label for="plot_address_{{i}}" style="margin-left: 10px;"><h5>Plot Address</h5></label>
-                                        <input type="text" name="plot_address_{{i}}" class="input-text" value="{{plots[i].plot_address}}">
-                                    </div>
-                                    
-                                </div>
+
                                 {% endfor %}
                                 {% endif %}
+                            
                             </div>
-    
+                            
+
                             <div id="plot_form">
                                 <!-- <div hidden>
     
@@ -136,17 +157,17 @@
                                 </div>
                             </div> -->
         
-                                
-                                <div class="form-row">
-                                    <button id="add_form_field" type="button" class="btn btn-link"><h3 style="color: green;">+ Add Another Plot</h3></button>
-                                </div>
+                            <div class="form-row">
+                                <button id="add_form_field" type="button" class="btn btn-link"><h3 style="color: green;">+ Add Another Plot</h3></button>
+                            </div>
+
                                 
                             </div>
     
                         </div> 
     
                         <div class="form-row form-row-1 " style="margin-top: 15px;">
-                            <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;" name="update" ><h3>Submit</h3></button>
+                            <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;" name="update" onclick="window.location.replace(URL);"><h3>Submit</h3></button>
                         </div>
                         </div>
                     </form>
@@ -156,7 +177,14 @@
           <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
 
-              <div class="sidebar-header">
+                <div class="logo mr-auto">
+                    <h1 class="text-light">
+                      <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
+                </h1>
+                </div>
+
+              <div class="sidebar-header mt-0">  
+
                 <div class="user-info">
                   <span class="user-name">
                     <strong><h3>{{current_user.email}}</h3></strong>
@@ -171,28 +199,22 @@
                   <li class="header-menu">
                     <span>General</span>
                   </li>
-                  <li class="sidebar">
-                    <a href="#">
+                  <li class="sidebar">  
+                    <a href="/addCropDetails">
                       <i class="fas fa-plus-circle"></i>
                       <span>Add Crop Details</span>
                     </a>
                   </li>
                   <li class="sidebar">
-                    <a href="#">
+                    <a href="/getCrops">
                       <i class="fas fa-pen-square"></i>
-                      <span>Update Crop Details</span>
+                      <span>My Crop Details</span>
                     </a>
                   </li>
                   <li class="sidebar">
-                    <a href="#">
+                    <a href="/updateFarmerProfile">
                       <i class="far fa-id-badge"></i>
-                      <span>Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-book"></i>
-                      <span>Crops issued</span>
+                      <span>Update Profile</span>
                     </a>
                   </li>
                   <li>
@@ -215,6 +237,7 @@
     var max_fields = 3;
     var wrapper = $("#container");
     var add_button = $("#add_form_field");
+    var delete_plot_button = $("#delete_plot");
     var plots_json = {{plots | safe}};
     console.log(plots_json.length);
     console.log(plots_json);
@@ -226,16 +249,16 @@
 
         var plot_form_div_content = `<div id='plot_form'>                             
                             <div class='form-group'> 
-                                <div class='form-row form-row-1'>
+                                <div class='form-row form-row-1' style='width: 42.5%;'>
                                     <input type='text' name='plot_number_`  + x.toString() + `' id='plot_number_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Number' required>
                                 </div>
-                                <div class='form-row form-row-1'>
+                                <div class='form-row form-row-1' style='width: 42.5%;'>
                                     <input type='text' name='plot_owner_`  + x.toString() + `' id='plot_owner_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Owner' required>
                                 </div>
                             </div>
 
                             <div class='form-group'>
-                                <div class='form-row form-row-1'>
+                                <div class='form-row form-row-1' style='width: 85%;'>
                                     <input type='text' name='plot_address_`  + x.toString() + `' id='plot_address_`  + x.toString() + `' class='input-text' placeholder='Enter Plot Address' required>
                                 </div>
                             </div>
@@ -261,6 +284,12 @@
         x--;
     })
 }); 
+function removePlot(id)
+{
+    var plot = document.getElementById('plot_' + id)
+    plot.remove()
+}
+
 
 </script>
 </html>

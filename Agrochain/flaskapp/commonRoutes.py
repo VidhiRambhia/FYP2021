@@ -26,9 +26,8 @@ def load_user(user_id):
 @mod_common.route("/home")
 @mod_common.route("/", methods=["GET","POST"])
 def index():
-    if(request.method == "POST"):
-        return redirect(url_for('common.login'))
-    email = request.form.get('email') #Todo: Add other fields
+    if current_user:
+        return render_template('home.html',current_user=current_user)
     return render_template('home.html')
 
 
