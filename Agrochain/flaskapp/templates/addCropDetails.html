@@ -29,41 +29,41 @@
         <!-- Template Main CSS File -->
         <link href="../static/css/style.css" rel="stylesheet">
         <link href="../static/css/sidebarCombined.css" rel="stylesheet">
-
 </head>
 
 
-<!-- ======= Navbar ======= -->
-<header id="header" class="fixed-top">
-    <div class="container d-flex">
-
-        <div class="logo mr-auto">
-            <h1 class="text-light"><a href="home">
-              
-            </a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
-          </div>
-
-          <nav class="nav-menu d-none d-lg-block">
-            <ul>
-            <li class="active"><a href="home">Home</a></li>
-            <li><a href="/#about">About</a></li>
-            <li><a href="/#steps">Model</a></li>
-            {% if not current_user.is_authenticated %}
-            <li><a href="/login">Login</a></li>
-            <li><a href="chooseRole">Register</a></li>
-            {% endif %}
-            <li><a href="/#team">Team</a></li>
-            {% if current_user.is_authenticated %}
-            <li><a href="/logout">Logout</a></li>
-            {% endif %}
-            </ul>
-        </nav><!-- .nav-menu -->
-
-    </div>
-</header><!-- End Navbar -->
         
-    <body>
+<body>
+
+      <!-- ======= Navbar ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex">
+
+      <div class="logo mr-auto">
+          <h1 class="text-light"><a href="home">
+            
+          </a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+          <li class="active"><a href="home">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#steps">Model</a></li>
+          {% if not current_user.is_authenticated %}
+          <li><a href="/login">Login</a></li>
+          <li><a href="chooseRole">Register</a></li>
+          {% endif %}
+          <li><a href="/#team">Team</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="/logout">Logout</a></li>
+          {% endif %}
+          </ul>
+      </nav><!-- .nav-menu -->
+
+  </div>
+</header><!-- End Navbar -->
         <div class="page-wrapper chiller-theme toggled">
 
           <!--Crop Details section starts-->
@@ -126,21 +126,17 @@
                       </div>
           
                     </div>
-          
-          
                     <div class="form-right" style="width:35%;">
-      
                         <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" style="height: 400px; margin-top: 100px; width: 300px;">
-
-          
                     </div>
                 </form>
               </div>
             </div>
             <!--Crop Details section ends-->
 
+          {% extends "sidebar.html" %}
           <!--Sidebar for navigation starts-->
-          <nav id="sidebar" class="sidebar-wrapper">
+          <!-- <nav id="sidebar" class="sidebar-wrapper">
             <div class="sidebar-content">
 
               <div class="logo mr-auto">
@@ -156,10 +152,10 @@
                   </span>
                   <span class="user-role">{{current_user.role}}</span>
                 </div>
-              </div>
+              </div> -->
               
               <!-- sidebar-links  -->
-              <div class="sidebar-menu">
+              <!-- <div class="sidebar-menu">
                 <ul>
                   <li class="header-menu">
                     <span>General</span>
@@ -188,13 +184,18 @@
                       <span>Calendar</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-calendar"></i>
+                      <span>Logistics</span>
+                    </a>
+                  </li>
                 </ul>
-              </div>
+              </div> -->
               <!-- sidebar-menu  -->
-            </div>
-          </nav>
+            <!-- </div>
+          </nav> -->
         </div>
-
     </body>
 </html>
 

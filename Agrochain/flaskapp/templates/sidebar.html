@@ -1,0 +1,54 @@
+<!--Sidebar for navigation starts-->
+<nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+
+      <div class="logo mr-auto">
+        <h1 class="text-light">
+          <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
+    </h1>
+    </div>
+
+      <div class="sidebar-header">
+        <div class="user-info">
+          <span class="user-name">
+            <strong><h3>{{current_user.email}}</h3></strong>
+          </span>
+          <span class="user-role">{{current_user.role}}</span>
+        </div>
+      </div>
+      
+      <!-- sidebar-links  -->
+      <div class="sidebar-menu">
+        <ul>
+          <li class="header-menu">
+            <span>General</span>
+          </li>
+          <li class="sidebar">  
+            <a href="/addCropDetails">
+              <i class="fas fa-plus-circle"></i>
+              <span>Add Crop Details</span>
+            </a>
+          </li>
+          <li class="sidebar">
+            <a href="/getCrops">
+              <i class="fas fa-pen-square"></i>
+              <span>My Crop Details</span>
+            </a>
+          </li>
+          <li class="sidebar">
+            <a href="/updateFarmerProfile">
+              <i class="far fa-id-badge"></i>
+              <span>Update Profile</span>
+            </a>
+          </li>
+          <li>
+            <a href="/logistics">
+              <i class="fa fa-calendar"></i>
+              <span>Logistics</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+  </nav><!--navbar ends-->

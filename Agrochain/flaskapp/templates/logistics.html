@@ -73,8 +73,8 @@
                 <form class="form-detail">
                   <form class="form-detail">
                     <div class="form-left">
+                      <!--Name has to be modified depending on role-->
                       <h2><b>Add Farm-to-Hub logistics info</b></h2>
-          
                       <div class="form-group">
                         <div class="form-row form-row-1">
                           <input type="number" name="Vehicle number" id="vehicle_number" class="input-text" placeholder="Vehicle number" required>
@@ -91,14 +91,11 @@
                         </div>
                       </div>
                       <div class="form-group">
-                        <div class="form-row form-row-3">
-                          <input type="text" name="fpc" id="fpc" class="input-text" placeholder="FPC name to be delivered to" required>
-                        </div>
+                        <div class="form-row form-detail">
+                            <input type="text" name="l_id" id="l_id" class="input-text" placeholder="Logistics ID" required>
+                          </div>
                       </div>
                       <div class="form-group">
-                        <div class="form-row form-row-3">
-                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" required>
-                        </div>
                         <div class="form-row form-detail">
                             <input type="text" name="driver_name" id="driver_name" class="input-text" placeholder="Driver's name" required>
                           </div>
@@ -124,70 +121,15 @@
                       </div>
           
                     </div>
-          
-          
                     <div class="form-right" style="width:35%;">
-                        <img src="https://images.unsplash.com/photo-1601171762590-72f42972b01c?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="height: 300px; margin-top: 150px; width: 275px;">
+                        <img src="https://cdn.pixabay.com/photo/2016/11/29/04/15/drive-1867268__480.jpg" style="height: 350px; margin-top: 110px; width: 300px;">
                     </div>
                 </form>
               </div>
             </div>
             <!--Crop Details section ends-->
 
-          <!--Sidebar for navigation starts-->
-          <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-
-              <div class="logo mr-auto">
-                <h1 class="text-light">
-                  <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
-            </h1>
-            </div>
-
-              <div class="sidebar-header">
-                <div class="user-info">
-                  <span class="user-name">
-                    <strong><h3>{{current_user.email}}</h3></strong>
-                  </span>
-                  <span class="user-role">{{current_user.role}}</span>
-                </div>
-              </div>
-              
-              <!-- sidebar-links  -->
-              <div class="sidebar-menu">
-                <ul>
-                  <li class="header-menu">
-                    <span>General</span>
-                  </li>
-                  <li class="sidebar">  
-                    <a href="/addCropDetails">
-                      <i class="fas fa-plus-circle"></i>
-                      <span>Add Crop Details</span>
-                    </a>
-                  </li>
-                  <li class="sidebar">
-                    <a href="/getCrops">
-                      <i class="fas fa-pen-square"></i>
-                      <span>My Crop Details</span>
-                    </a>
-                  </li>
-                  <li class="sidebar">
-                    <a href="/updateFarmerProfile">
-                      <i class="far fa-id-badge"></i>
-                      <span>Update Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-calendar"></i>
-                      <span>Calendar</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <!-- sidebar-menu  -->
-            </div>
-          </nav>
+            {% extends "sidebar.html" %}
         </div>
 
     </body>

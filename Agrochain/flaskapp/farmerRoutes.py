@@ -217,8 +217,6 @@ def farmerPage():
 
     return render_template('FarmerFunctions.html')
 
-
-
 @mod_farmer.route("/updateFarmerProfile", methods=["GET","POST"])
 @login_required
 def updateFarmerProfile():
@@ -316,6 +314,13 @@ def getCrops():
 
     print(crops)
     return render_template('displayCrops.html', current_user=current_user,crops=crops) 
+
+
+#logistics route to be modified
+@mod_farmer.route("/logistics", methods=["GET","POST"])
+@login_required
+def logistics():
+    return render_template('logistics.html')
 
 
 
