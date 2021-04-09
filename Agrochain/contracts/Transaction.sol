@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0;
 
 struct Transaction{
@@ -64,10 +65,24 @@ contract TransactionDetails{
             return tids;
         }
 
-    function getTxn(uint tid) view public
-    returns(uint, string memory, uint, string memory, string memory, string memory, uint, uint, string memory, uint, bytes memory, bytes memory) {
-        return(txns[tid].sellerType, txns[tid].sellerName, txns[tid].buyerType, txns[tid].buyerName, txns[tid].crop, txns[tid].grade,
-                txns[tid].price, txns[tid].quantity, txns[tid].packageId, txns[tid].logisticId, txns[tid].prevHash, txns[tid].nextHash);
+    function getTxnCropDetails(uint tid) view public
+    returns(string memory, string memory, uint, uint, string memory, uint) {
+        return(txns[tid].crop, txns[tid].grade, txns[tid].price, txns[tid].quantity, txns[tid].packageId, txns[tid].logisticId);
+    }
+
+    function getTxnEntityDetails(uint tid) view public
+    returns(uint, string memory, uint, string memory){
+        return(txns[tid].sellerType, txns[tid].sellerName, txns[tid].buyerType, txns[tid].buyerName);
+    }
+
+    function getPrevHash(uint tid) view public
+    returns(bytes memory) {
+        return(txns[tid].prevHash);
+    }
+
+    function getNextHash(uint tid) view public
+    returns(bytes memory) {
+        return(txns[tid].nextHash);
     }
 
     function setNextHash(uint tid, bytes memory _nextHash)
