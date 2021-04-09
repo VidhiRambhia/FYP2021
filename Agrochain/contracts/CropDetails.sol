@@ -1,4 +1,5 @@
-pragma solidity ^0.7.0;
+// SPDX-License-Identifier: MIT
+pragma solidity >=0.7.0;
 
 struct Crop{
     uint cropID;
@@ -47,13 +48,13 @@ contract CropDetails{
         emit CropUpdated(farmerAddr);
     }
     
-    function getCrop1(address farmerAddr, uint cropID) public returns (string memory cropType, string memory cropName,
+    function getCrop1(address farmerAddr, uint cropID) view public returns (string memory cropType, string memory cropName,
     string memory sourceTagNo){
         return (crops[farmerAddr][cropID].cropType, crops[farmerAddr][cropID].cropName,
             crops[farmerAddr][cropID].sourceTagNo);
     }
         
-    function getCrop2(address farmerAddr, uint cropID) public returns (string memory fertiliser,uint quantity,
+    function getCrop2(address farmerAddr, uint cropID) view public returns (string memory fertiliser,uint quantity,
         uint256 DateSowed, uint256 DateHarvested){
             return (crops[farmerAddr][cropID].fertiliser, crops[farmerAddr][cropID].quantity,
                 crops[farmerAddr][cropID].DateSowed, crops[farmerAddr][cropID].DateHarvested);
