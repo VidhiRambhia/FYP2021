@@ -76,4 +76,14 @@ def error():
     return render_template('error.html')
 
 
+@mod_common.route("/registerfpc", methods=["GET","POST"])
+def registerfpc():
+    return render_template('registerFPC.html')
+
+
+@mod_common.route("/updatefpc", methods=["GET","POST"])
+def updatefpc():
+    return render_template('updateFPC.html')
+
+
 
