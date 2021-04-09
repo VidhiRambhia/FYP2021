@@ -147,7 +147,7 @@ def registerFPC():
 
 @mod_fpc.route("/fpcPage", methods=["GET","POST"])
 @login_required
-def farmerPage():
+def fpcPage():
     if request.method=="POST":
         if 'profile' in request.form:
             return redirect(url_for('fpc.updateFpcProfile'))
