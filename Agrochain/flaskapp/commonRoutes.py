@@ -109,7 +109,3 @@ def logistics():
         print(dispatch_date)
         # Connect with SC
     return render_template('logistics.html')
-
-
-
-
