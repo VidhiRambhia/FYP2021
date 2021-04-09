@@ -1,5 +1,4 @@
 class ROLE:
     FARMER = "FARMER"
-    BUYING_CENTRE = "BUYING_CENTRE"
-    HUB = "HUB"
+    FPC = "FPC"
     RETAIL_STORE = "RETAIL_STORE"

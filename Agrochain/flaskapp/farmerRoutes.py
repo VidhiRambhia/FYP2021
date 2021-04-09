@@ -215,7 +215,7 @@ def farmerPage():
         elif 'updateCrop' in request.form:
             return redirect(url_for('farmer.getCrops'))
         elif 'logistics' in request.form:
-            return redirect(url_for('farmer.logistics'))
+            return redirect(url_for('common.logistics'))
 
     return render_template('FarmerFunctions.html')
 
@@ -315,15 +315,4 @@ def getCrops():
             break
 
     print(crops)
-    return render_template('displayCrops.html', current_user=current_user,crops=crops) 
-
-
-#logistics route to be modified
-@mod_farmer.route("/logistics", methods=["GET","POST"])
-@login_required
-def logistics():
-    return render_template('logistics.html')
-
-
-
-
+    return render_template('displayCrops.html', current_user=current_user,crops=crops)

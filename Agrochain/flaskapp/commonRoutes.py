@@ -11,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flaskapp.config import config
 from flaskapp.models import User
 from flaskapp import db,w3,eth,app
+import random
 
 mod_common = Blueprint('common', __name__, url_prefix='')
 
@@ -39,6 +40,8 @@ def chooseRole():
         print('selected role: ', selectedRole)
         if (selectedRole == 'farmer'):
             return redirect(url_for('farmer.registerFarmer'))
+        if (selectedRole == 'fpc'):
+            return redirect(url_for('fpc.registerFPC'))
 
     return render_template('ChooseRole.html')
 
@@ -75,15 +78,38 @@ def logout():
 def error():
     return render_template('error.html')
 
+@mod_common.route("/addTransactionDetails",methods=["GET","POST"])
+@login_required
+def addTransactionDetails():
+    buyer_name = request.form.get('buyer_name')
+    seller_name = request.form.get('seller_name')
+    crop_name = request.form.get('crop_name')
+    product_grade = request.form.get('product_grade')
+    cost = float(request.form.get('cost'))
+    quantity = request.form.get('quantity')
+    package_id = buyer_name[:2] + seller_name[:2] + str(randint())
+    #logistic id
+    #prev_hash
 
-@mod_common.route("/registerfpc", methods=["GET","POST"])
-def registerfpc():
-    return render_template('registerFPC.html')
+    #connect with SC
+    return render_template('addTransactionDetails.html',current_user=current_user,transaction=transaction)
 
+@mod_common.route("/logistics", methods=["GET","POST"])
+@login_required
+def logistics():
+    if request.method == 'POST': 
+        vehicle_type = request.form.get('vehicle_type')
+        l_id = request.form.get('l_id')
+        vehicle_number = request.form.get('vehicle_number')
+        driver_name = request.form.get('driver_name')
+        driver_contact = request.form.get('driver_contact')
+        dispatch_date = request.form.get('dispatch_date')
+        dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
+        dispatch_date_int = int(date_dispatched.strftime('%Y%m%d'))
+        print(dispatch_date)
+        # Connect with SC
+    return render_template('logistics.html')
 
-@mod_common.route("/updatefpc", methods=["GET","POST"])
-def updatefpc():
-    return render_template('updateFPC.html')
 
 
 
