@@ -174,8 +174,8 @@ def updateFpcProfile():
         #         }
         # farmer_address = current_user.address
 
-        if 'update' in request.form:
-            
+        if "update" in request.form:
+            print("Hello")
             fpc_name = request.form.get('fpc_name')
             director = request.form.get('director')
             reg_no = request.form.get('reg_no')

@@ -94,21 +94,21 @@ def addTransactionDetails():
     #connect with SC
     return render_template('addTransactionDetails.html',current_user=current_user,transaction=transaction)
 
-    @mod_common.route("/logistics", methods=["GET","POST"])
-    @login_required
-    def logistics():
-        if request.method == 'POST': 
-            vehicle_type = request.form.get('vehicle_type')
-            l_id = request.form.get('l_id')
-            vehicle_number = request.form.get('vehicle_number')
-            driver_name = request.form.get('driver_name')
-            driver_contact = request.form.get('driver_contact')
-            dispatch_date = request.form.get('dispatch_date')
-            dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
-            dispatch_date_int = int(date_dispatched.strftime('%Y%m%d'))
-            print(l_id)
+@mod_common.route("/logistics", methods=["GET","POST"])
+@login_required
+def logistics():
+    if request.method == 'POST': 
+        vehicle_type = request.form.get('vehicle_type')
+        l_id = request.form.get('l_id')
+        vehicle_number = request.form.get('vehicle_number')
+        driver_name = request.form.get('driver_name')
+        driver_contact = request.form.get('driver_contact')
+        dispatch_date = request.form.get('dispatch_date')
+        dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
+        dispatch_date_int = int(date_dispatched.strftime('%Y%m%d'))
+        print(dispatch_date)
         # Connect with SC
-        return render_template('logistics.html')
+    return render_template('logistics.html')
 
 
 
