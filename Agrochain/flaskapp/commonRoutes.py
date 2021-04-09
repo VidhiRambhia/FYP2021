@@ -40,6 +40,8 @@ def chooseRole():
         print('selected role: ', selectedRole)
         if (selectedRole == 'farmer'):
             return redirect(url_for('farmer.registerFarmer'))
+        if (selectedRole == 'fpc'):
+            return redirect(url_for('fpc.registerFPC'))
 
     return render_template('ChooseRole.html')
 
@@ -108,14 +110,6 @@ def addTransactionDetails():
         # Connect with SC
         return render_template('logistics.html')
 
-@mod_common.route("/registerfpc", methods=["GET","POST"])
-def registerfpc():
-    return render_template('registerFPC.html')
-
-
-@mod_common.route("/updatefpc", methods=["GET","POST"])
-def updatefpc():
-    return render_template('updateFPC.html')
 
 
 

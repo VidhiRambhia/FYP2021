@@ -115,17 +115,17 @@ def registerFPC():
         print(email,password)
 
         fpc_name = request.form.get('fpc_name')
-        fpc_director = request.form.get('fpc_director')
-        fpc_address = request.form.get('fpc_address')
-        fpc_reg_no = request.form.get('fpc_reg_no')
-        fpc_capacity = request.form.get('fpc_capacity')
+        director = request.form.get('director')
+        reg_no = request.form.get('reg_no')
+        capacity = request.form.get('capacity')
+        location = request.form.get('location')
 
         fpc_data = {
             "fpc_name"  : fpc_name,
-            "fpc_director" : fpc_director,
-            "fpc_address" : fpc_address,
-            "fpc_reg_no" : fpc_reg_no,
-            "fpc_capacity" : fpc_capacity
+            "director" : director,
+            "location" : location,
+            "reg_no" : reg_no,
+            "capacity" : capacity
         }
 
         print([(fpc, fpc_data[fpc]) for fpc in fpc_data])
@@ -175,11 +175,20 @@ def updateFpcProfile():
         # farmer_address = current_user.address
 
         if 'update' in request.form:
+            
             fpc_name = request.form.get('fpc_name')
-            fpc_director = request.form.get('fpc_director')
-            fpc_address = request.form.get('fpc_address')
-            fpc_reg_no = request.form.get('fpc_reg_no')
-            fpc_capacity = request.form.get('fpc_capacity')            
+            director = request.form.get('director')
+            reg_no = request.form.get('reg_no')
+            capacity = request.form.get('capacity')
+            location = request.form.get('location')
+
+            fpc_data = {
+                "fpc_name"  : fpc_name,
+                "director" : director,
+                "location" : location,
+                "reg_no" : reg_no,
+                "capacity" : capacity
+            }       
             # Integrate and update data with contract functions
             flash('Data Updated')
         elif "changePassword" in request.form:
@@ -194,4 +203,4 @@ def updateFpcProfile():
                 db.session.commit()
                 flash('Password Updated Successfully')
         
-    return render_template('updateFpc.html', current_user=current_user)
+    return render_template('updateFPC.html', current_user=current_user)
