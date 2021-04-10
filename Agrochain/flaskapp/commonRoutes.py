@@ -105,7 +105,7 @@ def logistics():
         driver_contact = request.form.get('driver_contact')
         dispatch_date = request.form.get('dispatch_date')
         dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
-        dispatch_date_int = int(date_dispatched.strftime('%Y%m%d'))
+        dispatch_date_int = int(dispatch_date.strftime('%Y%m%d'))
         print(dispatch_date)
         # Connect with SC
     return render_template('logistics.html')
