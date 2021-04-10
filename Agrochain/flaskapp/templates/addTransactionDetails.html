@@ -1,0 +1,94 @@
+<html>
+    <head>
+    {% include "headerlinks.html" %}
+</head>      
+<body>
+
+<!-- ======= Navbar ======= -->
+<header id="header" class="fixed-top">
+  <div class="container d-flex">
+
+      <div class="logo mr-auto">
+          <h1 class="text-light"><a href="home">
+            
+          </a></h1>
+          <!-- Uncomment below if you prefer to use an image logo -->
+        </div>
+
+        <nav class="nav-menu d-none d-lg-block">
+          <ul>
+          <li class="active"><a href="home">Home</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#steps">Model</a></li>
+          {% if not current_user.is_authenticated %}
+          <li><a href="/login">Login</a></li>
+          <li><a href="chooseRole">Register</a></li>
+          {% endif %}
+          <li><a href="/#team">Team</a></li>
+          {% if current_user.is_authenticated %}
+          <li><a href="/logout">Logout</a></li>
+          {% endif %}
+          </ul>
+      </nav><!-- .nav-menu -->
+
+  </div>
+</header><!-- End Navbar -->
+
+        <div class="page-wrapper chiller-theme toggled">
+
+          <!--Crop Details section starts-->
+          <body class="form-v10">
+            <div class="page-content">
+              <div class="form-v10-content">
+                <form class="form-detail" method="POST" id="myform">
+                  <form class="form-detail" method="POST" id="myform">
+                    <div class="form-left">
+                      <h2><b>Transaction Details Portal</b></h2>
+          
+                      <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <input type="text" name="buyer_name" id="buyer" class="input-text" placeholder="Buyer Name" required>
+                        </div>
+                        <div class="form-row form-row-1">
+                            <input type="text" name="seller_name" id="seller" class="input-text" placeholder="Seller Name" required>
+                        </div> 
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row form-row-1">
+                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
+                        </div>
+                        <div class="form-row form-row-1">
+                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+                          </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row form-row-1">
+                            <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                        </div>
+                        <div class="form-row form-row-1">
+                          <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost (in INR)" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row form-row-1">
+                        <input type="number" name="l_id" id="l_id" class="input-text" placeholder="Logistic ID" required>
+                        </div>
+                    </div>
+                      
+                      <div class="form-row">
+                        <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;"><h3>Submit</h3></button>
+                      </div>
+          
+                    </div>
+                    <div class="form-right" style="width:35%;">
+                        <img src="https://images.unsplash.com/photo-1604300721398-3f58fdf81780?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcCUyMHNlbGxlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" style="height: 400px; margin-top: 50px; width: 300px;">
+                    </div>
+                </form>
+              </div>
+            </div>
+            <!--Crop Details section ends-->
+
+          {% extends "sidebar.html" %}
+        </div>
+    </body>
+</html>
