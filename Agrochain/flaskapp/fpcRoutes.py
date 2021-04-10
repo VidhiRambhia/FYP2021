@@ -56,15 +56,15 @@ def registerFPC():
         location = request.form.get('location')
         fpc_address = acct.address
 
-        fpc_data = {
-            "fpc_name"  : fpc_name,
-            "director" : director,
-            "location" : location,
-            "reg_no" : reg_no,
-            "capacity" : capacity
-        }
+        # fpc_data = {
+        #     "fpc_name"  : fpc_name,
+        #     "director" : director,
+        #     "location" : location,
+        #     "reg_no" : reg_no,
+        #     "capacity" : capacity
+        # }
 
-        print([(fpc, fpc_data[fpc]) for fpc in fpc_data])
+        # print([(fpc, fpc_data[fpc]) for fpc in fpc_data])
 
         txn_dict = {
                 'from': local_acct.address,
@@ -74,7 +74,7 @@ def registerFPC():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         fpc_address = acct.address
-        txn_hash = fpcDetails_contract_instance.functions.addFpc(fpc_address,fpc_name,director,fpc_address,reg_no,capacity).transact(txn_dict)
+        txn_hash = fpcDetails_contract_instance.functions.addFpc(fpc_address,fpc_name,director,location,reg_no,capacity).transact(txn_dict)
         print(txn_hash)
         if txn_hash:
             db.session.add(new_user)
@@ -101,26 +101,33 @@ def fpcPage():
 @login_required
 def updateFpcProfile():
     fpc_data = fpcDetails_contract_instance.functions.getFpc(current_user.address).call()
+    fpc_data = {
+            "fpc_name"  : fpc_data[0],
+            "director" : fpc_data[1],
+            "location" : fpc_data[2],
+            "reg_no" : fpc_data[3],
+            "capacity" : fpc_data[4]
+        }
     print(fpc_data)
     if request.method == "POST":
         
         print("POST")       
-        # txn_dict = {
-        #         'from': local_acct.address,
-        #         'to': farmerDetails_contract_address,
-        #         'value': '0',
-        #         'gas': 2000000,
-        #         'gasPrice': w3.toWei('40', 'gwei')
-        #         }
-        # farmer_address = current_user.address
-
+        txn_dict = {
+                'from': local_acct.address,
+                'to': fpcDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        fpc_address = current_user.address
         if "update" in request.form:
-            print("Hello")
             fpc_name = request.form.get('fpc_name')
             director = request.form.get('director')
-            reg_no = request.form.get('reg_no')
-            capacity = request.form.get('capacity')
-            location = request.form.get('location')
+            reg_no = request.form.get('reg_number')
+            capacity = int(request.form.get('capacity'))
+            location = request.form.get('location') 
+
+            txn_hash = fpcDetails_contract_instance.functions.updateFpc(fpc_address,fpc_name,director,location,reg_no,capacity).transact(txn_dict)
 
             fpc_data = {
                 "fpc_name"  : fpc_name,
@@ -128,9 +135,10 @@ def updateFpcProfile():
                 "location" : location,
                 "reg_no" : reg_no,
                 "capacity" : capacity
-            }       
-            # Integrate and update data with contract functions
-            flash('Data Updated')
+            }
+            
+            flash('Profile Updated')
+
         elif "changePassword" in request.form:
             current_password = request.form.get('current_password')
             new_password = request.form.get('new_password')
@@ -143,4 +151,4 @@ def updateFpcProfile():
                 db.session.commit()
                 flash('Password Updated Successfully')
         
-    return render_template('updateFPC.html', current_user=current_user)
+    return render_template('updateFPC.html', current_user=current_user, fpc_data=fpc_data)
