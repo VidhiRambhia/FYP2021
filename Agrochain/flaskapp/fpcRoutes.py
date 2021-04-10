@@ -92,8 +92,6 @@ def fpcPage():
             return redirect(url_for('fpc.updateFpcProfile'))
         elif 'addTransaction' in request.form:
             return redirect(url_for('common.addTransactionDetails'))
-        elif 'addLogistics' in request.form:
-            return redirect(url_for('common.logistics'))
 
     return render_template('FpcFunctions.html')
 
@@ -115,7 +113,6 @@ def updateFpcProfile():
         # farmer_address = current_user.address
 
         if "update" in request.form:
-            print("Hello")
             fpc_name = request.form.get('fpc_name')
             director = request.form.get('director')
             reg_no = request.form.get('reg_no')

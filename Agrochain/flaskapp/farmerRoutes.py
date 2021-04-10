@@ -173,8 +173,8 @@ def farmerPage():
             return redirect(url_for('farmer.addCropDetails'))
         elif 'updateCrop' in request.form:
             return redirect(url_for('farmer.getCrops'))
-        elif 'logistics' in request.form:
-            return redirect(url_for('common.logistics'))
+        elif 'transaction' in request.form:
+            return redirect(url_for('common.addTransactionDetails'))
 
     return render_template('FarmerFunctions.html')
 
