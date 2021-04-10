@@ -60,8 +60,6 @@ login_abi = login_truffleFile['abi']
 # farmerDetails_contract_instance = w3.eth.contract(abi=farmerDetails_abi, address=farmerDetails_contract_address)
 login_contract_instance = w3.eth.contract(abi=login_abi, address=login_contract_address)
 
-
-
 def addNewUser(email, pwd_hash, role):
     user_dict = {
             'from': local_acct.address,
@@ -106,7 +104,7 @@ def registerFPC():
         print(acct.address)
 
         # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FARMER)
+        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FPC)
 
         # add the new user to the database
         db.session.add(new_user)
@@ -149,12 +147,12 @@ def registerFPC():
 @login_required
 def fpcPage():
     if request.method=="POST":
-        if 'profile' in request.form:
+        if 'fpcProfile' in request.form:
             return redirect(url_for('fpc.updateFpcProfile'))
         elif 'addTransaction' in request.form:
-            return redirect(url_for('common.addTransaction'))
+            return redirect(url_for('common.addTransactionDetails'))
         elif 'addLogistics' in request.form:
-            return redirect(url_for('common.addLogistics'))
+            return redirect(url_for('common.logistics'))
 
     return render_template('FpcFunctions.html')
 

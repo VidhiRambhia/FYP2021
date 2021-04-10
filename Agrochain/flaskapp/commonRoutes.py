@@ -61,10 +61,12 @@ def login():
             return redirect(url_for('common.login'))
 
         login_user(user, remember=False)
-
+        
         # Conditions for different entities
-        return redirect(url_for('farmer.farmerPage'))
-
+        if(current_user.role == 'FARMER'):
+            return redirect(url_for('farmer.farmerPage'))
+        elif(current_user.role == 'FPC'):
+            return redirect(url_for('fpc.fpcPage'))
     return render_template("Login.html")
 
 @mod_common.route("/logout")
@@ -105,7 +107,7 @@ def logistics():
         driver_contact = request.form.get('driver_contact')
         dispatch_date = request.form.get('dispatch_date')
         dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
-        dispatch_date_int = int(date_dispatched.strftime('%Y%m%d'))
+        dispatch_date_int = int(dispatch_date.strftime('%Y%m%d'))
         print(dispatch_date)
         # Connect with SC
     return render_template('logistics.html')

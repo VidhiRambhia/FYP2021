@@ -86,9 +86,13 @@
                 </form>
               </div>
             </div>
-            <!--Crop Details section ends-->
 
-          {% extends "sidebar.html" %}
+            {% if current_user.role == "FARMER" %}
+              {% include "sidebar.html" %}
+            {% elif current_user.role == "FPC" %}
+              {% include "fpcSidebar.html" %}
+            {% endif %}
+            
         </div>
     </body>
 </html>
