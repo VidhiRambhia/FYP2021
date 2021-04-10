@@ -28,59 +28,18 @@ def load_user(user_id):
 #db.create_all()
 
 cropDetails_contract_address = config.cropDetails_contract_address
-farmerDetails_contract_address = config.farmerDetails_contract_address
-login_contract_address = config.login_contract_address 
+farmerDetails_contract_address = config.farmerDetails_contract_address 
 
-# w3 = Web3(HTTPProvider("http://localhost:7545"))
-# # IPC Provider error here
-# eth = Web3(IPCProvider()).eth
-
-# print(w3.isConnected())
-
-# # Initialize a local account object from the private key of a valid Ethereum node address
-# # Add your own private key here
 local_acct = w3.eth.account.from_key(config.local_acct_key)
 
-# # compile your smart contract with truffle first
 cropDetails_truffleFile = json.load(open('./build/contracts/CropDetails.json'))
 cropDetails_abi = cropDetails_truffleFile['abi']
 
 farmerDetails_truffleFile = json.load(open('./build/contracts/FarmerDetails.json'))
 farmerDetails_abi = farmerDetails_truffleFile['abi']
 
-login_truffleFile = json.load(open('./build/contracts/Login.json'))
-login_abi = login_truffleFile['abi']
-
-
-# # Initialize a contract object with the smart contract compiled artifacts
 cropDetails_contract_instance = w3.eth.contract(abi=cropDetails_abi, address=cropDetails_contract_address)
 farmerDetails_contract_instance = w3.eth.contract(abi=farmerDetails_abi, address=farmerDetails_contract_address)
-login_contract_instance = w3.eth.contract(abi=login_abi, address=login_contract_address)
-
-
-
-def addNewUser(email, pwd_hash, role):
-    user_dict = {
-            'from': local_acct.address,
-            'to': login_contract_address,
-            'value': 0,
-            'gas':2000000,
-            'gasPrice': w3.toWei('40', 'gwei')
-        }
-    txn_hash = login_contract_instance.functions.addUser(local_acct.address, email, pwd_hash, role).transact(user_dict)
-    print('new user added', txn_hash)
-
-def verifyUser(address):
-    user_dict = {
-            'from': local_acct.address,
-            'to': login_contract_address,
-            'value': 0,
-            'gas':2000000,
-            'gasPrice': w3.toWei('40', 'gwei')
-        }
-    print('creating transaction')
-    txn_hash = login_contract_instance.functions.getUser(address).call()
-    print(w3.eth.getTransactionReceipt(txn_hash))
 
 
 @mod_farmer.route("/registerFarmer",methods=["GET","POST"])
