@@ -20,103 +20,41 @@ mod_fpc = Blueprint('fpc', __name__, url_prefix='')
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-#db.create_all()
+fpcDetails_contract_address = config.fpcDetails_contract_address
 
-# @Vidhi modify
-# cropDetails_contract_address = config.cropDetails_contract_address
-# farmerDetails_contract_address = config.farmerDetails_contract_address
-login_contract_address = config.login_contract_address 
-
-# w3 = Web3(HTTPProvider("http://localhost:7545"))
-# # IPC Provider error here
-# eth = Web3(IPCProvider()).eth
-
-# print(w3.isConnected())
-
-# # Initialize a local account object from the private key of a valid Ethereum node address
-# # Add your own private key here
 local_acct = w3.eth.account.from_key(config.local_acct_key)
 
-# # compile your smart contract with truffle first
-# modify
-# cropDetails_truffleFile = json.load(open('./build/contracts/CropDetails.json'))
-# cropDetails_abi = cropDetails_truffleFile['abi']
+fpcDetails_truffleFile = json.load(open('./build/contracts/FpcDetails.json'))
+fpcDetails_abi = fpcDetails_truffleFile['abi']
 
-# farmerDetails_truffleFile = json.load(open('./build/contracts/FarmerDetails.json'))
-# farmerDetails_abi = farmerDetails_truffleFile['abi']
-
-login_truffleFile = json.load(open('./build/contracts/Login.json'))
-login_abi = login_truffleFile['abi']
-
-
-# # Initialize a contract object with the smart contract compiled artifacts
-# Modify
-# cropDetails_contract_instance = w3.eth.contract(abi=cropDetails_abi, address=cropDetails_contract_address)
-# farmerDetails_contract_instance = w3.eth.contract(abi=farmerDetails_abi, address=farmerDetails_contract_address)
-login_contract_instance = w3.eth.contract(abi=login_abi, address=login_contract_address)
-
-def addNewUser(email, pwd_hash, role):
-    user_dict = {
-            'from': local_acct.address,
-            'to': login_contract_address,
-            'value': 0,
-            'gas':2000000,
-            'gasPrice': w3.toWei('40', 'gwei')
-        }
-    txn_hash = login_contract_instance.functions.addUser(local_acct.address, email, pwd_hash, role).transact(user_dict)
-    print('new user added', txn_hash)
-
-def verifyUser(address):
-    user_dict = {
-            'from': local_acct.address,
-            'to': login_contract_address,
-            'value': 0,
-            'gas':2000000,
-            'gasPrice': w3.toWei('40', 'gwei')
-        }
-    print('creating transaction')
-    txn_hash = login_contract_instance.functions.getUser(address).call()
-    print(w3.eth.getTransactionReceipt(txn_hash))
-
+fpcDetails_contract_instance = w3.eth.contract(abi=fpcDetails_abi, address=fpcDetails_contract_address)
 
 @mod_fpc.route("/registerFPC",methods=["GET","POST"])
 def registerFPC():
-    #print(contract_address)
-    #print(w3.isConnected())
-    #print(request.form)
     if request.method == "POST":
         email = request.form.get('email') 
         password = request.form.get('password')
-        #pwd_hash = hashlib.sha256(password.encode()).hexdigest()
-        #addNewUser(email, pwd_hash, 'farmer')
 
-        user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+        user = User.query.filter_by(email=email).first() 
 
-        if user: # if a user is found, we want to redirect back to signup page so user can try again
+        if user:
             return redirect(url_for('common.login'))
 
         acct = Account.create(password)
         print(acct.address)
 
-        # create a new user with the form data. Hash the password so the plaintext version isn't saved.
         new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FPC)
-
-        # add the new user to the database
-        db.session.add(new_user)
-        db.session.commit()
-
-        print(email,password)
 
         fpc_name = request.form.get('fpc_name')
         director = request.form.get('director')
-        reg_no = request.form.get('reg_no')
-        capacity = request.form.get('capacity')
+        reg_no = request.form.get('reg_number')
+        capacity = int(request.form.get('capacity'))
         location = request.form.get('location')
+        fpc_address = acct.address
 
         fpc_data = {
             "fpc_name"  : fpc_name,
@@ -128,17 +66,20 @@ def registerFPC():
 
         print([(fpc, fpc_data[fpc]) for fpc in fpc_data])
 
-        # @Vidhi Modify 
-        # txn_dict = {
-        #         'from': local_acct.address,
-        #         'to': farmerDetails_contract_address,
-        #         'value': '0',
-        #         'gas': 2000000,
-        #         'gasPrice': w3.toWei('40', 'gwei')
-        #         }
-        # farmer_address = acct.address
-        # txn_hash = farmerDetails_contract_instance.functions.addFarmer(farmer_address,email,plot_owner,plot_number,plot_address,True).transact(txn_dict)
-        # print(txn_hash)
+        txn_dict = {
+                'from': local_acct.address,
+                'to': fpcDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        fpc_address = acct.address
+        txn_hash = fpcDetails_contract_instance.functions.addFpc(fpc_address,fpc_name,director,fpc_address,reg_no,capacity).transact(txn_dict)
+        print(txn_hash)
+        if txn_hash:
+            db.session.add(new_user)
+            db.session.commit()
+
         return redirect(url_for('common.login'))
 
     return render_template('registerFPC.html')
@@ -157,7 +98,8 @@ def fpcPage():
 @mod_fpc.route("/updateFpcProfile", methods=["GET","POST"])
 @login_required
 def updateFpcProfile():
-    # fpc_data = fpcDetails_contract_instance.functions.getFpc(current_user.address,i).call()
+    fpc_data = fpcDetails_contract_instance.functions.getFpc(current_user.address).call()
+    print(fpc_data)
     if request.method == "POST":
         
         print("POST")       
