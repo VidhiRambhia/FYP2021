@@ -55,8 +55,8 @@ def chooseRole():
             return redirect(url_for('farmer.registerFarmer'))
         if (selectedRole == 'fpc'):
             return redirect(url_for('fpc.registerFPC'))
-        # if (selectedRole == 'retailer'):
-        #     return redirect(url_for('retailer.registerRetailer'))
+        if (selectedRole == 'retailer'):
+            return redirect(url_for('retailer.registerRetailer'))
 
     return render_template('ChooseRole.html')
 
@@ -64,7 +64,7 @@ def chooseRole():
 @mod_common.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-
+        
         email = request.form.get('email')
         password = request.form.get('password')
 
@@ -78,12 +78,13 @@ def login():
         login_user(user, remember=False)
 
         # Conditions for different entities
+        print(current_user.role)
         if(current_user.role == 'FARMER'):
             return redirect(url_for('farmer.farmerPage'))
         elif(current_user.role == 'FPC'):
             return redirect(url_for('fpc.fpcPage'))
-        # elif(current_user.role == 'RETAILER'):
-        #     return redirect(url_for('retailer.retailerPage'))
+        elif(current_user.role == 'RETAIL_STORE'):
+            return redirect(url_for('retailer.retailerPage'))
     return render_template("Login.html")
 
 
@@ -97,18 +98,6 @@ def logout():
 @mod_common.route("/error")
 def error():
     return render_template('error.html')
-
-@mod_common.route("/retailerPage")
-def retailerpage():
-    return render_template('retailerFunctions.html')
-
-@mod_common.route("/registerRetailer")
-def reg():
-    return render_template('registerRetailer.html')
-
-@mod_common.route("/updateRetailer")
-def update():
-    return render_template('updateRetailer.html')
 
 @mod_common.route("/addTransactionDetails", methods=["GET", "POST"])
 @login_required

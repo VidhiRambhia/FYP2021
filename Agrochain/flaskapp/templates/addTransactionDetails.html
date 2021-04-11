@@ -44,7 +44,7 @@
                   <form class="form-detail" method="POST" id="myform">
                     <div class="form-left">
                       <h2><b>Transaction Details Portal</b></h2>
-          
+                      {% if current_user.role != "RETAIL_STORE" %}
                       <div class="form-group">
                         <div class="form-row form-row-1">
                             <input type="text" name="buyer_name" id="buyer" class="input-text" placeholder="Buyer Name" required>
@@ -74,8 +74,12 @@
                       <div class="form-row">
                         <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;" id="next" name="next"><h3>Next</h3></button>
                       </div>
+                      {% endif %}
 
-                      {% if current_user.role == "RETAILER" %}
+                      {% if current_user.role == "RETAIL_STORE" %}
+                      <div class="form-row form-row-1">
+                        <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                      </div>
                       <div class="form-group">
                         <div class="form-row form-row-1">
                           <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
@@ -88,6 +92,9 @@
                         <div class="form-row form-row-1">
                           <input class="form-control" type="date"  style="margin-left: 1px;" name="sell_date" id="sell_date" required>
                         </div>
+                      </div>
+                      <div class="form-row">
+                        <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;" id="submit" name="submit"><h3>Submit</h3></button>
                       </div>
                       {% endif %}
                     </div>
