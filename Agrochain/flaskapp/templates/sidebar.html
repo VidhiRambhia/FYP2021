@@ -67,15 +67,15 @@
                 <span>Update Profile</span>
               </a>
             </li>
-          {% elif current_user.role == "RETAILER"%}
+          {% elif current_user.role == "RETAIL_STORE"%}
             <li class="sidebar">  
-              <a href="#">
+              <a href="/addRetailTransactionDetails">
                 <i class="fas fa-plus-circle"></i>
                 <span>Add Transaction Details</span>
               </a>
             </li>
             <li class="sidebar">
-              <a href="#">
+              <a href="/updateRetailerProfile">
                 <i class="far fa-id-badge"></i>
                 <span>Update Profile</span>
               </a>

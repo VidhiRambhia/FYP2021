@@ -27,10 +27,12 @@ def not_found(error):
 from flaskapp.farmerRoutes import mod_farmer
 from flaskapp.commonRoutes import mod_common
 from flaskapp.fpcRoutes import mod_fpc
+from flaskapp.retailerRoutes import mod_retailer
 from flaskapp.models import User
 
 app.register_blueprint(mod_farmer)
 app.register_blueprint(mod_common)
 app.register_blueprint(mod_fpc)
+app.register_blueprint(mod_retailer)
 
 db.create_all()

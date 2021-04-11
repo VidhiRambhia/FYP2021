@@ -45,12 +45,12 @@
                     {% endfor %}
                 </div>
               <div class="form-v10-content" style="width: 80%; margin-top: 0%; ">
-                    <h2 style="text-align: center; margin-bottom: 8px;"><b>FPC Profile</b></h2>
+                    <h2 style="text-align: center; margin-bottom: 8px;"><b>Retailer Profile</b></h2>
                     <h3 style="text-align: center; margin-bottom: 8px; color: gray;">{{current_user.email}}</h3>
                 </div>
 
                 <div class="form-v10-content" style="width:80%; margin-top: -80px;">
-                    <form class="form-detail" action="" method="POST" enctype="multipart/form-data" id="myform">
+                    <form class="form-detail" action="/updateRetailerProfile" method="POST" enctype="multipart/form-data" id="myform">
                         <div class="form-left">
                             <div class="form-group">
                                 <label style="margin-left: 70px;"><h3 style="color: black;"><b>Change Password</b></h3></label>
