@@ -84,7 +84,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -218,7 +219,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -257,7 +259,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"CropAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"CropUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"cropType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"cropName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sourceTagNo\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"farmerAddr\",\"type\":\"address\"}],\"name\":\"addCrop1\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"cropID\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"cropID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"fertiliser\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"DateSowed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"DateHarvested\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"farmerAddr\",\"type\":\"address\"}],\"name\":\"addCrop2\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"crops\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"cropID\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"cropType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"cropName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fertiliser\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sourceTagNo\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"DateSowed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"DateHarvested\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"farmerAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"cropID\",\"type\":\"uint256\"}],\"name\":\"getCrop1\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"cropType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"cropName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"sourceTagNo\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"farmerAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"cropID\",\"type\":\"uint256\"}],\"name\":\"getCrop2\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"fertiliser\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"DateSowed\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"DateHarvested\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"cropID\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"farmerAddr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"DateHarvested\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"quantity\",\"type\":\"uint256\"}],\"name\":\"updateCrop\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/CropDetails.sol\":\"CropDetails\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/CropDetails.sol\":{\"keccak256\":\"0x481ac9facd88ce2b72c2c43a335b67afcfbbe11d47227decb8a2168e347200dd\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://3ca86e3421065ffa3ea51b2df9b3b37221545807b64b43df4227733c9772732b\",\"dweb:/ipfs/QmNsjZ6BiCXVPHuVZsNzV9cD7Tz7qcxAbtUKy44rPUFRsa\"]}},\"version\":1}",
@@ -6793,12 +6796,13 @@
         }
       },
       "links": {},
-      "address": "0xe670FCcC674A8e5184E44AAe9c9061C6b1352F3B",
-      "transactionHash": "0x1b55e26b0a3b46c184a491fb194d65fbec80949071a650e2b3b6c02ac9b46631"
+      "address": "0xaD3713dc684af726EcC7C21D1aF2a47beBf0D36F",
+      "transactionHash": "0x7b28b61d9e5523ba0cc06d7e452e9ae206d83411a660379f1f66facd5759278d"
     }
   },
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-04-10T06:26:34.002Z",
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-11T10:58:44.043Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -151,7 +151,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -195,7 +196,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -229,7 +231,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -248,7 +251,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -267,7 +271,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -10724,9 +10729,56 @@
     "name": "solc",
     "version": "0.7.0+commit.9e61f92b.Emscripten.clang"
   },
-  "networks": {},
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-04-10T06:26:34.105Z",
+  "networks": {
+    "5777": {
+      "events": {
+        "0x44d192c32df451e64f2436c146b306c508ae85b988190afa1ff5f6c09f309642": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "sellerName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "buyerName",
+              "type": "string"
+            }
+          ],
+          "name": "FarmerToHubTransactionAdded",
+          "type": "event"
+        },
+        "0x9b53713bd19a45d74d47a168053e2cd924750396020b34bfc6340748b8da49c4": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "sellerName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "buyerName",
+              "type": "string"
+            }
+          ],
+          "name": "HubToRetailerTransactionAdded",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x2626A751e613c06f0Ab9043905be8388330Eab48",
+      "transactionHash": "0xfc91c580a55d177ed2e5c2a091c3f7ee0de905009b818d8a57b0528c1e47678d"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-11T10:58:44.130Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

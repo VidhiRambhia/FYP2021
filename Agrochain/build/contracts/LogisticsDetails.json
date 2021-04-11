@@ -31,7 +31,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -82,7 +83,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -126,7 +128,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"LogId\",\"type\":\"uint256\"}],\"name\":\"LogDataAdded\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"LogIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_id\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_vehicleType\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_vehicleNo\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_driverName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_driverContact\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_dateDispatched\",\"type\":\"uint256\"}],\"name\":\"addLogistic\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllLogs\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"LID\",\"type\":\"uint256\"}],\"name\":\"getLog\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/Logistics.sol\":\"LogisticsDetails\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/Logistics.sol\":{\"keccak256\":\"0x159bd356345856a17a1e0979288880389833d07e289f4dd359355b6824f0d1dc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://32cb31c51333d0d55a01740ce2c880d67527a987652124a0d908190240c36e1b\",\"dweb:/ipfs/Qmeob1dnmt4waH1TkcypbHHcBA3K72ywbp5BWQtftaUTRv\"]}},\"version\":1}",
@@ -4095,9 +4098,31 @@
     "name": "solc",
     "version": "0.7.0+commit.9e61f92b.Emscripten.clang"
   },
-  "networks": {},
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-04-10T06:26:34.041Z",
+  "networks": {
+    "5777": {
+      "events": {
+        "0xda39151f98ac043ba47fb41b6784335b6ee659eac34af2aa955d8417037e0732": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "LogId",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogDataAdded",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x1450207EBcB3aeb98094faB08E105799e7399a9f",
+      "transactionHash": "0xaa464d59b6a7f22eb4eb810f6f2ad125dd0e4939d405e1cb6f9bacf9c5812929"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-11T10:58:44.082Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

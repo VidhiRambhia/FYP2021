@@ -45,12 +45,12 @@
                     {% endfor %}
                 </div>
               <div class="form-v10-content" style="width: 80%; margin-top: 0%; ">
-                    <h2 style="text-align: center; margin-bottom: 8px;"><b>FPC Profile</b></h2>
+                    <h2 style="text-align: center; margin-bottom: 8px;"><b>Retailer Profile</b></h2>
                     <h3 style="text-align: center; margin-bottom: 8px; color: gray;">{{current_user.email}}</h3>
                 </div>
 
                 <div class="form-v10-content" style="width:80%; margin-top: -80px;">
-                    <form class="form-detail" action="" method="POST" enctype="multipart/form-data" id="myform">
+                    <form class="form-detail" action="/updateRetailerProfile" method="POST" enctype="multipart/form-data" id="myform">
                         <div class="form-left">
                             <div class="form-group">
                                 <label style="margin-left: 70px;"><h3 style="color: black;"><b>Change Password</b></h3></label>
@@ -69,23 +69,18 @@
 
                         <div class="form-group">
                             <div class="form-row form-row-1">
-                              <input type="text" name="fpc_name" id="fpc_name" class="input-text" value="{{fpc_data.fpc_name}}" placeholder="FPC Name" required>
+                                <input type="text" name="reg_number" id="reg_number" class="input-text" value="{{}}" placeholder="Registration Number" required>
                             </div>
                             <div class="form-row form-row-1">
-                                <input type="text" name="director" id="director" class="input-text" value="{{fpc_data.director}}" placeholder="Director" required>
+                              <input type="text" name="retailer_name" id="retailer_name" class="input-text" value="{{}}" placeholder="Retailer Name" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row form-row-1">
-                                <input type="text" name="reg_number" id="reg_number" class="input-text" value="{{fpc_data.reg_no}}" placeholder="Registration Number" disabled required>
+                                <input type="text" name="city" id="city" class="input-text" value="{{}}" placeholder="City" required>
                             </div>
                             <div class="form-row form-row-1">
-                                <input type="number" name="capacity" id="capacity" class="input-text" value="{{fpc_data.capacity}}" placeholder="Capacity(in kgs)" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row form-detail">
-                              <input type="text" name="location" id="location" class="input-text" value="{{fpc_data.location}}" placeholder="Enter location of FPC" required>
+                                <input type="text" name="location" id="location" class="input-text" value="{{}}" placeholder="Update address" required>
                             </div>
                         </div>
                         <div class="form-row form-row-1 " style="margin-top: 15px;">
@@ -93,7 +88,7 @@
                         </div>
                     </form>
                 </div>
-                {% extends "sidebar.html" %}
+            {% extends "sidebar.html" %}
         </div>
     </body>
 </html>

@@ -43,8 +43,15 @@
                 <form class="form-detail" method="POST" id="myform">
                   <form class="form-detail" method="POST" id="myform">
                     <div class="form-left">
-                      <h2><b>Transaction Details Portal</b></h2>
-          
+                      {% if current_user.role == "FARMER" %}
+                        <h2><b>Farmer's transaction Details Portal</b></h2>
+                      {% elif current_user.role == "FPC" %}
+                        <h2><b>FPC's transaction Details Portal</b></h2>
+                      {% elif current_user.role == "RETAIL_STORE" %}
+                        <h2><b>Retailer's transaction Details Portal</b></h2>
+                      {% endif %}
+
+                      {% if current_user.role != "RETAIL_STORE" %}
                       <div class="form-group">
                         <div class="form-row form-row-1">
                             <input type="text" name="buyer_name" id="buyer" class="input-text" placeholder="Buyer Name" required>
@@ -55,38 +62,57 @@
                       </div>
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
+                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
                         </div>
                         <div class="form-row form-row-1">
-                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
-                          </div>
+                          <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                        </div>
                       </div>
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
-                        </div>
-                        <div class="form-row form-row-1">
                           <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost (in INR)" required>
                         </div>
+                        {% if current_user.role == "FPC" %}
+                        <div class="form-row form-row-1">
+                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
+                        </div>
+                        {% endif %}
                       </div>
                       <div class="form-row">
                         <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;" id="next" name="next"><h3>Next</h3></button>
                       </div>
-          
+                      {% endif %}
+
+                      {% if current_user.role == "RETAIL_STORE" %}
+                      <div class="form-row form-row-1">
+                        <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row form-row-1">
+                          <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+                        </div>
+                        <div class="form-row form-row-1">
+                          <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost(MRP)" required>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="form-row form-row-1">
+                          <input class="form-control" type="date"  style="margin-left: 1px;" name="sell_date" id="sell_date" required>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;" id="submit" name="submit"><h3>Submit</h3></button>
+                      </div>
+                      {% endif %}
                     </div>
                     <div class="form-right" style="width:35%;">
-                        <img src="https://images.unsplash.com/photo-1604300721398-3f58fdf81780?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcCUyMHNlbGxlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" style="height: 400px; margin-top: 50px; width: 300px;">
+                        <img src="https://images.unsplash.com/photo-1604300721398-3f58fdf81780?ixid=MXwxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JvcCUyMHNlbGxlcnxlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=60" style="height:350px; margin-top: 50px; width: 300px;">
                     </div>
                 </form>
               </div>
             </div>
 
-            {% if current_user.role == "FARMER" %}
-              {% include "sidebar.html" %}
-            {% elif current_user.role == "FPC" %}
-              {% include "fpcSidebar.html" %}
-            {% endif %}
-            
+            {% include "sidebar.html" %}    
         </div>
     </body>
 </html>

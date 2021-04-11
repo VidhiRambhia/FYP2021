@@ -57,7 +57,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -149,7 +150,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -193,7 +195,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"FarmerAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"PlotAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"PlotUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_farmerName\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_plotOwner\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_plotNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_plotAddress\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"_approved\",\"type\":\"bool\"}],\"name\":\"addFarmer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_plotOwner\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_plotNumber\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_plotAddress\",\"type\":\"string\"}],\"name\":\"addPlot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"deletePlot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"farmerAccts\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getFarmer\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getFarmers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/FarmerDetails.sol\":\"FarmerDetails\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/FarmerDetails.sol\":{\"keccak256\":\"0x31657819f023a42f789df0556cef6924208415e65a7796b1328a7bd0c0a14ee5\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://2ee3230371060eb8ad6351f5808ffd8705ce4e64b6ee60efd3767fbd40664708\",\"dweb:/ipfs/QmRaMSAU4vXkdjfCrc9zMt7or7CKL7zo7bZj1fJcbAEv37\"]}},\"version\":1}",
@@ -5365,12 +5368,13 @@
         }
       },
       "links": {},
-      "address": "0xCBc3bF2417e387fd6DF65CBcEE495E409e9e5B66",
-      "transactionHash": "0x9cb8a6265ca51be84e96845ff9bcb80c829438412f5e31172aaa71bbfc975009"
+      "address": "0xFBB82D1D06A5aC0DE11D89523D183e78d6FbA817",
+      "transactionHash": "0xb8a978c1ea0cdb05999707d201f73a888c252feff7a7fab13cabd660b813bde2"
     }
   },
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-04-10T06:26:34.025Z",
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-11T10:58:44.053Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

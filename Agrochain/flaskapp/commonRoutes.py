@@ -11,6 +11,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flaskapp.config import config
 from flaskapp.models import User
 from flaskapp import db, w3, eth, app
+from flaskapp.Role import ROLE
 import random
 import string
 
@@ -24,6 +25,18 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+transactionDetails_contract_address = config.transactionDetails_contract_address
+logisticsDetails_contract_address = config.logisticsDetails_contract_address
+
+local_acct = w3.eth.account.from_key(config.local_acct_key)
+
+transactionDetails_truffleFile = json.load(open('./build/contracts/TransactionDetails.json'))
+transactionDetails_abi = transactionDetails_truffleFile['abi']
+logisticsDetails_truffleFile = json.load(open('./build/contracts/LogisticsDetails.json'))
+logisticsDetails_abi = logisticsDetails_truffleFile['abi']
+
+transactionDetails_contract_instance = w3.eth.contract(abi=transactionDetails_abi, address=transactionDetails_contract_address)
+logisticsDetails_contract_instance = w3.eth.contract(abi=logisticsDetails_abi, address=logisticsDetails_contract_address)
 
 @mod_common.route("/home")
 @mod_common.route("/", methods=["GET", "POST"])
@@ -42,6 +55,8 @@ def chooseRole():
             return redirect(url_for('farmer.registerFarmer'))
         if (selectedRole == 'fpc'):
             return redirect(url_for('fpc.registerFPC'))
+        if (selectedRole == 'retailer'):
+            return redirect(url_for('retailer.registerRetailer'))
 
     return render_template('ChooseRole.html')
 
@@ -49,24 +64,27 @@ def chooseRole():
 @mod_common.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-
+        
         email = request.form.get('email')
         password = request.form.get('password')
 
         user = User.query.filter_by(email=email).first()
 
         if not user or not check_password_hash(user.password_hash, password):
-            print("hi")
+            print("Oops, wrong credentials.")
             flash('Please check your login details and try again.')
             return redirect(url_for('common.login'))
 
         login_user(user, remember=False)
 
         # Conditions for different entities
+        print(current_user.role)
         if(current_user.role == 'FARMER'):
             return redirect(url_for('farmer.farmerPage'))
         elif(current_user.role == 'FPC'):
             return redirect(url_for('fpc.fpcPage'))
+        elif(current_user.role == 'RETAIL_STORE'):
+            return redirect(url_for('retailer.retailerPage'))
     return render_template("Login.html")
 
 
@@ -81,7 +99,6 @@ def logout():
 def error():
     return render_template('error.html')
 
-
 @mod_common.route("/addTransactionDetails", methods=["GET", "POST"])
 @login_required
 def addTransactionDetails():
@@ -90,14 +107,34 @@ def addTransactionDetails():
         seller_name = request.form.get('seller_name')
         crop_name = request.form.get('crop_name')
         product_grade = request.form.get('product_grade')
-        cost = request.form.get('cost')
-        quantity = request.form.get('quantity')
-        package_id = buyer_name[:2].upper(
-        ) + seller_name[:2].upper() + str(random.randint(1, 100000))
+        cost = int(request.form.get('cost'))
+        quantity =  int(request.form.get('quantity'))
+        package_id = buyer_name[:2].upper() + seller_name[:2].upper() + str(random.randint(1, 100000))
         print(package_id)
-    if 'next' in request.form:
-        return redirect(url_for('common.logistics', package_id=package_id))
-    # connect with SC
+        tid = datetime.datetime.now()
+        tid = int(tid.strftime('%Y%m%d'))
+
+        txn_dict = {
+                'from': local_acct.address,
+                'to': transactionDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+
+
+        if current_user.role == ROLE.FARMER:
+            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(tid,seller_name,buyer_name,crop_name,cost,quantity,0).transact(txn_dict)
+            print(txn_hash)
+        
+        elif current_user.role == ROLE.FPC:
+            txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(tid,seller_name,buyer_name,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
+            print(txn_hash)
+            
+
+        if 'next' in request.form:
+            return redirect(url_for('common.logistics', package_id=package_id))
+    
     return render_template('addTransactionDetails.html', current_user=current_user)
 
 
@@ -108,13 +145,24 @@ def logistics():
     print(package_id)
     if request.method == 'POST':
         vehicle_type = request.form.get('vehicle_type')
-        l_id = request.form.get('l_id')
         vehicle_number = request.form.get('vehicle_number')
         driver_name = request.form.get('driver_name')
-        driver_contact = request.form.get('driver_contact')
+        driver_contact = int(request.form.get('driver_contact'))
         dispatch_date = request.form.get('dispatch_date')
-        dispatch_date = datetime.datetime(
-            *[int(item) for item in dispatch_date.split('-')])
+        dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
         dispatch_date_int = int(dispatch_date.strftime('%Y%m%d'))
-        # Connect with SC
+        lid = datetime.datetime.now()
+        lid = int(lid.strftime('%Y%m%d'))
+
+        txn_dict = {
+                'from': local_acct.address,
+                'to': logisticsDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+
+        txn_hash = logisticsDetails_contract_instance.functions.addLogistic(lid,vehicle_type,vehicle_number,driver_name,driver_contact,dispatch_date_int).transact(txn_dict)
+        print(txn_hash)
+        
     return render_template('logistics.html', package_id=package_id)

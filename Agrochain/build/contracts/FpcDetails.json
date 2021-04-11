@@ -44,7 +44,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -133,7 +134,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -172,7 +174,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.7.0+commit.9e61f92b\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"FpcAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"UpdatedFpcDetails\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_director\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_phyAddr\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_regNo\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_capacity\",\"type\":\"uint256\"}],\"name\":\"addFpc\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"fpcAccts\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"}],\"name\":\"getFpc\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getFpcs\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_address\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"_name\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_director\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_phyAddr\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_regNo\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_capacity\",\"type\":\"uint256\"}],\"name\":\"updateFpc\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/FpcDetails.sol\":\"FpcDetails\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/VRUDDHI MEHTA/Desktop/VRUDDHI/Agrochain/Agrochain/contracts/FpcDetails.sol\":{\"keccak256\":\"0x16558cb1c3e124baf59e217f79267bf64975397786122e6c92ec4da715ac8e79\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://c362cecab66fec7594f4a7c7e0ac892ad4e8d01602bbdd3861d6e67757100bdd\",\"dweb:/ipfs/QmZcMvMxeXdtNvH1GVB4nv6xtdEyB37cvePp1uCXyAvyQC\"]}},\"version\":1}",
@@ -5299,9 +5302,44 @@
     "name": "solc",
     "version": "0.7.0+commit.9e61f92b.Emscripten.clang"
   },
-  "networks": {},
-  "schemaVersion": "3.3.3",
-  "updatedAt": "2021-04-10T06:26:34.034Z",
+  "networks": {
+    "5777": {
+      "events": {
+        "0x7dd6f0d8d15dd5ed53debc1af44b8467b1b08d6e5b2dd941c6d1c9f6730ab7d4": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "FpcAdded",
+          "type": "event"
+        },
+        "0x71f007149641349f68e030525878907e06c111ad3874b48f85f62b30ec4f3246": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "UpdatedFpcDetails",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x170d61c9875e33af021E2cC8d0440e80993758a7",
+      "transactionHash": "0xa783d945cf6e0caf40d3d57e3be8ae1e2e386a8c9df9226b297e953b105b496a"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-11T10:58:44.064Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},

@@ -52,7 +52,7 @@
                         <div class="form-left">
                             <div class="form-group">
                                 <div class="form-row form-row-1">
-                                    <input type="email" id="email" name="email" class="input-text" placeholder="Your email" required>
+                                    <input type="email" id="email" name="email" pattern="[^@]*@[^@].[^@]*" class="input-text" placeholder="Your email" required>
                                  </div>
                                 <div class="form-row">
                                     <input type="password" name="password" class="input-text" placeholder="Password">
@@ -76,10 +76,9 @@
                         </div>
                         <div class="form-group">
                             <div class="form-row form-detail">
-                              <input type="text" name="locationr" id="location" class="input-text" placeholder="Enter location of FPC" required>
+                              <input type="text" name="location" id="location" class="input-text" placeholder="Enter location of FPC" required>
                             </div>
                         </div>
-
                         <div class="form-row form-row-1 " style="margin-top: 15px;">
                             <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;"><h3>Submit</h3></button>
                         </div>
