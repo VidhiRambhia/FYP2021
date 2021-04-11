@@ -8,6 +8,7 @@ struct Logistics{
     string driverName;
     uint driverContact;
     uint dateDispatched;
+    string packageId;
 }
 
 contract LogisticsDetails{
@@ -16,7 +17,7 @@ contract LogisticsDetails{
     mapping (uint => Logistics) logs;
     uint[] public LogIds;
 
-    function addLogistic(uint _id, string memory _vehicleType, string memory _vehicleNo, string memory _driverName, uint _driverContact, uint _dateDispatched)
+    function addLogistic(uint _id, string memory _vehicleType, string memory _vehicleNo, string memory _driverName, uint _driverContact, uint _dateDispatched, string memory _packageId)
     public {
         LogIds.push(_id);
         logs[_id].id = _id;
@@ -25,6 +26,7 @@ contract LogisticsDetails{
         logs[_id].driverName = _driverName;
         logs[_id].driverContact = _driverContact;
         logs[_id].dateDispatched = _dateDispatched;
+        logs[_id].packageId = _packageId;
 
         emit LogDataAdded(_id);
     }
@@ -34,7 +36,7 @@ contract LogisticsDetails{
     }
 
     function getLog(uint LID) view public
-        returns(uint, string memory, string memory, string memory, uint, uint) {
-            return (logs[LID].id, logs[LID].vehicleType, logs[LID].vehicleNo, logs[LID].driverName, logs[LID].driverContact, logs[LID].dateDispatched);
+        returns(uint, string memory, string memory, string memory, uint, uint, string memory) {
+            return (logs[LID].id, logs[LID].vehicleType, logs[LID].vehicleNo, logs[LID].driverName, logs[LID].driverContact, logs[LID].dateDispatched, logs[LID].packageId);
         }
 }
