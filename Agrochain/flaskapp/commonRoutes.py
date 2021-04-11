@@ -42,6 +42,8 @@ def chooseRole():
             return redirect(url_for('farmer.registerFarmer'))
         if (selectedRole == 'fpc'):
             return redirect(url_for('fpc.registerFPC'))
+        # if (selectedRole == 'retailer'):
+        #     return redirect(url_for('retailer.registerRetailer'))
 
     return render_template('ChooseRole.html')
 
@@ -67,6 +69,8 @@ def login():
             return redirect(url_for('farmer.farmerPage'))
         elif(current_user.role == 'FPC'):
             return redirect(url_for('fpc.fpcPage'))
+        # elif(current_user.role == 'RETAILER'):
+        #     return redirect(url_for('retailer.retailerPage'))
     return render_template("Login.html")
 
 
@@ -81,6 +85,17 @@ def logout():
 def error():
     return render_template('error.html')
 
+@mod_common.route("/retailerPage")
+def retailerpage():
+    return render_template('retailerFunctions.html')
+
+@mod_common.route("/registerRetailer")
+def reg():
+    return render_template('registerRetailer.html')
+
+@mod_common.route("/updateRetailer")
+def update():
+    return render_template('updateRetailer.html')
 
 @mod_common.route("/addTransactionDetails", methods=["GET", "POST"])
 @login_required
