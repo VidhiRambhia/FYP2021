@@ -56,6 +56,8 @@ def registerFPC():
         location = request.form.get('location')
         fpc_address = acct.address
 
+        print(location)
+
         # fpc_data = {
         #     "fpc_name"  : fpc_name,
         #     "director" : director,
