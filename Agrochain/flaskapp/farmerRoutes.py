@@ -122,19 +122,22 @@ def addCropDetails():
             "crop_harvesting_date": crop_harvesting_date
         }
     print(crop)
+
     if request.method=="POST":
         if crop_id:
+            print(request.form)
             quantity = int(request.form.get('quantity'))
-            harvesting_date = request.form.get('harvesting_date')
-            harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
-            harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
-            txn_dict = {
-                    'from': local_acct.address,
-                    'to': cropDetails_contract_address,
-                    'value': '0',
-                    'gas': 3000000,
-                    'gasPrice': w3.toWei('40', 'gwei')
-                    }
+            if request.form.get('harvesting_date'):
+                harvesting_date = request.form.get('harvesting_date')
+                harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
+                harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
+                txn_dict = {
+                        'from': local_acct.address,
+                        'to': cropDetails_contract_address,
+                        'value': '0',
+                        'gas': 3000000,
+                        'gasPrice': w3.toWei('40', 'gwei')
+                        }
             txn_hash = cropDetails_contract_instance.functions.updateCrop(int(crop_id),current_user.address,harvesting_date_int,quantity).transact(txn_dict)
             return render_template('addCropDetails.html',current_user=current_user,crop=crop)
         crop_name = request.form.get('crop_name')
@@ -143,7 +146,12 @@ def addCropDetails():
         quantity = int(request.form.get('quantity'))
         source_tag_number = request.form.get('source_tag_number')
         sowing_date = request.form.get('sowing_date')
-        harvesting_date = request.form.get('harvesting_date')
+        harvesting_date = datetime.datetime.now()
+        harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
+        if request.form.get('harvesting_date'):
+            harvesting_date = request.form.get('harvesting_date')
+            harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
+            harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
         txn_dict = {
                 'from': local_acct.address,
                 'to': cropDetails_contract_address,
@@ -154,8 +162,6 @@ def addCropDetails():
         farmer_address = current_user.address #get address
         sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
         sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
-        harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
-        harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
         crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).call()
         txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).transact(txn_dict)
         txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int,harvesting_date_int, current_user.address).transact(txn_dict)

@@ -41,7 +41,7 @@
                 {% if crops %}
                     <div class="row">
                         {% for crop in crops %}
-                            <div class="card" style="width: 65%; margin: 3%">
+                            <div class="card" style="width: 80%; margin: 3%">
                                 <div class="row card-body" style="padding: 18px 24px">
                                   <div class="col-md-6 ">
                                     <h5 class="card-title">Crop type : {{crop.crop_type}}</h5>
@@ -50,15 +50,15 @@
                                   <div class="col-md-6">
                                     <div class="row">
                                       <a href="/addCropDetails?crop_id={{crop.crop_id}}" class="btn btn-lg btn-primary" style="font-size: medium;margin:3%">Update</a>
-
-                                      <a class="btn btn-lg btn-secondary" style="font-size: medium;margin:3%" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                                      <a class="btn btn-lg btn-secondary" style="font-size: medium;margin:3%" data-toggle="collapse" href="#collapseExample{{crop.crop_id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         See more details
                                       </a>
+                                      <a href="/addTransactionDetails?crop_id={{crop.crop_id}}&crop_name={{crop.crop_name}}&crop_quantity={{crop.crop_quantity}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
                                     </div>
                                   </div>
                                 </div>
 
-                                <div class="collapse" id="collapseExample">
+                                <div class="collapse" id="collapseExample{{crop.crop_id}}">
                                   <div class="card card-body">
                                     <ul class="list-group list-group-flush">
                                       <li class="list-group-item">Fertilizers : {{crop.crop_fertilizer}}</li>

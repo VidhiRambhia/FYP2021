@@ -40,35 +40,46 @@
           <body class="form-v10">
             <div class="page-content">
               <div class="form-v10-content">
-                <form class="form-detail" method="POST" id="myform">
-                  <form class="form-detail" method="POST" id="myform">
+                  <form class="form-detail" action="/addTransactionDetails" method="POST" id="transactionForm">
                     <div class="form-left">
                       <h2><b>Transaction Details Portal</b></h2>
+
+                      <div class="form-group">
+                          <div class="form-row form-row-1">
+                            <input type="number" name="crop_id" id="crop_id" class="input-text" style="display:none"  placeholder="">
+                          </div>
+                      </div>
+
           
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" name="buyer_name" id="buyer" class="input-text" placeholder="Buyer Name" required>
-                        </div>
-                        <div class="form-row form-row-1">
-                            <input type="text" name="seller_name" id="seller" class="input-text" placeholder="Seller Name" required>
+                            <input type="text" name="seller_name" id="seller_name" class="input-text" value="{{current_user.email}}" disabled placeholder="Seller Name" required>
                         </div> 
-                      </div>
-                      <div class="form-group">
                         <div class="form-row form-row-1">
-                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
+                            <input type="text" name="buyer_name" id="buyer_name" class="input-text"  placeholder="Buyer Name" required>
                         </div>
-                        <div class="form-row form-row-1">
-                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
-                          </div>
                       </div>
+
                       <div class="form-group">
                         <div class="form-row form-row-1">
                             <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
                         </div>
+                          <div class="form-row form-row-1">
+                            <input type="number" name="quantity" id="quantity" class="input-text"  placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        {% if current_user.role == 'FPC' %}
+                        <div class="form-row form-row-1">
+                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
+                        </div>
+                        {% endif %}
                         <div class="form-row form-row-1">
                           <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost (in INR)" required>
                         </div>
                       </div>
+
                       <div class="form-row">
                         <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 40%;" id="next" name="next"><h3>Next</h3></button>
                       </div>
@@ -89,4 +100,21 @@
             
         </div>
     </body>
+    <script>
+    $(document).ready(function() {
+
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    document.getElementById('crop_id').value = url.searchParams.get("crop_id");
+    document.getElementById('quantity').value = url.searchParams.get("crop_quantity");
+    document.getElementById('crop_name').value = url.searchParams.get("crop_name");
+    });
+
+
+ 
+    
+
+    
+    </script>
+
 </html>

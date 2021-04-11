@@ -100,15 +100,15 @@ def error():
 def addTransactionDetails():
     if request.method == 'POST':
         buyer_name = request.form.get('buyer_name')
-        seller_name = request.form.get('seller_name')
+        seller_name = current_user.email
         crop_name = request.form.get('crop_name')
         product_grade = request.form.get('product_grade')
         cost = int(request.form.get('cost'))
         quantity =  int(request.form.get('quantity'))
+        crop_id = int(request.form.get('crop_id'))
         package_id = buyer_name[:2].upper() + seller_name[:2].upper() + str(random.randint(1, 100000))
         print(package_id)
-        tid = datetime.datetime.now()
-        tid = int(tid.strftime('%Y%m%d'))
+
 
         txn_dict = {
                 'from': local_acct.address,
@@ -120,11 +120,12 @@ def addTransactionDetails():
 
 
         if current_user.role == ROLE.FARMER:
-            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(tid,seller_name,buyer_name,crop_name,cost,quantity,0).transact(txn_dict)
-            print(txn_hash)
+            print(request.form)
+            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(current_user.address,current_user.address,package_id,seller_name,buyer_name,crop_id,cost,quantity).transact(txn_dict)
+            #print(txn_hash)
         
         elif current_user.role == ROLE.FPC:
-            txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(tid,seller_name,buyer_name,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
+            txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(seller_name,buyer_name,package_id,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
             print(txn_hash)
             
 
@@ -138,13 +139,13 @@ def addTransactionDetails():
 @login_required
 def logistics():
     package_id = request.args.get('package_id')
-    print(package_id)
     if request.method == 'POST':
         vehicle_type = request.form.get('vehicle_type')
         vehicle_number = request.form.get('vehicle_number')
         driver_name = request.form.get('driver_name')
         driver_contact = int(request.form.get('driver_contact'))
         dispatch_date = request.form.get('dispatch_date')
+        package_id = request.form.get('package_id')
         dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
         dispatch_date_int = int(dispatch_date.strftime('%Y%m%d'))
         lid = datetime.datetime.now()
@@ -158,7 +159,21 @@ def logistics():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
 
-        txn_hash = logisticsDetails_contract_instance.functions.addLogistic(lid,vehicle_type,vehicle_number,driver_name,driver_contact,dispatch_date_int).transact(txn_dict)
+        txn_hash = logisticsDetails_contract_instance.functions.addLogistic(lid,vehicle_type,vehicle_number,driver_name,driver_contact,dispatch_date_int,package_id).transact(txn_dict)
         print(txn_hash)
+
+        if txn_hash:
+            return redirect(url_for('common.displayTransactions'))
+            
         
     return render_template('logistics.html', package_id=package_id)
+
+
+@mod_common.route("/displayTransactions", methods=["GET", "POST"])
+@login_required
+def displayTransactions():
+    logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
+    for logId in logIds:
+        logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
+        print(logisticsData)
+    return render_template('404.html')
