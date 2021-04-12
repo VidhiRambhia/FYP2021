@@ -71,6 +71,7 @@
     "absolutePath": "/C/Users/vidhi/Desktop/FYP2021/Agrochain/contracts/User.sol",
     "exportedSymbols": {
       "Login": [
+<<<<<<< HEAD
         1494
       ],
       "User": [
@@ -78,11 +79,24 @@
       ]
     },
     "id": 1495,
+=======
+        1465
+      ],
+      "User": [
+        1401
+      ]
+    },
+    "id": 1466,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
+<<<<<<< HEAD
         "id": 1423,
+=======
+        "id": 1394,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         "literals": [
           "solidity",
           ">=",
@@ -94,17 +108,30 @@
       },
       {
         "canonicalName": "User",
+<<<<<<< HEAD
         "id": 1430,
         "members": [
           {
             "constant": false,
             "id": 1425,
+=======
+        "id": 1401,
+        "members": [
+          {
+            "constant": false,
+            "id": 1396,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "mutability": "mutable",
             "name": "pwdHash",
             "nodeType": "VariableDeclaration",
             "overrides": null,
+<<<<<<< HEAD
             "scope": 1430,
             "src": "75:14:7",
+=======
+            "scope": 1401,
+            "src": "79:14:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -112,7 +139,11 @@
               "typeString": "string"
             },
             "typeName": {
+<<<<<<< HEAD
               "id": 1424,
+=======
+              "id": 1395,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "75:6:7",
@@ -126,13 +157,22 @@
           },
           {
             "constant": false,
+<<<<<<< HEAD
             "id": 1427,
+=======
+            "id": 1398,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "mutability": "mutable",
             "name": "role",
             "nodeType": "VariableDeclaration",
             "overrides": null,
+<<<<<<< HEAD
             "scope": 1430,
             "src": "95:11:7",
+=======
+            "scope": 1401,
+            "src": "100:11:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -140,7 +180,11 @@
               "typeString": "string"
             },
             "typeName": {
+<<<<<<< HEAD
               "id": 1426,
+=======
+              "id": 1397,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "name": "string",
               "nodeType": "ElementaryTypeName",
               "src": "95:6:7",
@@ -154,13 +198,22 @@
           },
           {
             "constant": false,
+<<<<<<< HEAD
             "id": 1429,
+=======
+            "id": 1400,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "mutability": "mutable",
             "name": "addr",
             "nodeType": "VariableDeclaration",
             "overrides": null,
+<<<<<<< HEAD
             "scope": 1430,
             "src": "112:12:7",
+=======
+            "scope": 1401,
+            "src": "118:12:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "stateVariable": false,
             "storageLocation": "default",
             "typeDescriptions": {
@@ -168,7 +221,11 @@
               "typeString": "address"
             },
             "typeName": {
+<<<<<<< HEAD
               "id": 1428,
+=======
+              "id": 1399,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "name": "address",
               "nodeType": "ElementaryTypeName",
               "src": "112:7:7",
@@ -184,8 +241,13 @@
         ],
         "name": "User",
         "nodeType": "StructDefinition",
+<<<<<<< HEAD
         "scope": 1495,
         "src": "58:69:7",
+=======
+        "scope": 1466,
+        "src": "61:73:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         "visibility": "public"
       },
       {
@@ -195,20 +257,31 @@
         "contractKind": "contract",
         "documentation": null,
         "fullyImplemented": true,
+<<<<<<< HEAD
         "id": 1494,
         "linearizedBaseContracts": [
           1494
+=======
+        "id": 1465,
+        "linearizedBaseContracts": [
+          1465
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         ],
         "name": "Login",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "constant": false,
+<<<<<<< HEAD
             "id": 1434,
+=======
+            "id": 1405,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "mutability": "mutable",
             "name": "users",
             "nodeType": "VariableDeclaration",
             "overrides": null,
+<<<<<<< HEAD
             "scope": 1494,
             "src": "154:27:7",
             "stateVariable": true,
@@ -221,6 +294,20 @@
               "id": 1433,
               "keyType": {
                 "id": 1431,
+=======
+            "scope": 1465,
+            "src": "165:27:7",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+              "typeString": "mapping(string => struct User)"
+            },
+            "typeName": {
+              "id": 1404,
+              "keyType": {
+                "id": 1402,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "string",
                 "nodeType": "ElementaryTypeName",
                 "src": "162:6:7",
@@ -232,11 +319,16 @@
               "nodeType": "Mapping",
               "src": "154:21:7",
               "typeDescriptions": {
+<<<<<<< HEAD
                 "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1430_storage_$",
+=======
+                "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "typeString": "mapping(string => struct User)"
               },
               "valueType": {
                 "contractScope": null,
+<<<<<<< HEAD
                 "id": 1432,
                 "name": "User",
                 "nodeType": "UserDefinedTypeName",
@@ -244,6 +336,15 @@
                 "src": "170:4:7",
                 "typeDescriptions": {
                   "typeIdentifier": "t_struct$_User_$1430_storage_ptr",
+=======
+                "id": 1403,
+                "name": "User",
+                "nodeType": "UserDefinedTypeName",
+                "referencedDeclaration": 1401,
+                "src": "181:4:7",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_User_$1401_storage_ptr",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "typeString": "struct User"
                 }
               }
@@ -253,14 +354,22 @@
           },
           {
             "body": {
+<<<<<<< HEAD
               "id": 1466,
+=======
+              "id": 1437,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "nodeType": "Block",
               "src": "293:115:7",
               "statements": [
                 {
                   "expression": {
                     "argumentTypes": null,
+<<<<<<< HEAD
                     "id": 1450,
+=======
+                    "id": 1421,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -271,6 +380,7 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
+<<<<<<< HEAD
                           "id": 1445,
                           "name": "users",
                           "nodeType": "Identifier",
@@ -291,6 +401,28 @@
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1438,
                           "src": "309:5:7",
+=======
+                          "id": 1416,
+                          "name": "users",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1405,
+                          "src": "317:5:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+                            "typeString": "mapping(string memory => struct User storage ref)"
+                          }
+                        },
+                        "id": 1418,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 1417,
+                          "name": "email",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1409,
+                          "src": "323:5:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -303,19 +435,32 @@
                         "nodeType": "IndexAccess",
                         "src": "303:12:7",
                         "typeDescriptions": {
+<<<<<<< HEAD
                           "typeIdentifier": "t_struct$_User_$1430_storage",
                           "typeString": "struct User storage ref"
                         }
                       },
                       "id": 1448,
+=======
+                          "typeIdentifier": "t_struct$_User_$1401_storage",
+                          "typeString": "struct User storage ref"
+                        }
+                      },
+                      "id": 1419,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "pwdHash",
                       "nodeType": "MemberAccess",
+<<<<<<< HEAD
                       "referencedDeclaration": 1425,
                       "src": "303:20:7",
+=======
+                      "referencedDeclaration": 1396,
+                      "src": "317:20:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -325,12 +470,21 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
+<<<<<<< HEAD
                       "id": 1449,
                       "name": "pwdHash",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1440,
                       "src": "326:7:7",
+=======
+                      "id": 1420,
+                      "name": "pwdHash",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1411,
+                      "src": "340:7:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
@@ -342,14 +496,22 @@
                       "typeString": "string storage ref"
                     }
                   },
+<<<<<<< HEAD
                   "id": 1451,
+=======
+                  "id": 1422,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "nodeType": "ExpressionStatement",
                   "src": "303:30:7"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
+<<<<<<< HEAD
                     "id": 1457,
+=======
+                    "id": 1428,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -360,6 +522,7 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
+<<<<<<< HEAD
                           "id": 1452,
                           "name": "users",
                           "nodeType": "Identifier",
@@ -380,6 +543,28 @@
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1438,
                           "src": "349:5:7",
+=======
+                          "id": 1423,
+                          "name": "users",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1405,
+                          "src": "358:5:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+                            "typeString": "mapping(string memory => struct User storage ref)"
+                          }
+                        },
+                        "id": 1425,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 1424,
+                          "name": "email",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1409,
+                          "src": "364:5:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -392,19 +577,32 @@
                         "nodeType": "IndexAccess",
                         "src": "343:12:7",
                         "typeDescriptions": {
+<<<<<<< HEAD
                           "typeIdentifier": "t_struct$_User_$1430_storage",
                           "typeString": "struct User storage ref"
                         }
                       },
                       "id": 1455,
+=======
+                          "typeIdentifier": "t_struct$_User_$1401_storage",
+                          "typeString": "struct User storage ref"
+                        }
+                      },
+                      "id": 1426,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "role",
                       "nodeType": "MemberAccess",
+<<<<<<< HEAD
                       "referencedDeclaration": 1427,
                       "src": "343:17:7",
+=======
+                      "referencedDeclaration": 1398,
+                      "src": "358:17:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_storage",
                         "typeString": "string storage ref"
@@ -414,12 +612,21 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
+<<<<<<< HEAD
                       "id": 1456,
                       "name": "role",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1442,
                       "src": "363:4:7",
+=======
+                      "id": 1427,
+                      "name": "role",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1413,
+                      "src": "378:4:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "typeDescriptions": {
                         "typeIdentifier": "t_string_memory_ptr",
                         "typeString": "string memory"
@@ -431,14 +638,22 @@
                       "typeString": "string storage ref"
                     }
                   },
+<<<<<<< HEAD
                   "id": 1458,
+=======
+                  "id": 1429,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "nodeType": "ExpressionStatement",
                   "src": "343:24:7"
                 },
                 {
                   "expression": {
                     "argumentTypes": null,
+<<<<<<< HEAD
                     "id": 1464,
+=======
+                    "id": 1435,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "isConstant": false,
                     "isLValue": false,
                     "isPure": false,
@@ -449,6 +664,7 @@
                         "argumentTypes": null,
                         "baseExpression": {
                           "argumentTypes": null,
+<<<<<<< HEAD
                           "id": 1459,
                           "name": "users",
                           "nodeType": "Identifier",
@@ -469,6 +685,28 @@
                           "overloadedDeclarations": [],
                           "referencedDeclaration": 1438,
                           "src": "383:5:7",
+=======
+                          "id": 1430,
+                          "name": "users",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1405,
+                          "src": "393:5:7",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+                            "typeString": "mapping(string memory => struct User storage ref)"
+                          }
+                        },
+                        "id": 1432,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 1431,
+                          "name": "email",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1409,
+                          "src": "399:5:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                           "typeDescriptions": {
                             "typeIdentifier": "t_string_memory_ptr",
                             "typeString": "string memory"
@@ -481,19 +719,32 @@
                         "nodeType": "IndexAccess",
                         "src": "377:12:7",
                         "typeDescriptions": {
+<<<<<<< HEAD
                           "typeIdentifier": "t_struct$_User_$1430_storage",
                           "typeString": "struct User storage ref"
                         }
                       },
                       "id": 1462,
+=======
+                          "typeIdentifier": "t_struct$_User_$1401_storage",
+                          "typeString": "struct User storage ref"
+                        }
+                      },
+                      "id": 1433,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "isConstant": false,
                       "isLValue": true,
                       "isPure": false,
                       "lValueRequested": true,
                       "memberName": "addr",
                       "nodeType": "MemberAccess",
+<<<<<<< HEAD
                       "referencedDeclaration": 1429,
                       "src": "377:17:7",
+=======
+                      "referencedDeclaration": 1400,
+                      "src": "393:17:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -503,12 +754,21 @@
                     "operator": "=",
                     "rightHandSide": {
                       "argumentTypes": null,
+<<<<<<< HEAD
                       "id": 1463,
                       "name": "addr",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [],
                       "referencedDeclaration": 1436,
                       "src": "397:4:7",
+=======
+                      "id": 1434,
+                      "name": "addr",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1407,
+                      "src": "413:4:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "typeDescriptions": {
                         "typeIdentifier": "t_address",
                         "typeString": "address"
@@ -520,7 +780,11 @@
                       "typeString": "address"
                     }
                   },
+<<<<<<< HEAD
                   "id": 1465,
+=======
+                  "id": 1436,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "nodeType": "ExpressionStatement",
                   "src": "377:24:7"
                 }
@@ -528,7 +792,11 @@
             },
             "documentation": null,
             "functionSelector": "c6361c22",
+<<<<<<< HEAD
             "id": 1467,
+=======
+            "id": 1438,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -536,18 +804,31 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
+<<<<<<< HEAD
               "id": 1443,
+=======
+              "id": 1414,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1436,
+=======
+                  "id": 1407,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "addr",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1467,
                   "src": "209:12:7",
+=======
+                  "scope": 1438,
+                  "src": "222:12:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -555,7 +836,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1435,
+=======
+                    "id": 1406,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "209:7:7",
@@ -570,13 +855,22 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1438,
+=======
+                  "id": 1409,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "email",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1467,
                   "src": "223:19:7",
+=======
+                  "scope": 1438,
+                  "src": "236:19:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -584,7 +878,11 @@
                     "typeString": "string"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1437,
+=======
+                    "id": 1408,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "223:6:7",
@@ -598,13 +896,22 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1440,
+=======
+                  "id": 1411,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "pwdHash",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1467,
                   "src": "244:21:7",
+=======
+                  "scope": 1438,
+                  "src": "257:21:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -612,7 +919,11 @@
                     "typeString": "string"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1439,
+=======
+                    "id": 1410,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "244:6:7",
@@ -626,13 +937,22 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1442,
+=======
+                  "id": 1413,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "role",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1467,
                   "src": "267:18:7",
+=======
+                  "scope": 1438,
+                  "src": "280:18:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -640,7 +960,11 @@
                     "typeString": "string"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1441,
+=======
+                    "id": 1412,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "267:6:7",
@@ -656,20 +980,33 @@
               "src": "208:78:7"
             },
             "returnParameters": {
+<<<<<<< HEAD
               "id": 1444,
+=======
+              "id": 1415,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "nodeType": "ParameterList",
               "parameters": [],
               "src": "293:0:7"
             },
+<<<<<<< HEAD
             "scope": 1494,
             "src": "192:216:7",
+=======
+            "scope": 1465,
+            "src": "205:220:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "stateMutability": "nonpayable",
             "virtual": false,
             "visibility": "public"
           },
           {
             "body": {
+<<<<<<< HEAD
               "id": 1492,
+=======
+              "id": 1463,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "nodeType": "Block",
               "src": "532:84:7",
               "statements": [
@@ -683,6 +1020,7 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 1478,
                             "name": "users",
                             "nodeType": "Identifier",
@@ -703,6 +1041,28 @@
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1469,
                             "src": "556:5:7",
+=======
+                            "id": 1449,
+                            "name": "users",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1405,
+                            "src": "570:5:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+                              "typeString": "mapping(string memory => struct User storage ref)"
+                            }
+                          },
+                          "id": 1451,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 1450,
+                            "name": "email",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1440,
+                            "src": "576:5:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
                               "typeString": "string memory"
@@ -715,19 +1075,32 @@
                           "nodeType": "IndexAccess",
                           "src": "550:12:7",
                           "typeDescriptions": {
+<<<<<<< HEAD
                             "typeIdentifier": "t_struct$_User_$1430_storage",
                             "typeString": "struct User storage ref"
                           }
                         },
                         "id": 1481,
+=======
+                            "typeIdentifier": "t_struct$_User_$1401_storage",
+                            "typeString": "struct User storage ref"
+                          }
+                        },
+                        "id": 1452,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "pwdHash",
                         "nodeType": "MemberAccess",
+<<<<<<< HEAD
                         "referencedDeclaration": 1425,
                         "src": "550:20:7",
+=======
+                        "referencedDeclaration": 1396,
+                        "src": "570:20:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
                           "typeString": "string storage ref"
@@ -739,6 +1112,7 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 1482,
                             "name": "users",
                             "nodeType": "Identifier",
@@ -759,6 +1133,28 @@
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1469,
                             "src": "578:5:7",
+=======
+                            "id": 1453,
+                            "name": "users",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1405,
+                            "src": "592:5:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+                              "typeString": "mapping(string memory => struct User storage ref)"
+                            }
+                          },
+                          "id": 1455,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 1454,
+                            "name": "email",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1440,
+                            "src": "598:5:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
                               "typeString": "string memory"
@@ -771,19 +1167,32 @@
                           "nodeType": "IndexAccess",
                           "src": "572:12:7",
                           "typeDescriptions": {
+<<<<<<< HEAD
                             "typeIdentifier": "t_struct$_User_$1430_storage",
                             "typeString": "struct User storage ref"
                           }
                         },
                         "id": 1485,
+=======
+                            "typeIdentifier": "t_struct$_User_$1401_storage",
+                            "typeString": "struct User storage ref"
+                          }
+                        },
+                        "id": 1456,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "role",
                         "nodeType": "MemberAccess",
+<<<<<<< HEAD
                         "referencedDeclaration": 1427,
                         "src": "572:17:7",
+=======
+                        "referencedDeclaration": 1398,
+                        "src": "592:17:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "typeDescriptions": {
                           "typeIdentifier": "t_string_storage",
                           "typeString": "string storage ref"
@@ -795,6 +1204,7 @@
                           "argumentTypes": null,
                           "baseExpression": {
                             "argumentTypes": null,
+<<<<<<< HEAD
                             "id": 1486,
                             "name": "users",
                             "nodeType": "Identifier",
@@ -815,6 +1225,28 @@
                             "overloadedDeclarations": [],
                             "referencedDeclaration": 1469,
                             "src": "597:5:7",
+=======
+                            "id": 1457,
+                            "name": "users",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1405,
+                            "src": "611:5:7",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_mapping$_t_string_memory_ptr_$_t_struct$_User_$1401_storage_$",
+                              "typeString": "mapping(string memory => struct User storage ref)"
+                            }
+                          },
+                          "id": 1459,
+                          "indexExpression": {
+                            "argumentTypes": null,
+                            "id": 1458,
+                            "name": "email",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1440,
+                            "src": "617:5:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "typeDescriptions": {
                               "typeIdentifier": "t_string_memory_ptr",
                               "typeString": "string memory"
@@ -827,26 +1259,43 @@
                           "nodeType": "IndexAccess",
                           "src": "591:12:7",
                           "typeDescriptions": {
+<<<<<<< HEAD
                             "typeIdentifier": "t_struct$_User_$1430_storage",
                             "typeString": "struct User storage ref"
                           }
                         },
                         "id": 1489,
+=======
+                            "typeIdentifier": "t_struct$_User_$1401_storage",
+                            "typeString": "struct User storage ref"
+                          }
+                        },
+                        "id": 1460,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "isConstant": false,
                         "isLValue": true,
                         "isPure": false,
                         "lValueRequested": false,
                         "memberName": "addr",
                         "nodeType": "MemberAccess",
+<<<<<<< HEAD
                         "referencedDeclaration": 1429,
                         "src": "591:17:7",
+=======
+                        "referencedDeclaration": 1400,
+                        "src": "611:17:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "typeDescriptions": {
                           "typeIdentifier": "t_address",
                           "typeString": "address"
                         }
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1490,
+=======
+                    "id": 1461,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "isConstant": false,
                     "isInlineArray": false,
                     "isLValue": false,
@@ -859,8 +1308,13 @@
                       "typeString": "tuple(string storage ref,string storage ref,address)"
                     }
                   },
+<<<<<<< HEAD
                   "functionReturnParameters": 1477,
                   "id": 1491,
+=======
+                  "functionReturnParameters": 1448,
+                  "id": 1462,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "nodeType": "Return",
                   "src": "542:67:7"
                 }
@@ -868,7 +1322,11 @@
             },
             "documentation": null,
             "functionSelector": "31feb671",
+<<<<<<< HEAD
             "id": 1493,
+=======
+            "id": 1464,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "implemented": true,
             "kind": "function",
             "modifiers": [],
@@ -876,18 +1334,31 @@
             "nodeType": "FunctionDefinition",
             "overrides": null,
             "parameters": {
+<<<<<<< HEAD
               "id": 1470,
+=======
+              "id": 1441,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1469,
+=======
+                  "id": 1440,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "email",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1493,
                   "src": "435:19:7",
+=======
+                  "scope": 1464,
+                  "src": "454:19:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -895,7 +1366,11 @@
                     "typeString": "string"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1468,
+=======
+                    "id": 1439,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "435:6:7",
@@ -911,18 +1386,31 @@
               "src": "434:21:7"
             },
             "returnParameters": {
+<<<<<<< HEAD
               "id": 1477,
+=======
+              "id": 1448,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1472,
+=======
+                  "id": 1443,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "pwdHash",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1493,
                   "src": "476:21:7",
+=======
+                  "scope": 1464,
+                  "src": "495:21:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -930,7 +1418,11 @@
                     "typeString": "string"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1471,
+=======
+                    "id": 1442,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "476:6:7",
@@ -944,13 +1436,22 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1474,
+=======
+                  "id": 1445,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "role",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1493,
                   "src": "499:18:7",
+=======
+                  "scope": 1464,
+                  "src": "518:18:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "memory",
                   "typeDescriptions": {
@@ -958,7 +1459,11 @@
                     "typeString": "string"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1473,
+=======
+                    "id": 1444,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "string",
                     "nodeType": "ElementaryTypeName",
                     "src": "499:6:7",
@@ -972,13 +1477,22 @@
                 },
                 {
                   "constant": false,
+<<<<<<< HEAD
                   "id": 1476,
+=======
+                  "id": 1447,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "mutability": "mutable",
                   "name": "addr",
                   "nodeType": "VariableDeclaration",
                   "overrides": null,
+<<<<<<< HEAD
                   "scope": 1493,
                   "src": "519:12:7",
+=======
+                  "scope": 1464,
+                  "src": "538:12:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                   "stateVariable": false,
                   "storageLocation": "default",
                   "typeDescriptions": {
@@ -986,7 +1500,11 @@
                     "typeString": "address"
                   },
                   "typeName": {
+<<<<<<< HEAD
                     "id": 1475,
+=======
+                    "id": 1446,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "519:7:7",
@@ -1002,15 +1520,25 @@
               ],
               "src": "475:57:7"
             },
+<<<<<<< HEAD
             "scope": 1494,
             "src": "418:198:7",
+=======
+            "scope": 1465,
+            "src": "437:200:7",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "stateMutability": "view",
             "virtual": false,
             "visibility": "public"
           }
         ],
+<<<<<<< HEAD
         "scope": 1495,
         "src": "129:489:7"
+=======
+        "scope": 1466,
+        "src": "138:502:7"
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
       }
     ],
     "src": "32:586:7"
@@ -1020,10 +1548,17 @@
       "absolutePath": "/C/Users/vidhi/Desktop/FYP2021/Agrochain/contracts/User.sol",
       "exportedSymbols": {
         "Login": [
+<<<<<<< HEAD
           1494
         ],
         "User": [
           1430
+=======
+          1465
+        ],
+        "User": [
+          1401
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         ]
       },
       "license": "MIT"
@@ -1038,7 +1573,11 @@
             ".0"
           ]
         },
+<<<<<<< HEAD
         "id": 1423,
+=======
+        "id": 1394,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         "name": "PragmaDirective",
         "src": "32:24:7"
       },
@@ -1046,7 +1585,11 @@
         "attributes": {
           "canonicalName": "User",
           "name": "User",
+<<<<<<< HEAD
           "scope": 1495,
+=======
+          "scope": 1466,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
           "visibility": "public"
         },
         "children": [
@@ -1056,7 +1599,11 @@
               "mutability": "mutable",
               "name": "pwdHash",
               "overrides": null,
+<<<<<<< HEAD
               "scope": 1430,
+=======
+              "scope": 1401,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "stateVariable": false,
               "storageLocation": "default",
               "type": "string",
@@ -1069,12 +1616,20 @@
                   "name": "string",
                   "type": "string"
                 },
+<<<<<<< HEAD
                 "id": 1424,
+=======
+                "id": 1395,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ElementaryTypeName",
                 "src": "75:6:7"
               }
             ],
+<<<<<<< HEAD
             "id": 1425,
+=======
+            "id": 1396,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "name": "VariableDeclaration",
             "src": "75:14:7"
           },
@@ -1084,7 +1639,11 @@
               "mutability": "mutable",
               "name": "role",
               "overrides": null,
+<<<<<<< HEAD
               "scope": 1430,
+=======
+              "scope": 1401,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "stateVariable": false,
               "storageLocation": "default",
               "type": "string",
@@ -1097,12 +1656,20 @@
                   "name": "string",
                   "type": "string"
                 },
+<<<<<<< HEAD
                 "id": 1426,
+=======
+                "id": 1397,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ElementaryTypeName",
                 "src": "95:6:7"
               }
             ],
+<<<<<<< HEAD
             "id": 1427,
+=======
+            "id": 1398,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "name": "VariableDeclaration",
             "src": "95:11:7"
           },
@@ -1112,7 +1679,11 @@
               "mutability": "mutable",
               "name": "addr",
               "overrides": null,
+<<<<<<< HEAD
               "scope": 1430,
+=======
+              "scope": 1401,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "stateVariable": false,
               "storageLocation": "default",
               "type": "address",
@@ -1126,17 +1697,29 @@
                   "stateMutability": "nonpayable",
                   "type": "address"
                 },
+<<<<<<< HEAD
                 "id": 1428,
+=======
+                "id": 1399,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ElementaryTypeName",
                 "src": "112:7:7"
               }
             ],
+<<<<<<< HEAD
             "id": 1429,
+=======
+            "id": 1400,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "name": "VariableDeclaration",
             "src": "112:12:7"
           }
         ],
+<<<<<<< HEAD
         "id": 1430,
+=======
+        "id": 1401,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         "name": "StructDefinition",
         "src": "58:69:7"
       },
@@ -1153,10 +1736,17 @@
           "documentation": null,
           "fullyImplemented": true,
           "linearizedBaseContracts": [
+<<<<<<< HEAD
             1494
           ],
           "name": "Login",
           "scope": 1495
+=======
+            1465
+          ],
+          "name": "Login",
+          "scope": 1466
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         },
         "children": [
           {
@@ -1165,7 +1755,11 @@
               "mutability": "mutable",
               "name": "users",
               "overrides": null,
+<<<<<<< HEAD
               "scope": 1494,
+=======
+              "scope": 1465,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "stateVariable": true,
               "storageLocation": "default",
               "type": "mapping(string => struct User)",
@@ -1183,7 +1777,11 @@
                       "name": "string",
                       "type": "string"
                     },
+<<<<<<< HEAD
                     "id": 1431,
+=======
+                    "id": 1402,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "ElementaryTypeName",
                     "src": "162:6:7"
                   },
@@ -1191,20 +1789,35 @@
                     "attributes": {
                       "contractScope": null,
                       "name": "User",
+<<<<<<< HEAD
                       "referencedDeclaration": 1430,
                       "type": "struct User"
                     },
                     "id": 1432,
+=======
+                      "referencedDeclaration": 1401,
+                      "type": "struct User"
+                    },
+                    "id": 1403,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "UserDefinedTypeName",
                     "src": "170:4:7"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 1433,
+=======
+                "id": 1404,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "Mapping",
                 "src": "154:21:7"
               }
             ],
+<<<<<<< HEAD
             "id": 1434,
+=======
+            "id": 1405,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "name": "VariableDeclaration",
             "src": "154:27:7"
           },
@@ -1220,7 +1833,11 @@
               ],
               "name": "addUser",
               "overrides": null,
+<<<<<<< HEAD
               "scope": 1494,
+=======
+              "scope": 1465,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "stateMutability": "nonpayable",
               "virtual": false,
               "visibility": "public"
@@ -1234,7 +1851,11 @@
                       "mutability": "mutable",
                       "name": "addr",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1467,
+=======
+                      "scope": 1438,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1248,12 +1869,20 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
+<<<<<<< HEAD
                         "id": 1435,
+=======
+                        "id": 1406,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "209:7:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1436,
+=======
+                    "id": 1407,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "209:12:7"
                   },
@@ -1263,7 +1892,11 @@
                       "mutability": "mutable",
                       "name": "email",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1467,
+=======
+                      "scope": 1438,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1276,12 +1909,20 @@
                           "name": "string",
                           "type": "string"
                         },
+<<<<<<< HEAD
                         "id": 1437,
+=======
+                        "id": 1408,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "223:6:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1438,
+=======
+                    "id": 1409,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "223:19:7"
                   },
@@ -1291,7 +1932,11 @@
                       "mutability": "mutable",
                       "name": "pwdHash",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1467,
+=======
+                      "scope": 1438,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1304,12 +1949,20 @@
                           "name": "string",
                           "type": "string"
                         },
+<<<<<<< HEAD
                         "id": 1439,
+=======
+                        "id": 1410,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "244:6:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1440,
+=======
+                    "id": 1411,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "244:21:7"
                   },
@@ -1319,7 +1972,11 @@
                       "mutability": "mutable",
                       "name": "role",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1467,
+=======
+                      "scope": 1438,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1332,17 +1989,29 @@
                           "name": "string",
                           "type": "string"
                         },
+<<<<<<< HEAD
                         "id": 1441,
+=======
+                        "id": 1412,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "267:6:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1442,
+=======
+                    "id": 1413,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "267:18:7"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 1443,
+=======
+                "id": 1414,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ParameterList",
                 "src": "208:78:7"
               },
@@ -1353,7 +2022,11 @@
                   ]
                 },
                 "children": [],
+<<<<<<< HEAD
                 "id": 1444,
+=======
+                "id": 1415,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ParameterList",
                 "src": "293:0:7"
               },
@@ -1380,7 +2053,11 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "pwdHash",
+<<<<<<< HEAD
                               "referencedDeclaration": 1425,
+=======
+                              "referencedDeclaration": 1396,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                               "type": "string storage ref"
                             },
                             "children": [
@@ -1400,11 +2077,19 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1434,
                                       "type": "mapping(string memory => struct User storage ref)",
                                       "value": "users"
                                     },
                                     "id": 1445,
+=======
+                                      "referencedDeclaration": 1405,
+                                      "type": "mapping(string memory => struct User storage ref)",
+                                      "value": "users"
+                                    },
+                                    "id": 1416,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "303:5:7"
                                   },
@@ -1414,21 +2099,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1438,
                                       "type": "string memory",
                                       "value": "email"
                                     },
                                     "id": 1446,
+=======
+                                      "referencedDeclaration": 1409,
+                                      "type": "string memory",
+                                      "value": "email"
+                                    },
+                                    "id": 1417,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "309:5:7"
                                   }
                                 ],
+<<<<<<< HEAD
                                 "id": 1447,
+=======
+                                "id": 1418,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                 "name": "IndexAccess",
                                 "src": "303:12:7"
                               }
                             ],
+<<<<<<< HEAD
                             "id": 1448,
+=======
+                            "id": 1419,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "MemberAccess",
                             "src": "303:20:7"
                           },
@@ -1438,21 +2139,37 @@
                               "overloadedDeclarations": [
                                 null
                               ],
+<<<<<<< HEAD
                               "referencedDeclaration": 1440,
                               "type": "string memory",
                               "value": "pwdHash"
                             },
                             "id": 1449,
+=======
+                              "referencedDeclaration": 1411,
+                              "type": "string memory",
+                              "value": "pwdHash"
+                            },
+                            "id": 1420,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "Identifier",
                             "src": "326:7:7"
                           }
                         ],
+<<<<<<< HEAD
                         "id": 1450,
+=======
+                        "id": 1421,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "Assignment",
                         "src": "303:30:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1451,
+=======
+                    "id": 1422,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "ExpressionStatement",
                     "src": "303:30:7"
                   },
@@ -1477,7 +2194,11 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "role",
+<<<<<<< HEAD
                               "referencedDeclaration": 1427,
+=======
+                              "referencedDeclaration": 1398,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                               "type": "string storage ref"
                             },
                             "children": [
@@ -1497,11 +2218,19 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1434,
                                       "type": "mapping(string memory => struct User storage ref)",
                                       "value": "users"
                                     },
                                     "id": 1452,
+=======
+                                      "referencedDeclaration": 1405,
+                                      "type": "mapping(string memory => struct User storage ref)",
+                                      "value": "users"
+                                    },
+                                    "id": 1423,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "343:5:7"
                                   },
@@ -1511,21 +2240,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1438,
                                       "type": "string memory",
                                       "value": "email"
                                     },
                                     "id": 1453,
+=======
+                                      "referencedDeclaration": 1409,
+                                      "type": "string memory",
+                                      "value": "email"
+                                    },
+                                    "id": 1424,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "349:5:7"
                                   }
                                 ],
+<<<<<<< HEAD
                                 "id": 1454,
+=======
+                                "id": 1425,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                 "name": "IndexAccess",
                                 "src": "343:12:7"
                               }
                             ],
+<<<<<<< HEAD
                             "id": 1455,
+=======
+                            "id": 1426,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "MemberAccess",
                             "src": "343:17:7"
                           },
@@ -1535,21 +2280,37 @@
                               "overloadedDeclarations": [
                                 null
                               ],
+<<<<<<< HEAD
                               "referencedDeclaration": 1442,
                               "type": "string memory",
                               "value": "role"
                             },
                             "id": 1456,
+=======
+                              "referencedDeclaration": 1413,
+                              "type": "string memory",
+                              "value": "role"
+                            },
+                            "id": 1427,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "Identifier",
                             "src": "363:4:7"
                           }
                         ],
+<<<<<<< HEAD
                         "id": 1457,
+=======
+                        "id": 1428,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "Assignment",
                         "src": "343:24:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1458,
+=======
+                    "id": 1429,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "ExpressionStatement",
                     "src": "343:24:7"
                   },
@@ -1574,7 +2335,11 @@
                               "isPure": false,
                               "lValueRequested": true,
                               "member_name": "addr",
+<<<<<<< HEAD
                               "referencedDeclaration": 1429,
+=======
+                              "referencedDeclaration": 1400,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                               "type": "address"
                             },
                             "children": [
@@ -1594,11 +2359,19 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1434,
                                       "type": "mapping(string memory => struct User storage ref)",
                                       "value": "users"
                                     },
                                     "id": 1459,
+=======
+                                      "referencedDeclaration": 1405,
+                                      "type": "mapping(string memory => struct User storage ref)",
+                                      "value": "users"
+                                    },
+                                    "id": 1430,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "377:5:7"
                                   },
@@ -1608,21 +2381,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1438,
                                       "type": "string memory",
                                       "value": "email"
                                     },
                                     "id": 1460,
+=======
+                                      "referencedDeclaration": 1409,
+                                      "type": "string memory",
+                                      "value": "email"
+                                    },
+                                    "id": 1431,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "383:5:7"
                                   }
                                 ],
+<<<<<<< HEAD
                                 "id": 1461,
+=======
+                                "id": 1432,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                 "name": "IndexAccess",
                                 "src": "377:12:7"
                               }
                             ],
+<<<<<<< HEAD
                             "id": 1462,
+=======
+                            "id": 1433,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "MemberAccess",
                             "src": "377:17:7"
                           },
@@ -1632,31 +2421,55 @@
                               "overloadedDeclarations": [
                                 null
                               ],
+<<<<<<< HEAD
                               "referencedDeclaration": 1436,
                               "type": "address",
                               "value": "addr"
                             },
                             "id": 1463,
+=======
+                              "referencedDeclaration": 1407,
+                              "type": "address",
+                              "value": "addr"
+                            },
+                            "id": 1434,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "Identifier",
                             "src": "397:4:7"
                           }
                         ],
+<<<<<<< HEAD
                         "id": 1464,
+=======
+                        "id": 1435,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "Assignment",
                         "src": "377:24:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1465,
+=======
+                    "id": 1436,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "ExpressionStatement",
                     "src": "377:24:7"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 1466,
+=======
+                "id": 1437,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "Block",
                 "src": "293:115:7"
               }
             ],
+<<<<<<< HEAD
             "id": 1467,
+=======
+            "id": 1438,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "name": "FunctionDefinition",
             "src": "192:216:7"
           },
@@ -1672,7 +2485,11 @@
               ],
               "name": "getUser",
               "overrides": null,
+<<<<<<< HEAD
               "scope": 1494,
+=======
+              "scope": 1465,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
               "stateMutability": "view",
               "virtual": false,
               "visibility": "public"
@@ -1686,7 +2503,11 @@
                       "mutability": "mutable",
                       "name": "email",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1493,
+=======
+                      "scope": 1464,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1699,17 +2520,29 @@
                           "name": "string",
                           "type": "string"
                         },
+<<<<<<< HEAD
                         "id": 1468,
+=======
+                        "id": 1439,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "435:6:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1469,
+=======
+                    "id": 1440,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "435:19:7"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 1470,
+=======
+                "id": 1441,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ParameterList",
                 "src": "434:21:7"
               },
@@ -1721,7 +2554,11 @@
                       "mutability": "mutable",
                       "name": "pwdHash",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1493,
+=======
+                      "scope": 1464,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1734,12 +2571,20 @@
                           "name": "string",
                           "type": "string"
                         },
+<<<<<<< HEAD
                         "id": 1471,
+=======
+                        "id": 1442,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "476:6:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1472,
+=======
+                    "id": 1443,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "476:21:7"
                   },
@@ -1749,7 +2594,11 @@
                       "mutability": "mutable",
                       "name": "role",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1493,
+=======
+                      "scope": 1464,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "memory",
                       "type": "string",
@@ -1762,12 +2611,20 @@
                           "name": "string",
                           "type": "string"
                         },
+<<<<<<< HEAD
                         "id": 1473,
+=======
+                        "id": 1444,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "499:6:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1474,
+=======
+                    "id": 1445,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "499:18:7"
                   },
@@ -1777,7 +2634,11 @@
                       "mutability": "mutable",
                       "name": "addr",
                       "overrides": null,
+<<<<<<< HEAD
                       "scope": 1493,
+=======
+                      "scope": 1464,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       "stateVariable": false,
                       "storageLocation": "default",
                       "type": "address",
@@ -1791,17 +2652,29 @@
                           "stateMutability": "nonpayable",
                           "type": "address"
                         },
+<<<<<<< HEAD
                         "id": 1475,
+=======
+                        "id": 1446,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "ElementaryTypeName",
                         "src": "519:7:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1476,
+=======
+                    "id": 1447,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "VariableDeclaration",
                     "src": "519:12:7"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 1477,
+=======
+                "id": 1448,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "ParameterList",
                 "src": "475:57:7"
               },
@@ -1809,7 +2682,11 @@
                 "children": [
                   {
                     "attributes": {
+<<<<<<< HEAD
                       "functionReturnParameters": 1477
+=======
+                      "functionReturnParameters": 1448
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     },
                     "children": [
                       {
@@ -1831,7 +2708,11 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "pwdHash",
+<<<<<<< HEAD
                               "referencedDeclaration": 1425,
+=======
+                              "referencedDeclaration": 1396,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                               "type": "string storage ref"
                             },
                             "children": [
@@ -1851,11 +2732,19 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1434,
                                       "type": "mapping(string memory => struct User storage ref)",
                                       "value": "users"
                                     },
                                     "id": 1478,
+=======
+                                      "referencedDeclaration": 1405,
+                                      "type": "mapping(string memory => struct User storage ref)",
+                                      "value": "users"
+                                    },
+                                    "id": 1449,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "550:5:7"
                                   },
@@ -1865,21 +2754,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1469,
                                       "type": "string memory",
                                       "value": "email"
                                     },
                                     "id": 1479,
+=======
+                                      "referencedDeclaration": 1440,
+                                      "type": "string memory",
+                                      "value": "email"
+                                    },
+                                    "id": 1450,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "556:5:7"
                                   }
                                 ],
+<<<<<<< HEAD
                                 "id": 1480,
+=======
+                                "id": 1451,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                 "name": "IndexAccess",
                                 "src": "550:12:7"
                               }
                             ],
+<<<<<<< HEAD
                             "id": 1481,
+=======
+                            "id": 1452,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "MemberAccess",
                             "src": "550:20:7"
                           },
@@ -1891,7 +2796,11 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "role",
+<<<<<<< HEAD
                               "referencedDeclaration": 1427,
+=======
+                              "referencedDeclaration": 1398,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                               "type": "string storage ref"
                             },
                             "children": [
@@ -1911,11 +2820,19 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1434,
                                       "type": "mapping(string memory => struct User storage ref)",
                                       "value": "users"
                                     },
                                     "id": 1482,
+=======
+                                      "referencedDeclaration": 1405,
+                                      "type": "mapping(string memory => struct User storage ref)",
+                                      "value": "users"
+                                    },
+                                    "id": 1453,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "572:5:7"
                                   },
@@ -1925,21 +2842,37 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1469,
                                       "type": "string memory",
                                       "value": "email"
                                     },
                                     "id": 1483,
+=======
+                                      "referencedDeclaration": 1440,
+                                      "type": "string memory",
+                                      "value": "email"
+                                    },
+                                    "id": 1454,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "578:5:7"
                                   }
                                 ],
+<<<<<<< HEAD
                                 "id": 1484,
+=======
+                                "id": 1455,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                 "name": "IndexAccess",
                                 "src": "572:12:7"
                               }
                             ],
+<<<<<<< HEAD
                             "id": 1485,
+=======
+                            "id": 1456,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "MemberAccess",
                             "src": "572:17:7"
                           },
@@ -1951,7 +2884,11 @@
                               "isPure": false,
                               "lValueRequested": false,
                               "member_name": "addr",
+<<<<<<< HEAD
                               "referencedDeclaration": 1429,
+=======
+                              "referencedDeclaration": 1400,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                               "type": "address"
                             },
                             "children": [
@@ -1971,11 +2908,19 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1434,
                                       "type": "mapping(string memory => struct User storage ref)",
                                       "value": "users"
                                     },
                                     "id": 1486,
+=======
+                                      "referencedDeclaration": 1405,
+                                      "type": "mapping(string memory => struct User storage ref)",
+                                      "value": "users"
+                                    },
+                                    "id": 1457,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "591:5:7"
                                   },
@@ -1985,51 +2930,91 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
+<<<<<<< HEAD
                                       "referencedDeclaration": 1469,
                                       "type": "string memory",
                                       "value": "email"
                                     },
                                     "id": 1487,
+=======
+                                      "referencedDeclaration": 1440,
+                                      "type": "string memory",
+                                      "value": "email"
+                                    },
+                                    "id": 1458,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                     "name": "Identifier",
                                     "src": "597:5:7"
                                   }
                                 ],
+<<<<<<< HEAD
                                 "id": 1488,
+=======
+                                "id": 1459,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                                 "name": "IndexAccess",
                                 "src": "591:12:7"
                               }
                             ],
+<<<<<<< HEAD
                             "id": 1489,
+=======
+                            "id": 1460,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                             "name": "MemberAccess",
                             "src": "591:17:7"
                           }
                         ],
+<<<<<<< HEAD
                         "id": 1490,
+=======
+                        "id": 1461,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                         "name": "TupleExpression",
                         "src": "549:60:7"
                       }
                     ],
+<<<<<<< HEAD
                     "id": 1491,
+=======
+                    "id": 1462,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                     "name": "Return",
                     "src": "542:67:7"
                   }
                 ],
+<<<<<<< HEAD
                 "id": 1492,
+=======
+                "id": 1463,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                 "name": "Block",
                 "src": "532:84:7"
               }
             ],
+<<<<<<< HEAD
             "id": 1493,
+=======
+            "id": 1464,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
             "name": "FunctionDefinition",
             "src": "418:198:7"
           }
         ],
+<<<<<<< HEAD
         "id": 1494,
+=======
+        "id": 1465,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
         "name": "ContractDefinition",
         "src": "129:489:7"
       }
     ],
+<<<<<<< HEAD
     "id": 1495,
+=======
+    "id": 1466,
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
     "name": "SourceUnit",
     "src": "32:586:7"
   },
@@ -2045,8 +3030,13 @@
       "transactionHash": "0x4157495eaee974a250291eb0b528fdf059fd09b206ce2bfc371ede98ac17f7e3"
     }
   },
+<<<<<<< HEAD
   "schemaVersion": "3.3.3",
   "updatedAt": "2021-04-11T13:47:34.766Z",
+=======
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-12T17:10:07.742Z",
+>>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
   "devdoc": {
     "kind": "dev",
     "methods": {},

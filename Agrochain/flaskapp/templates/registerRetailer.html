@@ -8,9 +8,8 @@
 
         <div class="logo mr-auto">
             <h1 class="text-light"><a href="home">
-              
+              <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid"></a>Agrichain
             </a></h1>
-            <!-- Uncomment below if you prefer to use an image logo -->
           </div>
 
           <nav class="nav-menu d-none d-lg-block">
@@ -28,72 +27,55 @@
             {% endif %}
             </ul>
         </nav><!-- .nav-menu -->
-
     </div>
 </header><!-- End Navbar -->
 
 <body>
 
     <div class="page-wrapper chiller-theme toggled">
-
         <body class="form-v10">
             <div class="page-content">
-
                 <div style="width: 80%; margin-top: 70px;">
                     {% for mesg in get_flashed_messages() %}
                     <h2 class="alert alert-success">{{ mesg }}</h2>
                     {% endfor %}
                 </div>
               <div class="form-v10-content" style="width: 80%; margin-top: 0%; ">
-                    <h2 style="text-align: center; margin-bottom: 8px;"><b>FPC Profile</b></h2>
-                    <h3 style="text-align: center; margin-bottom: 8px; color: gray;">{{current_user.email}}</h3>
+                <h1><b style="color: #4835d4; text-align:center">Please register yourself as a Retailer</b></h1>
                 </div>
 
                 <div class="form-v10-content" style="width:80%; margin-top: -80px;">
-                    <form class="form-detail" action="" method="POST" enctype="multipart/form-data" id="myform">
+                    <form class="form-detail" action="/registerRetailer" method="POST" enctype="multipart/form-data" id="myform">
                         <div class="form-left">
                             <div class="form-group">
-                                <label style="margin-left: 70px;"><h3 style="color: black;"><b>Change Password</b></h3></label>
-                            </div>
-    
-                        <div class="form-group">
                                 <div class="form-row form-row-1">
-                                    <input type="password" id="current_password" name="current_password" class="input-text" placeholder="Current Password">
+                                    <input type="email" id="email" name="email" class="input-text" placeholder="Your email" required>
                                  </div>
-                            
                                 <div class="form-row">
-                                    <input type="password" id= "new_password" name="new_password" class="input-text" placeholder="New Password">
+                                    <input type="password" name="password" class="input-text" placeholder="Password">
                                 </div>
-                                <button type="button submit" name="changePassword" class="btn-xs btn-primary" style="height: 40px; margin-top: 10px;"><h4>Update</h4></button>
-                        </div>
-
+                            </div>
                         <div class="form-group">
                             <div class="form-row form-row-1">
-                              <input type="text" name="fpc_name" id="fpc_name" class="input-text" value="{{fpc_data.fpc_name}}" placeholder="FPC Name" required>
+                                <input type="text" name="reg_number" id="reg_number" class="input-text" placeholder="Registration Number" required>
                             </div>
                             <div class="form-row form-row-1">
-                                <input type="text" name="director" id="director" class="input-text" value="{{fpc_data.director}}" placeholder="Director" required>
+                              <input type="text" name="retailer_name" id="retailer_name" class="input-text" placeholder="Retailer Name" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="form-row form-row-1">
-                                <input type="text" name="reg_number" id="reg_number" class="input-text" value="{{fpc_data.reg_no}}" placeholder="Registration Number" disabled required>
+                                <input type="text" name="location" id="location" class="input-text" placeholder="Enter address of Retailer" required>
                             </div>
                             <div class="form-row form-row-1">
-                                <input type="number" name="capacity" id="capacity" class="input-text" value="{{fpc_data.capacity}}" placeholder="Capacity(in kgs)" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row form-detail">
-                              <input type="text" name="location" id="location" class="input-text" value="{{fpc_data.location}}" placeholder="Enter location of FPC" required>
+                                <input type="text" name="city" id="city" class="input-text" placeholder="City" required>
                             </div>
                         </div>
                         <div class="form-row form-row-1 " style="margin-top: 15px;">
-                            <button type="button submit" name= "update" class="btn btn-dark btn-lg margin-left:20px;"><h3>Submit</h3></button>
+                            <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;"><h3>Submit</h3></button>
                         </div>
                     </form>
                 </div>
-                {% extends "sidebar.html" %}
         </div>
     </body>
 </html>

@@ -7,7 +7,7 @@
           <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
     </h1>
     </div>
-
+    <!--Common to all roles-->
       <div class="sidebar-header">
         <div class="user-info">
           <span class="user-name">
@@ -23,36 +23,64 @@
           <li class="header-menu">
             <span>General</span>
           </li>
-          <li class="sidebar">  
-            <a href="/addCropDetails">
-              <i class="fas fa-plus-circle"></i>
-              <span>Add Crop Details</span>
-            </a>
-          </li>
-          <li class="sidebar">
-            <a href="/getCrops">
-              <i class="fas fa-pen-square"></i>
-              <span>My Crop Details</span>
-            </a>
-          </li>
-          <li class="sidebar">
-            <a href="/updateFarmerProfile">
-              <i class="far fa-id-badge"></i>
-              <span>Update Profile</span>
-            </a>
-          </li>
-          <!-- <li>
-            <a href="/logistics">
-              <i class="fa fa-calendar"></i>
-              <span>Logistics</span>
-            </a>
-          </li> -->
-          <li class="sidebar">  
-            <a href="/addTransactionDetails">
-              <i class="fas fa-plus-circle"></i>
-              <span>Add Transaction Details</span>
-            </a>
-          </li>
+          {% if current_user.role == "FARMER" %}
+            <li class="sidebar">  
+              <a href="/addCropDetails">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add Crop Details</span>
+              </a>
+            </li>
+            <li class="sidebar">
+              <a href="/getCrops">
+                <i class="fas fa-pen-square"></i>
+                <span>My Crop Details</span>
+              </a>
+            </li>
+            <li class="sidebar">
+              <a href="/updateFarmerProfile">
+                <i class="far fa-id-badge"></i>
+                <span>Update Profile</span>
+              </a>
+            </li>
+            <li class="sidebar">  
+              <a href="/addTransactionDetails">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add Transaction Details</span>
+              </a>
+            </li>
+            <!-- <li>
+              <a href="/logistics">
+                <i class="fa fa-calendar"></i>
+                <span>Logistics</span>
+              </a>
+            </li> -->
+          {% elif current_user.role == "FPC" %}
+            <li class="sidebar">  
+              <a href="/addTransactionDetails">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add Transaction Details</span>
+              </a>
+            </li>
+            <li class="sidebar">
+              <a href="/updateFpcProfile">
+                <i class="far fa-id-badge"></i>
+                <span>Update Profile</span>
+              </a>
+            </li>
+          {% elif current_user.role == "RETAIL_STORE"%}
+            <li class="sidebar">  
+              <a href="/addRetailTransactionDetails">
+                <i class="fas fa-plus-circle"></i>
+                <span>Add Transaction Details</span>
+              </a>
+            </li>
+            <li class="sidebar">
+              <a href="/updateRetailerProfile">
+                <i class="far fa-id-badge"></i>
+                <span>Update Profile</span>
+              </a>
+            </li>
+          {% endif %}
         </ul>
       </div>
       <!-- sidebar-menu  -->

@@ -59,6 +59,8 @@ def chooseRole():
             return redirect(url_for('farmer.registerFarmer'))
         if (selectedRole == 'fpc'):
             return redirect(url_for('fpc.registerFPC'))
+        if (selectedRole == 'retailer'):
+            return redirect(url_for('retailer.registerRetailer'))
 
     return render_template('ChooseRole.html')
 
@@ -66,23 +68,26 @@ def chooseRole():
 @mod_common.route("/login", methods=["POST", "GET"])
 def login():
     if request.method == "POST":
-
+        
         email = request.form.get('email')
         password = request.form.get('password')
         user = User.query.filter_by(email=email).first()
 
         if not user or not check_password_hash(user.password_hash, password):
-            print("hi")
+            print("Oops, wrong credentials.")
             flash('Please check your login details and try again.')
             return redirect(url_for('common.login'))
 
         login_user(user, remember=False)
 
         # Conditions for different entities
+        print(current_user.role)
         if(current_user.role == 'FARMER'):
             return redirect(url_for('farmer.farmerPage'))
         elif(current_user.role == 'FPC'):
             return redirect(url_for('fpc.fpcPage'))
+        elif(current_user.role == 'RETAIL_STORE'):
+            return redirect(url_for('retailer.retailerPage'))
     return render_template("Login.html")
 
 
@@ -96,7 +101,6 @@ def logout():
 @mod_common.route("/error")
 def error():
     return render_template('error.html')
-
 
 @mod_common.route("/addTransactionDetails", methods=["GET", "POST"])
 @login_required

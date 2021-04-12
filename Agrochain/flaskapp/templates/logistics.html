@@ -104,12 +104,8 @@
               </div>
             </div>
 
-            {% if current_user.role == "FARMER" %}
-              {% include "sidebar.html" %}
-            {% elif current_user.role == "FPC" %}
-              {% include "fpcSidebar.html" %}
-            {% endif %}
-            
+            {% include "sidebar.html" %}
+
         </div>
 
     </body>
