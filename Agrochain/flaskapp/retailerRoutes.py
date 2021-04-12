@@ -25,6 +25,15 @@ login_manager.init_app(app)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+retailerDetails_contract_address = config.retailerDetails_contract_address
+
+local_acct = w3.eth.account.from_key(config.local_acct_key)
+
+retailerDetails_truffleFile = json.load(open('./build/contracts/RetailerDetails.json'))
+retailerDetails_abi = retailerDetails_truffleFile['abi']
+
+retailerDetails_contract_instance = w3.eth.contract(abi=retailerDetails_abi, address=retailerDetails_contract_address)
+
 @mod_retailer.route("/registerRetailer", methods=["GET", "POST"])
 def registerRetailer():
     if request.method == "POST":
@@ -48,18 +57,31 @@ def registerRetailer():
         reg_no = request.form.get('reg_number')
         location = request.form.get('location')
         city = request.form.get('city')
-        # retailer_address = acct.address
+        retailer_address = acct.address
 
-        retailer_data = {
-            "retailer_name"  : retailer_name,
-            "city" : city,
-            "location" : location,
-            "reg_no" : reg_no
-        }
+        # retailer_data = {
+        #     "retailer_name"  : retailer_name,
+        #     "city" : city,
+        #     "location" : location,
+        #     "reg_no" : reg_no
+        # }
 
-        print([(retailer, retailer_data[retailer]) for retailer in retailer_data])
-        db.session.add(new_user)
-        db.session.commit()
+        # print([(retailer, retailer_data[retailer]) for retailer in retailer_data])
+
+
+        txn_dict = {
+                'from': local_acct.address,
+                'to': retailerDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+
+        txn_hash = retailerDetails_contract_instance.functions.addRetailer(retailer_address, retailer_name, location, city, reg_no).transact(txn_dict)
+        print(txn_hash)
+        if txn_hash:
+            db.session.add(new_user)
+            db.session.commit()
 
         return redirect(url_for('common.login'))
 
@@ -81,14 +103,40 @@ def retailerPage():
 @mod_retailer.route("/updateRetailerProfile", methods=["GET", "POST"])
 @login_required
 def updateRetailerProfile():
+    retailer_data = retailerDetails_contract_instance.functions.getRetailer(current_user.address).call()
+    retailer_data = {
+            "retailer_name"  : retailer_data[0],
+            "location" : retailer_data[1],
+            "city" : retailer_data[2],
+            "reg_no" : retailer_data[3],
+        }
+    print(retailer_data)
     if request.method == "POST":
+        print("POST")       
+        txn_dict = {
+                'from': local_acct.address,
+                'to': retailerDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+        retailer_address = current_user.address    
 
-        print("POST")
         if "update" in request.form:
             retailer_name = request.form.get('retailer_name')
             reg_no = request.form.get('reg_number')
             city = request.form.get('city')
             location = request.form.get('location')
+
+            txn_hash = retailerDetails_contract_instance.functions.updateRetailer(retailer_address,retailer_name,location,city,reg_no).transact(txn_dict)
+
+            retailer_data = {
+                "retailer_name"  : retailer_name,
+                "location" : location,
+                "city" : city,
+                "reg_no" : reg_no
+            }
+
             flash('Profile Updated')
 
         elif "changePassword" in request.form:
@@ -103,8 +151,7 @@ def updateRetailerProfile():
                     new_password, method='sha256')
                 db.session.commit()
                 flash('Password Updated Successfully')
-
-    return render_template('updateRetailer.html', current_user=current_user)
+    return render_template('updateRetailer.html', current_user=current_user, retailer_data=retailer_data)
 
 @mod_retailer.route("/addRetailTransactionDetails", methods=["GET", "POST"])
 @login_required
