@@ -1,92 +1,127 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.7.0;
+pragma experimental ABIEncoderV2;
 
 struct Transaction{
-    uint tid;
+
+    string packageId;
     uint sellerType;
     string sellerName;
     uint buyerType;
     string buyerName;
-    string crop;
+    uint cropId;
     string grade;
     uint price;
     uint quantity;
-    string packageId;
-    uint logisticId;
-    bytes prevHash;
-    bytes nextHash;
+    uint remainingQuantity;
+    string prevId;
+    string nextId;
+    bool active;
 }
 
 contract TransactionDetails{
     event FarmerToHubTransactionAdded(string sellerName, string buyerName);
     event HubToRetailerTransactionAdded(string sellerName, string buyerName);
+    event RetailerToCustomerTransactionAdded(string sellerName);
 
-    mapping (uint => Transaction) txns;
-    uint[] tids;
+    mapping (string => Transaction) txns;
+    mapping (address => string[]) entityTxns;
 
-    function f2hTransaction(uint _tid, string memory _sellerName, string memory _buyerName, string memory _crop, uint _price, uint _quantity, uint _logisticId)
+    function f2hTransaction(address seller, address buyer, string memory _packageId, string memory _sellerName, string memory _buyerName, uint _cropId, uint _price, uint _quantity)
     public {
-        tids.push(_tid);
+        Transaction memory new_txn = Transaction(_packageId, 0, _sellerName, 1, _buyerName, _cropId, "", _price, _quantity, _quantity, "", "", true);
 
-        txns[_tid].tid = _tid;
-        txns[_tid].sellerType = 0;
-        txns[_tid].sellerName = _sellerName;
-        txns[_tid].buyerType = 1;
-        txns[_tid].buyerName = _buyerName;
-        txns[_tid].crop = _crop;
-        txns[_tid].price = _price;
-        txns[_tid].quantity = _quantity;
-        txns[_tid].logisticId = _logisticId;
-        txns[_tid].prevHash = "";
+        // new_txn.packageId = _packageId;
+        // new_txn.sellerType = 0;
+        // new_txn.sellerName = _sellerName;
+        // new_txn.buyerType = 1;
+        // new_txn.buyerName = _buyerName;
+        // new_txn.crop = _crop;
+        // new_txn.price = _price;
+        // new_txn.quantity = _quantity;
+        // new_txn.prevId = "";
+
+        txns[_packageId] = new_txn;
+        entityTxns[seller].push(_packageId);
+        entityTxns[buyer].push(_packageId);
 
         emit FarmerToHubTransactionAdded(_sellerName, _buyerName);
     }
 
-    function h2rTransaction(uint _tid, string memory _sellerName, string memory _buyerName, string memory _crop, string memory _grade, uint _price, uint _quantity, string memory _packageId, uint _logisticId, bytes memory _prevHash)
+    function h2rTransaction(address seller, address buyer, string memory _packageId, string memory _sellerName, string memory _buyerName, uint _cropId, string memory _grade, uint _price, uint _quantity, string memory _prevId)
     public {
-        tids.push(_tid);
+        Transaction memory new_txn = Transaction(_packageId, 1, _sellerName, 2, _buyerName, _cropId, _grade, _price, _quantity, _quantity, _prevId, "", true);
+        txns[_prevId].remainingQuantity = txns[_prevId].remainingQuantity - _quantity;
 
-        txns[_tid].tid = _tid;
-        txns[_tid].sellerType = 1;
-        txns[_tid].sellerName = _sellerName;
-        txns[_tid].buyerType = 2;
-        txns[_tid].buyerName = _buyerName;
-        txns[_tid].crop = _crop;
-        txns[_tid].grade = _grade;
-        txns[_tid].price = _price;
-        txns[_tid].quantity = _quantity;
-        txns[_tid].packageId = _packageId;
-        txns[_tid].logisticId = _logisticId;
-        txns[_tid].prevHash = _prevHash;
+        if(txns[_prevId].remainingQuantity == 0){
+            txns[_prevId].active = false;
+        }
+        
+
+        // new_txn.packageId = _packageId;
+        // new_txn.sellerType = 1;
+        // new_txn.sellerName = _sellerName;
+        // new_txn.buyerType = 2;
+        // new_txn.buyerName = _buyerName;
+        // new_txn.crop = _crop;
+        // new_txn.grade = _grade;
+        // new_txn.price = _price;
+        // new_txn.quantity = _quantity;
+        // new_txn.packageId = _packageId;
+        // new_txn.prevId = _prevId;
+
+        txns[_packageId] = new_txn;
+        entityTxns[buyer].push(_packageId);
+        entityTxns[seller].push(_packageId);
     }
-    
-    function getTransactions() view public
-        returns(uint[] memory){
-            return tids;
+
+    function r2cTransaction(address seller, string memory _packageId, string memory _sellerName, uint _cropId, uint _price, uint _quantity, string memory _prevId)
+    public {
+        Transaction memory new_txn = Transaction(_packageId, 2, _sellerName, 3, "", _cropId, "", _price, _quantity, 0, _prevId, "", false);
+        txns[_prevId].remainingQuantity = txns[_prevId].remainingQuantity - _quantity;
+        //if all crop quantity is exhausted, make prev h2r txn inactive
+        if(txns[_prevId].remainingQuantity == 0){
+            txns[_prevId].active = false;
         }
 
-    function getTxnCropDetails(uint tid) view public
-    returns(string memory, string memory, uint, uint, string memory, uint) {
-        return(txns[tid].crop, txns[tid].grade, txns[tid].price, txns[tid].quantity, txns[tid].packageId, txns[tid].logisticId);
+        txns[_packageId] = new_txn;
+        entityTxns[seller].push(_packageId);
+
+        emit RetailerToCustomerTransactionAdded(_sellerName);
+    }
+    
+    function getTransactions(address _address) view public
+        returns(string[] memory){
+            return entityTxns[_address];
+        }
+
+    function getTxnCropDetails(string memory tid) view public
+    returns(uint, string memory, uint, uint, uint) {
+        return(txns[tid].cropId, txns[tid].grade, txns[tid].price, txns[tid].quantity, txns[tid].remainingQuantity);
     }
 
-    function getTxnEntityDetails(uint tid) view public
+    function getTxnEntityDetails(string memory tid) view public
     returns(uint, string memory, uint, string memory){
         return(txns[tid].sellerType, txns[tid].sellerName, txns[tid].buyerType, txns[tid].buyerName);
     }
 
-    function getPrevHash(uint tid) view public
-    returns(bytes memory) {
-        return(txns[tid].prevHash);
+    function getPrevId(string memory tid) view public
+    returns(string memory) {
+        return(txns[tid].prevId);
     }
 
-    function getNextHash(uint tid) view public
-    returns(bytes memory) {
-        return(txns[tid].nextHash);
+    function getNextId(string memory tid) view public
+    returns(string memory) {
+        return(txns[tid].nextId);
     }
 
-    function setNextHash(uint tid, bytes memory _nextHash)
+    function getActiveStatus(string memory tid) view public 
+    returns(bool) {
+        return(txns[tid].active);
+    }
+
+    function setNextHash(string memory tid, string memory _nextHash)
     public {
-        txns[tid].nextHash = _nextHash;
+        txns[tid].nextId = _nextHash;
     }
 }

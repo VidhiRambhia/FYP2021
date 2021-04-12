@@ -2,7 +2,7 @@
 pragma solidity >=0.7.0;
 
 struct Logistics{
-    uint id;
+    string packageId;
     string vehicleType;
     string vehicleNo;
     string driverName;
@@ -11,30 +11,25 @@ struct Logistics{
 }
 
 contract LogisticsDetails{
-    event LogDataAdded(uint LogId);
+    event LogDataAdded(string packageId);
 
-    mapping (uint => Logistics) logs;
-    uint[] public LogIds;
+    mapping (string => Logistics) logs;
 
-    function addLogistic(uint _id, string memory _vehicleType, string memory _vehicleNo, string memory _driverName, uint _driverContact, uint _dateDispatched)
+    function addLogistic(string memory _packageId, string memory _vehicleType, string memory _vehicleNo, string memory _driverName, uint _driverContact, uint _dateDispatched)
     public {
-        LogIds.push(_id);
-        logs[_id].id = _id;
-        logs[_id].vehicleType = _vehicleType;
-        logs[_id].vehicleNo = _vehicleNo;
-        logs[_id].driverName = _driverName;
-        logs[_id].driverContact = _driverContact;
-        logs[_id].dateDispatched = _dateDispatched;
+        
+        logs[_packageId].packageId = _packageId;
+        logs[_packageId].vehicleType = _vehicleType;
+        logs[_packageId].vehicleNo = _vehicleNo;
+        logs[_packageId].driverName = _driverName;
+        logs[_packageId].driverContact = _driverContact;
+        logs[_packageId].dateDispatched = _dateDispatched;
 
-        emit LogDataAdded(_id);
+        emit LogDataAdded(_packageId);
     }
 
-    function getAllLogs() view public returns(uint[] memory){
-        return LogIds;
-    }
-
-    function getLog(uint LID) view public
-        returns(uint, string memory, string memory, string memory, uint, uint) {
-            return (logs[LID].id, logs[LID].vehicleType, logs[LID].vehicleNo, logs[LID].driverName, logs[LID].driverContact, logs[LID].dateDispatched);
+    function getLog(string memory _packageId) view public
+        returns(string memory, string memory, string memory, string memory, uint, uint, string memory) {
+            return (logs[_packageId].packageId, logs[_packageId].vehicleType, logs[_packageId].vehicleNo, logs[_packageId].driverName, logs[_packageId].driverContact, logs[_packageId].dateDispatched, logs[_packageId].packageId);
         }
 }
