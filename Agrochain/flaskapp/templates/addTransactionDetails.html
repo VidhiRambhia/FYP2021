@@ -42,17 +42,7 @@
               <div class="form-v10-content">
                   <form class="form-detail" action="/addTransactionDetails" method="POST" id="transactionForm">
                     <div class="form-left">
-<<<<<<< HEAD
-                      <h2><b>Transaction Details Portal</b></h2>
 
-                      <div class="form-group">
-                          <div class="form-row form-row-1">
-                            <input type="number" name="crop_id" id="crop_id" class="input-text" style="display:none"  placeholder="">
-                          </div>
-                      </div>
-
-          
-=======
                       {% if current_user.role == "FARMER" %}
                         <h2><b>Farmer's transaction Details Portal</b></h2>
                       {% elif current_user.role == "FPC" %}
@@ -61,8 +51,13 @@
                         <h2><b>Retailer's transaction Details Portal</b></h2>
                       {% endif %}
 
+                      <div class="form-group">
+                          <div class="form-row form-row-1">
+                            <input type="number" name="crop_id" id="crop_id" class="input-text" style="display:none"  placeholder="">
+                          </div>
+                      </div>
+
                       {% if current_user.role != "RETAIL_STORE" %}
->>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       <div class="form-group">
                         <div class="form-row form-row-1">
                             <input type="text" name="seller_name" id="seller_name" class="input-text" value={{current_user.name}} disabled placeholder="Seller Name" required>
@@ -80,37 +75,22 @@
 
                       <div class="form-group">
                         <div class="form-row form-row-1">
-<<<<<<< HEAD
                             <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
                         </div>
                           <div class="form-row form-row-1">
                             <input type="number" name="quantity" id="quantity" class="input-text"  placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
                           </div>
-=======
-                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
-                        </div>
-                        <div class="form-row form-row-1">
-                          <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
-                        </div>
->>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
                       </div>
 
                       <div class="form-group">
                         {% if current_user.role == 'FPC' %}
                         <div class="form-row form-row-1">
-<<<<<<< HEAD
                           <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
                         </div>
                         {% endif %}
-=======
+                        <div class="form-row form-row-1">
                           <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost (in INR)" required>
                         </div>
-                        {% if current_user.role == "FPC" %}
->>>>>>> b6bd0cbf5b2a54576962a816d216f284d2a50ec1
-                        <div class="form-row form-row-1">
-                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
-                        </div>
-                        {% endif %}
                       </div>
 
                       <div class="form-row">

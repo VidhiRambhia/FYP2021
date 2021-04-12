@@ -52,7 +52,7 @@
                                       <a class="btn btn-lg btn-secondary" style="font-size: medium;margin:3%" data-toggle="collapse" href="#collapseExample{{txn.txn_id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         See more details
                                       </a>
-                                      {% if current_user.role != 'FARMER' %}<a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.quantity}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>{% endif %}
+                                      {% if current_user.role != 'FARMER' %}<a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.quantity}}&crop_name={{txn.crop_name}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>{% endif %}
                                     </div>
                                   </div>
                                 </div>
@@ -76,7 +76,7 @@
                 <h3 style="text-align: center; margin-top: 16px;">You do not have any transactions </h3>
                 {% endif %}
                 <!--Crop List section ends-->
-              {% extends "fpcSidebar.html" %}
+              {% extends "sidebar.html" %}
         </div>
     </body>
 </html>

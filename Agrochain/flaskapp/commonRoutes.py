@@ -115,9 +115,15 @@ def addTransactionDetails():
             }
             sellers.append(seller)
         print(sellers)
-    elif current_user == 'FPC':
-        print("Hello")
-        # Add Retailer sellers
+    elif current_user.role == 'FPC':
+        retailer_users = User.query.filter_by(role=ROLE.RETAIL_STORE).all()
+        for retailer in retailer_users:
+            seller = {
+                "name":retailer.name,
+                "address":retailer.address
+            }
+            sellers.append(seller)
+        print(sellers)
 
     if request.method == 'POST':
         buyer_address = request.form.get('buyer_name')
@@ -154,8 +160,9 @@ def addTransactionDetails():
                 update_txn_hash = cropDetails_contract_instance.functions.setSold(crop_id,current_user.address).transact(update_txn_dict)
         
         elif current_user.role == ROLE.FPC:
-            txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(seller_name,buyer_name,package_id,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
-            print(txn_hash)
+            #txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(seller_name,buyer_name,package_id,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
+            #print(txn_hash)
+            print(package_id)
 
             
 
