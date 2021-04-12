@@ -7,9 +7,9 @@ const TransactionDetails = artifacts.require("TransactionDetails");
 
 module.exports = function (deployer) {
   deployer.deploy(CropDetails);
-  deployer.deploy(FarmerDetails); 
-  deployer.deploy(FpcDetails);
-  deployer.deploy(RetailerDetails);
+  //deployer.deploy(FarmerDetails); 
+  //deployer.deploy(FpcDetails);
+  //deployer.deploy(RetailerDetails);
   deployer.deploy(LogisticsDetails);
   deployer.deploy(TransactionDetails);
 };
