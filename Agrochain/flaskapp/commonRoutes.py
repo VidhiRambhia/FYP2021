@@ -128,7 +128,6 @@ def addTransactionDetails():
         package_id = buyer_name[:2].upper() + seller_name[:2].upper() + str(random.randint(1, 100000))
         print(buyer_address)
 
-
         txn_dict = {
                 'from': local_acct.address,
                 'to': transactionDetails_contract_address,
@@ -136,7 +135,6 @@ def addTransactionDetails():
                 'gas': 2000000,
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
-
 
         if current_user.role == ROLE.FARMER:
             print(request.form)
@@ -176,8 +174,8 @@ def logistics():
         package_id = request.form.get('package_id')
         dispatch_date = datetime.datetime(*[int(item) for item in dispatch_date.split('-')])
         dispatch_date_int = int(dispatch_date.strftime('%Y%m%d'))
-        lid = datetime.datetime.now()
-        lid = int(lid.strftime('%Y%m%d'))
+        #lid = datetime.datetime.now()
+        #lid = int(lid.strftime('%Y%m%d'))
 
         txn_dict = {
                 'from': local_acct.address,
@@ -187,7 +185,7 @@ def logistics():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
 
-        txn_hash = logisticsDetails_contract_instance.functions.addLogistic(lid,vehicle_type,vehicle_number,driver_name,driver_contact,dispatch_date_int,package_id).transact(txn_dict)
+        txn_hash = logisticsDetails_contract_instance.functions.addLogistic(package_id,vehicle_type,vehicle_number,driver_name,driver_contact,dispatch_date_int).transact(txn_dict)
         print(txn_hash)
 
         if txn_hash:
@@ -206,8 +204,10 @@ def displayTransactions():
     for txnId in transactionIds:
         transactionDetails = transactionDetails_contract_instance.functions.getTxnEntityDetails(txnId).call()
         transactionCropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(txnId).call()
+        logisticsDetails = logisticsDetails_contract_instance.functions.getLog(txnId)
         print(transactionDetails)
         print(transactionCropDetails)
+        print(logisticsDetails)
         txn = {
             'txn_id': txnId,
             'seller_type':transactionDetails[0],
