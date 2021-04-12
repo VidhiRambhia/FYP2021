@@ -39,7 +39,7 @@ def registerRetailer():
     if request.method == "POST":
         email = request.form.get('email')
         password = request.form.get('password')
-
+        retailer_name = request.form.get('retailer_name')
         user = User.query.filter_by(email=email).first()
 
         if user:
@@ -49,7 +49,7 @@ def registerRetailer():
         acct = Account.create(password)
         print(acct.address)
 
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address=acct.address, role=ROLE.RETAIL_STORE)
+        new_user = User(email=email,name=retailer_name, password_hash=generate_password_hash(password, method='sha256'), address=acct.address, role=ROLE.RETAIL_STORE)
 
         print(new_user)
 

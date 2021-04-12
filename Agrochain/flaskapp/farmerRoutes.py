@@ -50,23 +50,18 @@ def registerFarmer():
     if request.method == "POST":
         email = request.form.get('email') 
         password = request.form.get('password')
-        #pwd_hash = hashlib.sha256(password.encode()).hexdigest()
-        #addNewUser(email, pwd_hash, 'farmer')
+        farmer_name = request.form.get('farmer_name')
 
-        user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+        user = User.query.filter_by(email=email).first()
 
-        if user: # if a user is found, we want to redirect back to signup page so user can try again
+        if user: 
             return redirect(url_for('common.login'))
 
         acct = Account.create(password)
         print(acct.address)
+        print(request.form)
 
-        # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FARMER)
-
-        # add the new user to the database
-        db.session.add(new_user)
-        db.session.commit()
+        new_user = User(email=email,name=farmer_name, password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FARMER)
 
         plot_number = request.form.get('plot_number')
         plot_owner = request.form.get('plot_owner')
@@ -79,8 +74,10 @@ def registerFarmer():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         farmer_address = acct.address
-        txn_hash = farmerDetails_contract_instance.functions.addFarmer(farmer_address,email,plot_owner,plot_number,plot_address,True).transact(txn_dict)
-        print(txn_hash)
+        txn_hash = farmerDetails_contract_instance.functions.addFarmer(farmer_address,farmer_name,plot_owner,plot_number,plot_address,True).transact(txn_dict)
+        if txn_hash:
+            db.session.add(new_user)
+            db.session.commit()
 
         if request.form.get('plot_number_1'):
             plot_number_1 = request.form.get('plot_number_1')
@@ -122,19 +119,22 @@ def addCropDetails():
             "crop_harvesting_date": crop_harvesting_date
         }
     print(crop)
+
     if request.method=="POST":
         if crop_id:
+            print(request.form)
             quantity = int(request.form.get('quantity'))
-            harvesting_date = request.form.get('harvesting_date')
-            harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
-            harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
-            txn_dict = {
-                    'from': local_acct.address,
-                    'to': cropDetails_contract_address,
-                    'value': '0',
-                    'gas': 3000000,
-                    'gasPrice': w3.toWei('40', 'gwei')
-                    }
+            if request.form.get('harvesting_date'):
+                harvesting_date = request.form.get('harvesting_date')
+                harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
+                harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
+                txn_dict = {
+                        'from': local_acct.address,
+                        'to': cropDetails_contract_address,
+                        'value': '0',
+                        'gas': 3000000,
+                        'gasPrice': w3.toWei('40', 'gwei')
+                        }
             txn_hash = cropDetails_contract_instance.functions.updateCrop(int(crop_id),current_user.address,harvesting_date_int,quantity).transact(txn_dict)
             return render_template('addCropDetails.html',current_user=current_user,crop=crop)
         crop_name = request.form.get('crop_name')
@@ -143,7 +143,12 @@ def addCropDetails():
         quantity = int(request.form.get('quantity'))
         source_tag_number = request.form.get('source_tag_number')
         sowing_date = request.form.get('sowing_date')
-        harvesting_date = request.form.get('harvesting_date')
+        harvesting_date = datetime.datetime.now()
+        harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
+        if request.form.get('harvesting_date'):
+            harvesting_date = request.form.get('harvesting_date')
+            harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
+            harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
         txn_dict = {
                 'from': local_acct.address,
                 'to': cropDetails_contract_address,
@@ -154,8 +159,6 @@ def addCropDetails():
         farmer_address = current_user.address #get address
         sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
         sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
-        harvesting_date = datetime.datetime(*[int(item) for item in harvesting_date.split('-')])
-        harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
         crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).call()
         txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).transact(txn_dict)
         txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int,harvesting_date_int, current_user.address).transact(txn_dict)
@@ -266,7 +269,8 @@ def getCrops():
                 "crop_source_tag_number":cropData[4],
                 "crop_quantity": cropData[5],
                 "crop_sowing_date" : crop_sowing_date,
-                "crop_harvesting_date": crop_harvesting_date
+                "crop_harvesting_date": crop_harvesting_date,
+                "sold": cropData[8]
             }
             crops.append(crop)
             i = i+1
