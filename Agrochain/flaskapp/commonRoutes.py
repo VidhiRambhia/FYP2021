@@ -99,6 +99,11 @@ def logout():
 def error():
     return render_template('error.html')
 
+@mod_common.route("/customer")
+@login_required
+def customer():
+    return render_template('customer.html')
+
 @mod_common.route("/addTransactionDetails", methods=["GET", "POST"])
 @login_required
 def addTransactionDetails():

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% include "headerlinks.html" %}
+    </head>
+
+    <!-- ======= Navbar ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex">
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="home">
+                  <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid"></a>Agrichain
+                </a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+              </div>
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li><a href="home">Home</a></li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#steps">Model</a></li>
+              <li class="active"><a href="login">Login</a></li>
+              <li><a href="chooseRole">Register</a></li>
+              <li><a href="/#team">Team</a></li>
+            </ul>
+          </nav><!-- .nav-menu -->
+        </div>
+    </header><!-- End Navbar -->
+
+    <body class="form-v10">
+        <div class="page-content">  
+            <div class="form-v10-content" style=width:750px; >
+                <form class="form-detail" action="" method="POST" id="myform">
+                    <div class="form-left">
+                            <h2 style="text-align: center;"><b>Customer : {{current_user.email}}</b></h2>
+                        <div class="form-group">
+                            <div class="form-row form-row-1">
+                                <p style="font-size: large;">Enter the tracking ID to trace product path</p>
+                            </div>
+							<div class="form-row form-row-1">
+								<input type="text" id="t_id" name="t_id" class="input-text" placeholder="Tracking ID " required>
+                            </div>
+                        </div>
+                    <div class="form-row ">
+                        <div class="col-md-12 text-center">
+                            <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 20%;"><h3>Track</h3></button>
+                        </div>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
