@@ -27,6 +27,7 @@ def load_user(user_id):
 
 transactionDetails_contract_address = config.transactionDetails_contract_address
 logisticsDetails_contract_address = config.logisticsDetails_contract_address
+cropDetails_contract_address = config.cropDetails_contract_address
 
 local_acct = w3.eth.account.from_key(config.local_acct_key)
 
@@ -34,9 +35,12 @@ transactionDetails_truffleFile = json.load(open('./build/contracts/TransactionDe
 transactionDetails_abi = transactionDetails_truffleFile['abi']
 logisticsDetails_truffleFile = json.load(open('./build/contracts/LogisticsDetails.json'))
 logisticsDetails_abi = logisticsDetails_truffleFile['abi']
+cropDetails_truffleFile = json.load(open('./build/contracts/CropDetails.json'))
+cropDetails_abi = cropDetails_truffleFile['abi']
 
 transactionDetails_contract_instance = w3.eth.contract(abi=transactionDetails_abi, address=transactionDetails_contract_address)
 logisticsDetails_contract_instance = w3.eth.contract(abi=logisticsDetails_abi, address=logisticsDetails_contract_address)
+cropDetails_contract_instance = w3.eth.contract(abi=cropDetails_abi, address=cropDetails_contract_address)
 
 @mod_common.route("/home")
 @mod_common.route("/", methods=["GET", "POST"])
@@ -121,7 +125,7 @@ def addTransactionDetails():
 
         if current_user.role == ROLE.FARMER:
             print(request.form)
-            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(current_user.address,current_user.address,package_id,seller_name,buyer_name,crop_id,cost,quantity).transact(txn_dict)
+            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(current_user.address,current_user.address,package_id,seller_name,buyer_name,crop_id,crop_name,cost,quantity).transact(txn_dict)
             #print(txn_hash)
         
         elif current_user.role == ROLE.FPC:
@@ -172,8 +176,29 @@ def logistics():
 @mod_common.route("/displayTransactions", methods=["GET", "POST"])
 @login_required
 def displayTransactions():
+    transactionIds = transactionDetails_contract_instance.functions.getTransactions(current_user.address).call()
+    txns = []
+    print(transactionIds)
+    for txnId in transactionIds:
+        transactionDetails = transactionDetails_contract_instance.functions.getTxnEntityDetails(txnId).call()
+        transactionCropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(txnId).call()
+        print(transactionDetails)
+        print(transactionCropDetails)
+        txn = {
+            'txn_id': txnId,
+            'seller_name': transactionDetails[1],
+            'buyer_name': transactionDetails[3],
+            'crop_id': transactionCropDetails[0],
+            'crop_name': transactionCropDetails[2],
+            'grade': transactionCropDetails[1],
+            'price' : transactionCropDetails[3],
+            'quantity' : transactionCropDetails[4],
+            'remainingQuantity': transactionCropDetails[5]
+        }
+        print(txn)
+        txns.append(txn)
     logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
     for logId in logIds:
         logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
         print(logisticsData)
-    return render_template('404.html')
+    return render_template('displayTransactions.html', current_user=current_user,txns=txns)
