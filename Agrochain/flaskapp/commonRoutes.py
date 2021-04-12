@@ -71,7 +71,7 @@ def login():
         user = User.query.filter_by(email=email).first()
 
         if not user or not check_password_hash(user.password_hash, password):
-            print("hi")
+            print("Oops, wrong credentials.")
             flash('Please check your login details and try again.')
             return redirect(url_for('common.login'))
 

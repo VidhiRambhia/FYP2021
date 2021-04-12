@@ -31,13 +31,13 @@
     </header><!-- End Navbar -->
 
     <body class="form-v10">
-        <div class="page-content">
-            <!-- <div style="width: 80%; margin-top: 70px;">
-                {% for mesg in get_flashed_messages() %}
-                <h2 class="alert alert-success">{{ mesg }}</h2>
-                {% endfor %}
-            </div> -->
+        <div class="page-content">  
             <div class="form-v10-content" style=width:750px; >
+                <div style="width: 80%; margin-top: 2%; margin-left: 10%;">
+                    {% for msg in get_flashed_messages() %}
+                    <h2 class="alert alert-success">{{ msg }}</h2>
+                    {% endfor %}
+                </div>
                 <form class="form-detail" action="{{url_for('common.login')}}" method="POST" id="myform">
                     <div class="form-left">
                         <h2>Enter credentials to login</h2>
@@ -53,8 +53,7 @@
                     </div>
                     <div class="form-row ">
                         <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 20%;"><h3>Login</h3></button>
-                    </div>
-                    
+                    </div>  
                 </form>
             </div>
         </div>
