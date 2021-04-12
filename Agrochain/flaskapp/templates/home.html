@@ -60,8 +60,12 @@
       {% if not current_user.is_authenticated %}
       <a href="login" class="btn-get-started scrollto">Login</a>
       <a href="chooseRole" class="btn-get-started scrollto">Register</a>
-      {% else %}
-      <a href="getCrops" class="btn-get-started scrollto">Go to your Dashboard</a>
+      {% elif current_user.role=='FARMER' %}
+      <a href="farmerPage" class="btn-get-started scrollto">Go to your Dashboard</a>
+      {% elif current_user.role=='FPC' %}
+      <a href="fpcPage" class="btn-get-started scrollto">Go to your Dashboard</a>
+      {% elif current_user.role=='RETAIL_STORE' %}
+      <a href="retailerPage" class="btn-get-started scrollto">Go to your Dashboard</a>
       {% endif %}
     </div>
   </section><!-- End Hero -->
