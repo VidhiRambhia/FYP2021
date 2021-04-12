@@ -37,26 +37,23 @@ fpcDetails_contract_instance = w3.eth.contract(abi=fpcDetails_abi, address=fpcDe
 def registerFPC():
     if request.method == "POST":
         email = request.form.get('email') 
-        password = request.form.get('password')
-
+        password = request.form.get('password')   
         user = User.query.filter_by(email=email).first() 
 
         if user:
             return redirect(url_for('common.login'))
-
-        acct = Account.create(password)
-        print(acct.address)
-
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FPC)
 
         fpc_name = request.form.get('fpc_name')
         director = request.form.get('director')
         reg_no = request.form.get('reg_number')
         capacity = int(request.form.get('capacity'))
         location = request.form.get('location')
-        fpc_address = acct.address
+        
 
-        print(location)
+        acct = Account.create(password)
+        print(acct.address)
+
+        new_user = User(email=email,name=fpc_name, password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FPC)
 
         # fpc_data = {
         #     "fpc_name"  : fpc_name,

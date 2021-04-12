@@ -50,23 +50,18 @@ def registerFarmer():
     if request.method == "POST":
         email = request.form.get('email') 
         password = request.form.get('password')
-        #pwd_hash = hashlib.sha256(password.encode()).hexdigest()
-        #addNewUser(email, pwd_hash, 'farmer')
+        farmer_name = request.form.get('farmer_name')
 
-        user = User.query.filter_by(email=email).first() # if this returns a user, then the email already exists in database
+        user = User.query.filter_by(email=email).first()
 
-        if user: # if a user is found, we want to redirect back to signup page so user can try again
+        if user: 
             return redirect(url_for('common.login'))
 
         acct = Account.create(password)
         print(acct.address)
+        print(request.form)
 
-        # create a new user with the form data. Hash the password so the plaintext version isn't saved.
-        new_user = User(email=email,  password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FARMER)
-
-        # add the new user to the database
-        db.session.add(new_user)
-        db.session.commit()
+        new_user = User(email=email,name=farmer_name, password_hash=generate_password_hash(password, method='sha256'), address = acct.address, role = ROLE.FARMER)
 
         plot_number = request.form.get('plot_number')
         plot_owner = request.form.get('plot_owner')
@@ -79,8 +74,10 @@ def registerFarmer():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         farmer_address = acct.address
-        txn_hash = farmerDetails_contract_instance.functions.addFarmer(farmer_address,email,plot_owner,plot_number,plot_address,True).transact(txn_dict)
-        print(txn_hash)
+        txn_hash = farmerDetails_contract_instance.functions.addFarmer(farmer_address,farmer_name,plot_owner,plot_number,plot_address,True).transact(txn_dict)
+        if txn_hash:
+            db.session.add(new_user)
+            db.session.commit()
 
         if request.form.get('plot_number_1'):
             plot_number_1 = request.form.get('plot_number_1')
@@ -272,7 +269,8 @@ def getCrops():
                 "crop_source_tag_number":cropData[4],
                 "crop_quantity": cropData[5],
                 "crop_sowing_date" : crop_sowing_date,
-                "crop_harvesting_date": crop_harvesting_date
+                "crop_harvesting_date": crop_harvesting_date,
+                "sold": cropData[8]
             }
             crops.append(crop)
             i = i+1

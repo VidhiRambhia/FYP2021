@@ -38,13 +38,17 @@
                     <div class="form-left">
                         <h2><b>Please register yourself as a Farmer.</b></h2>
 
-
+                    <div class="form-group">
+                        <div class="form-row w-100">
+                            <input type="email" id="email" name="email" pattern="[^@]*@[^@].[^@]*" class="input-text" placeholder="Your email" required>
+                        </div>
+                    </div>
                     <div class="form-group">
 							<div class="form-row form-row-1">
-                                <input type="email" id="email" name="email" pattern="[^@]*@[^@].[^@]*" class="input-text" placeholder="Your email" required>
-                             </div>
-                            <div class="form-row">
-                                <input type="password" name="password" class="input-text" placeholder="Password">
+                                <input type="text" name="farmer_name" id="farmer_name" class="input-text" placeholder="Enter your Name" required>
+                            </div>
+                            <div class="form-row form-row-1">
+                            <input type="password" name="password" class="input-text" placeholder="Password">
                             </div>
                     </div>
 
@@ -54,6 +58,7 @@
                     </div>
 
                     <div id="container">
+
 
                         <div id="plot_form">
 
@@ -128,7 +133,6 @@ $(document).ready(function() {
         
         if (x < max_fields) {
             x++;
-
             $(wrapper).append(plot_form_new); //add input box
 
         } else {

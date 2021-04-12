@@ -53,7 +53,7 @@
                                       <a class="btn btn-lg btn-secondary" style="font-size: medium;margin:3%" data-toggle="collapse" href="#collapseExample{{crop.crop_id}}" role="button" aria-expanded="false" aria-controls="collapseExample">
                                         See more details
                                       </a>
-                                      <a href="/addTransactionDetails?crop_id={{crop.crop_id}}&crop_name={{crop.crop_name}}&crop_quantity={{crop.crop_quantity}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
+                                      {% if crop.sold == false %}<a href="/addTransactionDetails?crop_id={{crop.crop_id}}&crop_name={{crop.crop_name}}&crop_quantity={{crop.crop_quantity}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>{% endif %}
                                     </div>
                                   </div>
                                 </div>

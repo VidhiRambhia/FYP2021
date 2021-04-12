@@ -69,7 +69,6 @@ def login():
 
         email = request.form.get('email')
         password = request.form.get('password')
-
         user = User.query.filter_by(email=email).first()
 
         if not user or not check_password_hash(user.password_hash, password):
@@ -102,8 +101,24 @@ def error():
 @mod_common.route("/addTransactionDetails", methods=["GET", "POST"])
 @login_required
 def addTransactionDetails():
+    sellers = []
+    if current_user.role == 'FARMER':
+        fpc_users = User.query.filter_by(role=ROLE.FPC).all()
+        for fpc in fpc_users:
+            seller = {
+                "name":fpc.name,
+                "address":fpc.address
+            }
+            sellers.append(seller)
+        print(sellers)
+    elif current_user == 'FPC':
+        print("Hello")
+        # Add Retailer sellers
+
     if request.method == 'POST':
-        buyer_name = request.form.get('buyer_name')
+        buyer_address = request.form.get('buyer_name')
+        buyer_user = User.query.filter_by(address=buyer_address).first()
+        buyer_name = buyer_user.name
         seller_name = current_user.email
         crop_name = request.form.get('crop_name')
         product_grade = request.form.get('product_grade')
@@ -111,7 +126,7 @@ def addTransactionDetails():
         quantity =  int(request.form.get('quantity'))
         crop_id = int(request.form.get('crop_id'))
         package_id = buyer_name[:2].upper() + seller_name[:2].upper() + str(random.randint(1, 100000))
-        print(package_id)
+        print(buyer_address)
 
 
         txn_dict = {
@@ -125,18 +140,27 @@ def addTransactionDetails():
 
         if current_user.role == ROLE.FARMER:
             print(request.form)
-            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(current_user.address,current_user.address,package_id,seller_name,buyer_name,crop_id,crop_name,cost,quantity).transact(txn_dict)
-            #print(txn_hash)
+            txn_hash = transactionDetails_contract_instance.functions.f2hTransaction(current_user.address,buyer_address,package_id,seller_name,buyer_name,crop_id,crop_name,cost,quantity).transact(txn_dict)
+            if txn_hash:
+                update_txn_dict = {
+                'from': local_acct.address,
+                'to': cropDetails_contract_address,
+                'value': '0',
+                'gas': 2000000,
+                'gasPrice': w3.toWei('40', 'gwei')
+                }
+                update_txn_hash = cropDetails_contract_instance.functions.setSold(crop_id,current_user.address).transact(update_txn_dict)
         
         elif current_user.role == ROLE.FPC:
             txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(seller_name,buyer_name,package_id,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
             print(txn_hash)
+
             
 
         if 'next' in request.form:
             return redirect(url_for('common.logistics', package_id=package_id))
     
-    return render_template('addTransactionDetails.html', current_user=current_user)
+    return render_template('addTransactionDetails.html', current_user=current_user, sellers=sellers)
 
 
 @mod_common.route("/logistics", methods=["GET", "POST"])
@@ -186,7 +210,9 @@ def displayTransactions():
         print(transactionCropDetails)
         txn = {
             'txn_id': txnId,
+            'seller_type':transactionDetails[0],
             'seller_name': transactionDetails[1],
+            'buyer_type':transactionDetails[2],
             'buyer_name': transactionDetails[3],
             'crop_id': transactionCropDetails[0],
             'crop_name': transactionCropDetails[2],
@@ -197,8 +223,8 @@ def displayTransactions():
         }
         print(txn)
         txns.append(txn)
-    logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
-    for logId in logIds:
-        logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
-        print(logisticsData)
+    # logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
+    # for logId in logIds:
+    #    logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
+    #    print(logisticsData)
     return render_template('displayTransactions.html', current_user=current_user,txns=txns)

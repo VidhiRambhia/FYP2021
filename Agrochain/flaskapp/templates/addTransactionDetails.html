@@ -53,10 +53,16 @@
           
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" name="seller_name" id="seller_name" class="input-text" value="{{current_user.email}}" disabled placeholder="Seller Name" required>
+                            <input type="text" name="seller_name" id="seller_name" class="input-text" value={{current_user.name}} disabled placeholder="Seller Name" required>
                         </div> 
                         <div class="form-row form-row-1">
-                            <input type="text" name="buyer_name" id="buyer_name" class="input-text"  placeholder="Buyer Name" required>
+                            
+                            <select name="buyer_name" id="buyer_name" required>
+                              <option selected="true" disabled>Choose Buyer</option>
+                              {% for seller in sellers %}
+                              <option value="{{seller.address}}">{{seller.name}}</option>
+                              {% endfor %}
+                            </select>
                         </div>
                       </div>
 
