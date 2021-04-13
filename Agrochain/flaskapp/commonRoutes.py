@@ -130,10 +130,13 @@ def addTransactionDetails():
         print(sellers)
 
     if request.method == 'POST':
-        buyer_address = request.form.get('buyer_name')
-        buyer_user = User.query.filter_by(address=buyer_address).first()
-        buyer_name = buyer_user.name
-        seller_name = current_user.email
+        buyer_address = ""
+        buyer_name = ""
+        if request.form.get('buyer_name'):
+            buyer_address = request.form.get('buyer_name')
+            buyer_user = User.query.filter_by(address=buyer_address).first()
+            buyer_name = buyer_user.name
+        seller_name = current_user.name
         crop_name = request.form.get('crop_name')
         product_grade = request.form.get('product_grade')
         cost = int(request.form.get('cost'))
@@ -164,11 +167,15 @@ def addTransactionDetails():
                 update_txn_hash = cropDetails_contract_instance.functions.setSold(crop_id,current_user.address).transact(update_txn_dict)
         
         elif current_user.role == ROLE.FPC:
-            #txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(seller_name,buyer_name,package_id,crop_name,product_grade,cost,quantity,package_id,0,"").transact(txn_dict)
-            #print(txn_hash)
-            print(package_id)
+            prev_package_id = request.form.get('prev_package_id')
+            txn_hash = transactionDetails_contract_instance.functions.h2rTransaction(current_user.address,buyer_address,package_id,seller_name,buyer_name,crop_id,crop_name,product_grade,cost,quantity,prev_package_id).transact(txn_dict)
+            print(txn_hash)
 
-            
+        elif current_user.role == ROLE.RETAIL_STORE:
+            prev_package_id = request.form.get('prev_package_id')
+            txn_hash = transactionDetails_contract_instance.functions.r2cTransaction(current_user.address,package_id,seller_name,crop_id,crop_name,cost,quantity,prev_package_id).transact(txn_dict)
+            print(txn_hash)
+           
 
         if 'next' in request.form:
             return redirect(url_for('common.logistics', package_id=package_id))
@@ -215,14 +222,13 @@ def logistics():
 def displayTransactions():
     transactionIds = transactionDetails_contract_instance.functions.getTransactions(current_user.address).call()
     txns = []
-    print(transactionIds)
     for txnId in transactionIds:
         transactionDetails = transactionDetails_contract_instance.functions.getTxnEntityDetails(txnId).call()
         transactionCropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(txnId).call()
         logisticsDetails = logisticsDetails_contract_instance.functions.getLog(txnId)
-        print(transactionDetails)
-        print(transactionCropDetails)
-        print(logisticsDetails)
+        prev_package_id = transactionDetails_contract_instance.functions.getPrevId(txnId).call()
+        isActive = transactionDetails_contract_instance.functions.getActiveStatus(txnId).call()
+        #print(prev_package_id)
         txn = {
             'txn_id': txnId,
             'seller_type':transactionDetails[0],
@@ -230,11 +236,12 @@ def displayTransactions():
             'buyer_type':transactionDetails[2],
             'buyer_name': transactionDetails[3],
             'crop_id': transactionCropDetails[0],
-            'crop_name': transactionCropDetails[2],
-            'grade': transactionCropDetails[1],
+            'crop_name': transactionCropDetails[1],
+            'grade': transactionCropDetails[2],
             'price' : transactionCropDetails[3],
             'quantity' : transactionCropDetails[4],
-            'remainingQuantity': transactionCropDetails[5]
+            'remainingQuantity': transactionCropDetails[5],
+            'isActive': isActive,
         }
         print(txn)
         txns.append(txn)
