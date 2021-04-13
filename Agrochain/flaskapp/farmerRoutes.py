@@ -135,7 +135,7 @@ def addCropDetails():
                         'gas': 3000000,
                         'gasPrice': w3.toWei('40', 'gwei')
                         }
-            txn_hash = cropDetails_contract_instance.functions.updateCrop(int(crop_id),current_user.address,harvesting_date_int,quantity).transact(txn_dict)
+            txn_hash = cropDetails_contract_instance.functions.updateCrop(int(crop_id),current_user.address,harvesting_date_int,quantity, False).transact(txn_dict)
             return render_template('addCropDetails.html',current_user=current_user,crop=crop)
         crop_name = request.form.get('crop_name')
         crop_type = request.form.get('crop_type')
@@ -164,6 +164,7 @@ def addCropDetails():
         txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int,harvesting_date_int, current_user.address).transact(txn_dict)
         #print(txn_hash)
         print(crop_id)
+        return redirect(url_for('farmer.getCrops'))
     return render_template('addCropDetails.html',current_user=current_user,crop=crop)
 
 @mod_farmer.route("/farmerPage", methods=["GET","POST"])
@@ -174,10 +175,10 @@ def farmerPage():
             return redirect(url_for('farmer.updateFarmerProfile'))
         elif 'addCrop' in request.form:
             return redirect(url_for('farmer.addCropDetails'))
-        elif 'updateCrop' in request.form:
+        elif 'viewCrop' in request.form:
             return redirect(url_for('farmer.getCrops'))
         elif 'transaction' in request.form:
-            return redirect(url_for('common.addTransactionDetails'))
+            return redirect(url_for('common.displayTransactions'))
 
     return render_template('FarmerFunctions.html')
 

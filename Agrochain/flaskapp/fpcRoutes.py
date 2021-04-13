@@ -89,8 +89,8 @@ def fpcPage():
     if request.method=="POST":
         if 'fpcProfile' in request.form:
             return redirect(url_for('fpc.updateFpcProfile'))
-        elif 'addTransaction' in request.form:
-            return redirect(url_for('common.addTransactionDetails'))
+        elif 'viewTransaction' in request.form:
+            return redirect(url_for('common.displayTransactions'))
 
     return render_template('FpcFunctions.html')
 
