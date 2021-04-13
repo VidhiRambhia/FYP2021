@@ -2,6 +2,8 @@
 <html lang="en">
     <head>
         {% include "headerlinks.html" %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../static/css/track.css" rel="stylesheet" type="text/css">
     </head>
 
     <!-- ======= Navbar ======= -->
@@ -42,11 +44,75 @@
                         </div>
                     <div class="form-row ">
                         <div class="col-md-12 text-center">
-                            <button type="button submit" class="btn btn-dark btn-lg" style="padding: 10px; width: 20%;"><h3>Track</h3></button>
+                            <button type="button submit" class="btn btn-dark" style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
                         </div>
                     </div>  
                 </form>
             </div>
-        </div>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                <div class="modal-content">       
+                    <div class="modal-body">
+                        <h2 style="font-weight: 600;">Product Tracking</h2>
+                        <div class="timeline">
+                        <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
+                            <div class="timeline__event__icon ">
+                            <i class="lni-cake"></i>
+                            <div class="timeline__event__date">
+                                01
+                            </div>
+                            </div>
+                            <div class="timeline__event__content ">
+                            <div class="timeline__event__title">
+                                Farmer
+                            </div>
+                            <div class="timeline__event__description">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
+                            <div class="timeline__event__icon">
+                            <i class="lni-burger"></i>
+                            <div class="timeline__event__date">
+                                02
+                            </div>
+                            </div>
+                            <div class="timeline__event__content">
+                            <div class="timeline__event__title">
+                                FPC
+                            </div>
+                            <div class="timeline__event__description">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
+                            <div class="timeline__event__icon">
+                            <i class="lni-slim"></i>
+                            <div class="timeline__event__date">
+                                03
+                            </div>
+                            </div>
+                            <div class="timeline__event__content">
+                            <div class="timeline__event__title">
+                                Retailer
+                            </div>
+                            <div class="timeline__event__description">
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                            </div>   
+                            </div>
+                        </div>
+                        
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <!--Modal ends-->
     </body>
 </html>

@@ -57,6 +57,12 @@
                           </div>
                       </div>
 
+                      <div class="form-group">
+                          <div class="form-row form-row-1">
+                            <input type="text" name="prev_package_id" id="prev_package_id" class="input-text" style="display:none"  placeholder="">
+                          </div>
+                      </div>
+
                       {% if current_user.role != "RETAIL_STORE" %}
                       <div class="form-group">
                         <div class="form-row form-row-1">
@@ -138,6 +144,7 @@
     document.getElementById('crop_id').value = url.searchParams.get("crop_id");
     document.getElementById('quantity').value = url.searchParams.get("crop_quantity");
     document.getElementById('crop_name').value = url.searchParams.get("crop_name");
+    document.getElementById('prev_package_id').value = url.searchParams.get("prev_package_id");
     });
 
 
