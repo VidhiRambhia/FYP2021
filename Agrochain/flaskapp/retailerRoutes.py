@@ -94,8 +94,8 @@ def retailerPage():
     if request.method == "POST":
         if 'retailerProfile' in request.form:
             return redirect(url_for('retailer.updateRetailerProfile'))
-        elif 'addTransaction' in request.form:
-            return redirect(url_for('retailer.addRetailTransactionDetails'))
+        elif 'displayTransactions' in request.form:
+            return redirect(url_for('common.displayTransactions'))
 
     return render_template('retailerFunctions.html')
 
