@@ -32,6 +32,15 @@
 </header><!-- End Navbar -->
         
 <body>
+  <script>
+    function printCard(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    }
+</script>
     <div class="page-wrapper chiller-theme toggled">
         <body class="form-v10">
             <div class="page-content">
@@ -41,7 +50,7 @@
                 {% if txns %}
                     <div class="row">
                         {% for txn in txns %}
-                            <div class="card" style="width: 60%; margin: 3%">
+                            <div class="card" style="width: 60%; margin: 3%" id="printable{{txn.txn_id}}">
                                 <div class="row card-body" style="padding: 18px 24px">
                                   <div class="col-md-6 ">
                                     <h5 class="card-title">Crop Name : {{txn.crop_name}}</h5>
@@ -64,6 +73,7 @@
                                       <li class="list-group-item">Buyer Name : {{txn.buyer_name}}</li>
                                       <li class="list-group-item">Quantity : {{txn.quantity}}</li>
                                       <li class="list-group-item">Price : {{txn.price}}</li>
+                                      <button type="button submit" class="btn btn-lg btn-secondary" style="margin-right: 10px; padding: 10px" name="printButton" onclick="printCard('printable{{txn.txn_id}}')"><h4>Print Receipt</h4></button>
                                       {% if current_user.role != 'FARMER' %}<li class="list-group-item">Grade : {{txn.grade}}</li>{% endif %}
                                       </ul>
                                   </div>
