@@ -1,4 +1,5 @@
-/Agrochain/flaskapp/build/contracts/
+/Agrochain/flaskapp/build/contracts
+/Agrochain/build
 /Agrochain/flaskapp/config/
 /Agrochain/flaskapp/app.db
 /Agrochain/flaskapp/__pycache__

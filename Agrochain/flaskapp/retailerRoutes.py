@@ -152,15 +152,3 @@ def updateRetailerProfile():
                 db.session.commit()
                 flash('Password Updated Successfully')
     return render_template('updateRetailer.html', current_user=current_user, retailer_data=retailer_data)
-
-@mod_retailer.route("/addRetailTransactionDetails", methods=["GET", "POST"])
-@login_required
-def addRetailTransactionDetails():
-    if request.method == 'POST':
-        sell_date = request.form.get('sell_date')
-        sell_date = datetime.datetime(*[int(item) for item in sell_date.split('-')])
-        sell_date_int = int(sell_date.strftime('%Y%m%d'))
-        cost = request.form.get('cost')
-        quantity = request.form.get('quantity')
-        print(cost)
-    return render_template('addTransactionDetails.html', current_user=current_user)
