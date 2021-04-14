@@ -223,6 +223,7 @@ def logistics():
 @mod_common.route("/displayTransactions", methods=["GET", "POST"])
 @login_required
 def displayTransactions():
+    txnFilter = "all"
     transactionIds = transactionDetails_contract_instance.functions.getTransactions(current_user.address).call()
     txns = []
     for txnId in transactionIds:
@@ -248,11 +249,28 @@ def displayTransactions():
         }
         print(txn)
         txns.append(txn)
+    if request.method == "POST":
+        txnFilter = request.form.get('txnFilter')
+        if txnFilter == "bought":
+            txnsFiltered = []
+            for txn in txns:
+                print(txn)
+                if txn['buyer_name'] == current_user.name:
+                    txnsFiltered.append(txn)
+            return render_template('displayTransactions.html', current_user=current_user,txns=txnsFiltered,txnFilter=txnFilter)
+        elif txnFilter == "sold":
+            txnsFiltered = []
+            for txn in txns:      
+                if txn['seller_name'] == current_user.name:
+                    txnsFiltered.append(txn)
+            return render_template('displayTransactions.html', current_user=current_user,txns=txnsFiltered,txnFilter=txnFilter)
+
+
     # logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
     # for logId in logIds:
     #    logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
     #    print(logisticsData)
-    return render_template('displayTransactions.html', current_user=current_user,txns=txns)
+    return render_template('displayTransactions.html', current_user=current_user,txns=txns,txnFilter=txnFilter)
 
 @mod_common.route("/tracking", methods=["GET", "POST"])
 def tracking():
@@ -282,11 +300,11 @@ def tracking():
     }
     if request.method == 'POST':
         r2c_id = request.form.get('t_id')
-        print(r2c_id)
+        #print(r2c_id)
         h2r_id = transactionDetails_contract_instance.functions.getPrevId(r2c_id).call()
-        print(h2r_id)
+        #print(h2r_id)
         f2h_id = transactionDetails_contract_instance.functions.getPrevId(h2r_id).call()
-        print(f2h_id)
+        #print(f2h_id)
 
         # farmer side details
         f2h_logistics = logisticsDetails_contract_instance.functions.getLog(f2h_id).call()
@@ -332,6 +350,6 @@ def tracking():
             'quantity' : r2c_crop[4],
             'soldBy' : r2c_entities[1]
         }
-        print(txn_log)
-    #time.sleep()
+        #print(txn_log)
+    #time.sleep(10)
     return render_template('customer.html', txn_log= txn_log)
