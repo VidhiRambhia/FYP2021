@@ -1,37 +1,7 @@
 <html>
     <head>
         
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-            crossorigin="anonymous">
-        <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-        <title>Update Profile</title>
-        
-        <!-- Mobile Specific Metas -->
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-        <!-- Font-->
-        <link rel="stylesheet" type="text/css" href="../static/css/montserrat-font.css">
-        <link rel="stylesheet" type="text/css" href="../static/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
-            <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-        <!-- Main Style Css -->
-        <link rel="stylesheet" href="../static/css/index.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        
-        <!-- Vendor CSS Files -->
-        <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="../static/vendor/icofont/icofont.min.css" rel="stylesheet">
-        <link href="../static/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-        <link href="../static/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="../static/vendor/venobox/venobox.css" rel="stylesheet">
-        <link href="../static/vendor/aos/aos.css" rel="stylesheet">
-
-        <!-- Template Main CSS File -->
-        <link href="../static/css/style.css" rel="stylesheet">
-        <link href="../static/css/sidebarCombined.css" rel="stylesheet">
+        {% include "headerlinks.html" %}
 
 
 <!-- ======= Navbar ======= -->
@@ -113,11 +83,11 @@
                                 <div id="plot_{{i}}">
                                     <div class="form-group">
                                         <div class="form-row form-row-1" style="width: 45%;">
-                                            <label for="plot_number_{{i}}" style="margin-left: 10px;"><h5>Plot Number</h5></label>
+                                            <label for="plot_number_{{i}}">Plot Number</label>
                                             <input type="text" name="plot_number_{{i}}" class="input-text" value="{{plots[i].plot_number}}">
                                         </div>
                                         <div class="form-row form-row-1" style="width: 45%;">
-                                            <label for="plot_owner_{{i}}"><h5>Plot Owner</h5></label>
+                                            <label for="plot_owner_{{i}}">Plot Owner</label>
                                             <input type="text" name="plot_owner_{{i}}" class="input-text" value="{{plots[i].plot_owner}}">
                                         </div>
                                         <div class="form-row form-row-1" style="width: 20%;">
@@ -126,7 +96,7 @@
                                     </div>                              
                                     <div class="form-group">
                                         <div class="form-row form-row-1" style="width: 85%;">
-                                            <label for="plot_address_{{i}}" style="margin-left: 10px;"><h5>Plot Address</h5></label>
+                                            <label for="plot_address_{{i}}">Plot Address</label>
                                             <input type="text" name="plot_address_{{i}}" class="input-text" value="{{plots[i].plot_address}}">
                                         </div>                                        
                                     </div>
@@ -136,8 +106,6 @@
                                 {% endif %}
                             
                             </div>
-                            
-
                             <div id="plot_form">
                                 <!-- <div hidden>
     
@@ -159,75 +127,16 @@
         
                             <div class="form-row">
                                 <button id="add_form_field" type="button" class="btn btn-link"><h3 style="color: green;">+ Add Another Plot</h3></button>
-                            </div>
-
-                                
-                            </div>
-    
+                            </div> 
+                        </div>   
                         </div> 
-    
                         <div class="form-row form-row-1 " style="margin-top: 15px;">
                             <button type="button submit" class="btn btn-dark btn-lg margin-left:20px;" name="update" onclick="window.location.replace(URL);"><h3>Submit</h3></button>
                         </div>
                         </div>
                     </form>
                 </div>
-
-          <!--Sidebar for navigation starts-->
-          <nav id="sidebar" class="sidebar-wrapper">
-            <div class="sidebar-content">
-
-                <div class="logo mr-auto">
-                    <h1 class="text-light">
-                      <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid" style="max-width: 50%; max-height: 50px; padding: 5px;"></a>Agrichain
-                </h1>
-                </div>
-
-              <div class="sidebar-header mt-0">  
-
-                <div class="user-info">
-                  <span class="user-name">
-                    <strong><h3>{{current_user.email}}</h3></strong>
-                  </span>
-                  <span class="user-role">{{current_user.role}}</span>
-                </div>
-              </div>
-              
-              <!-- sidebar-links  -->
-              <div class="sidebar-menu">
-                <ul>
-                  <li class="header-menu">
-                    <span>General</span>
-                  </li>
-                  <li class="sidebar">  
-                    <a href="/addCropDetails">
-                      <i class="fas fa-plus-circle"></i>
-                      <span>Add Crop Details</span>
-                    </a>
-                  </li>
-                  <li class="sidebar">
-                    <a href="/getCrops">
-                      <i class="fas fa-pen-square"></i>
-                      <span>My Crop Details</span>
-                    </a>
-                  </li>
-                  <li class="sidebar">
-                    <a href="/updateFarmerProfile">
-                      <i class="far fa-id-badge"></i>
-                      <span>Update Profile</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-calendar"></i>
-                      <span>Calendar</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <!-- sidebar-menu  -->
-            </div>
-          </nav>
+                {% extends "sidebar.html" %}
         </div>
     </body>
 

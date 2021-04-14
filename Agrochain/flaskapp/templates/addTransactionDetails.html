@@ -66,10 +66,11 @@
                       {% if current_user.role != "RETAIL_STORE" %}
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" name="seller_name" id="seller_name" class="input-text" value={{current_user.name}} disabled placeholder="Seller Name" required>
+                            <label for="">Seller Name</label>
+                            <input type="text" name="seller_name" id="seller_name" class="input-text" value={{current_user.name}} disabled placeholder="" required>
                         </div> 
                         <div class="form-row form-row-1">
-                            
+                          <label for="">Buyer</label>
                             <select name="buyer_name" id="buyer_name" required>
                               <option selected="true" disabled>Choose Buyer</option>
                               {% for seller in sellers %}
@@ -81,21 +82,25 @@
 
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                            <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                          <label for="">Crop Name</label>
+                            <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="" required>
                         </div>
                           <div class="form-row form-row-1">
-                            <input type="number" name="quantity" id="quantity" class="input-text"  placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+                            <label for="">Quantity (in kgs) </label>
+                            <input type="number" name="quantity" id="quantity" class="input-text"  placeholder="" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
                           </div>
                       </div>
 
                       <div class="form-group">
                         {% if current_user.role == 'FPC' %}
                         <div class="form-row form-row-1">
-                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="Product Grade" required>
+                          <label for="">Product Grade</label>
+                          <input type="text" name="product_grade" id="grade" class="input-text" placeholder="" required>
                         </div>
                         {% endif %}
                         <div class="form-row form-row-1">
-                          <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost (in INR)" required>
+                          <label for="">Cost (in INR)</label>
+                          <input type="number" name="cost" id="cost" class="input-text" placeholder="" required>
                         </div>
                       </div>
 
@@ -106,19 +111,23 @@
 
                       {% if current_user.role == "RETAIL_STORE" %}
                       <div class="form-row form-row-1">
-                        <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" required>
+                        <label for="">Crop Name</label>
+                        <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="" required>
                       </div>
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                          <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+                          <label for="">Quantity (in kgs) </label>
+                          <input type="number" name="quantity" id="quantity" class="input-text" placeholder="" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
                         </div>
                         <div class="form-row form-row-1">
-                          <input type="number" name="cost" id="cost" class="input-text" placeholder="Cost(MRP)" required>
+                          <label for="">Cost (MRP)</label>
+                          <input type="number" name="cost" id="cost" class="input-text" placeholder="" required>
                         </div>
                       </div>
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                          <input class="form-control" type="date"  style="margin-left: 1px;" name="sell_date" id="sell_date" required>
+                          <label for="">Selling Date</label>
+                          <input class="form-control" type="date" style="margin-left: 1px;" name="sell_date" id="sell_date" required>
                         </div>
                       </div>
                       <div class="form-row">

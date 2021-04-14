@@ -180,8 +180,8 @@ def addTransactionDetails():
 
         if 'next' in request.form:
             return redirect(url_for('common.logistics', package_id=package_id))
-        
-        return displayTransactions()
+        return displayTransactions()    
+             
     
     return render_template('addTransactionDetails.html', current_user=current_user, sellers=sellers)
 
@@ -310,12 +310,14 @@ def tracking():
     }
     if request.method == 'POST':
         r2c_id = request.form.get('t_id')
-        #print(r2c_id)
+        print(r2c_id)
         h2r_id = transactionDetails_contract_instance.functions.getPrevId(r2c_id).call()
-        #print(h2r_id)
+        print(h2r_id)
         f2h_id = transactionDetails_contract_instance.functions.getPrevId(h2r_id).call()
-        #print(f2h_id)
+        print(f2h_id)
 
+        if(h2r_id =="" or f2h_id ==""):
+            return render_template('404.html')
         # farmer side details
         f2h_logistics = logisticsDetails_contract_instance.functions.getLog(f2h_id).call()
         f2h_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(f2h_id).call()

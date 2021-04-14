@@ -47,11 +47,13 @@
           
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                          <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="Crop Name" {% if crop %} value = "{{crop.crop_name}}" disabled {% endif %} required>
+                          <label for="cropname">Crop Name</label>
+                          <input type="text" name="crop_name" id="crop_name" class="input-text" placeholder="" {% if crop %} value = "{{crop.crop_name}}" disabled {% endif %} required>
                         </div>
                         <div class="form-row form-row-2">
+                          <label for="">Choose Crop Type</label>
                           <select name="crop_type" {% if crop %} disabled  {% endif %} required>
-                            <option {% if crop %} value = "{{crop.crop_type}}"  {% else %} value = "Choose Crop Type" {% endif %}>{% if crop %} {{crop.crop_type}} {% else %} Choose Crop Type {% endif %}</option>
+                            <option {% if crop %} value = "{{crop.crop_type}}"  {% else %} value = "Choose Crop Type" {% endif %}>Type</option>
                             <option value="fruits">Fruits</option>
                             <option value="vegetables">Vegetables</option>
                           </select>
@@ -62,15 +64,18 @@
                       </div>
                       <div class="form-group">
                         <div class="form-row form-row-1">
-                          <input type="text" name="fertilizer" id="fertilizer" class="input-text" placeholder="Fertilizers used" {% if crop %} value = "{{crop.crop_fertilizer}}" disabled{% endif %} required>
+                          <label for="">Fertilizer</label>
+                          <input type="text" name="fertilizer" id="fertilizer" class="input-text" placeholder="" {% if crop %} value = "{{crop.crop_fertilizer}}" disabled{% endif %} required>
                         </div>
                         <div class="form-row form-row-2">
-                            <input type="number" name="quantity" id="quantity" class="input-text" placeholder="Quantity(in kgs)" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
-                          </div>
+                          <label for="">Quantity (in kgs)</label>
+                          <input type="number" name="quantity" id="quantity" class="input-text" placeholder="" {% if crop %} value = "{{crop.crop_quantity}}" {% endif %} required>
+                        </div>
                       </div>
                       <div class="form-group">
                         <div class="form-row form-detail">
-                          <input type="text" name="source_tag_number" id="source_tag_number" class="input-text" placeholder="Source Tag Number" {% if crop %} value = "{{crop.crop_source_tag_number}}" disabled {% endif %} required>
+                          <label for="">Source tag Number</label>
+                          <input type="text" name="source_tag_number" id="source_tag_number" class="input-text" placeholder="" {% if crop %} value = "{{crop.crop_source_tag_number}}" disabled {% endif %} required>
                         </div>
                       </div>
                       
