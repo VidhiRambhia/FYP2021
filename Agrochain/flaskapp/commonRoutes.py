@@ -221,6 +221,7 @@ def logistics():
 @mod_common.route("/displayTransactions", methods=["GET", "POST"])
 @login_required
 def displayTransactions():
+    txnFilter = "all"
     transactionIds = transactionDetails_contract_instance.functions.getTransactions(current_user.address).call()
     txns = []
     for txnId in transactionIds:
@@ -246,8 +247,25 @@ def displayTransactions():
         }
         print(txn)
         txns.append(txn)
+    if request.method == "POST":
+        txnFilter = request.form.get('txnFilter')
+        if txnFilter == "bought":
+            txnsFiltered = []
+            for txn in txns:
+                print(txn)
+                if txn['buyer_name'] == current_user.name:
+                    txnsFiltered.append(txn)
+            return render_template('displayTransactions.html', current_user=current_user,txns=txnsFiltered,txnFilter=txnFilter)
+        elif txnFilter == "sold":
+            txnsFiltered = []
+            for txn in txns:      
+                if txn['seller_name'] == current_user.name:
+                    txnsFiltered.append(txn)
+            return render_template('displayTransactions.html', current_user=current_user,txns=txnsFiltered,txnFilter=txnFilter)
+
+
     # logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
     # for logId in logIds:
     #    logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
     #    print(logisticsData)
-    return render_template('displayTransactions.html', current_user=current_user,txns=txns)
+    return render_template('displayTransactions.html', current_user=current_user,txns=txns,txnFilter=txnFilter)
