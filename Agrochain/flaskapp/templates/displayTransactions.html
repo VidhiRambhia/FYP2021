@@ -77,13 +77,19 @@
                                 <div class="row card-body" style="padding: 18px 24px">
                                   <div class="col-md-6 ">
                                     <h5 class="card-title">Crop Name : {{txn.crop_name}}</h5>
+
                                     {% if txn.buyer_name == current_user.name %}
-                                    <p class="card-text">Seller Name : {{txn.seller_name}}</p>
+                                    <h3 class="card-text mb-1">Seller Name : {{txn.seller_name}}</h3>
                                     {% elif current_user.role != 'RETAIL_STORE' %}
-                                    <p class="card-text">Buyer Name : {{txn.buyer_name}}</p>
+                                    <h3 class="card-text mb-1">Buyer Name : {{txn.buyer_name}}</h3>
                                     {% else %}
-                                    <p class="card-text">Buyer: Customer</p>
+                                    <h3 class="card-text mb-1">Buyer: Customer</h3>
                                     {% endif %}
+
+                                    {% if current_user.role != 'FARMER' and txn.isActive %}
+                                    <p class="card-text">Quantity Remaining: {{txn.remaining_quantity}}</p>
+                                    {% endif %}
+
                                   </div>
                                   <div class="col-md-6">
                                     <div class="row">
@@ -91,7 +97,7 @@
                                         See more details
                                       </a>
                                       {% if current_user.role != 'FARMER' and txn.isActive and txn.buyer_name == current_user.name %}
-                                      <a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.remainingQuantity}}&crop_name={{txn.crop_name}}&prev_package_id={{txn.txn_id}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
+                                      <a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.remaining_quantity}}&crop_name={{txn.crop_name}}&prev_package_id={{txn.txn_id}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
                                       {% else %}<button disabled type="button" style="font-size: medium;margin:3%" class="btn btn-success">Sold</button>
                                       {% endif %}
                                     </div>
@@ -101,11 +107,22 @@
                                 <div class="collapse" id="collapseExample{{txn.txn_id}}">
                                   <div class="card card-body">
                                     <ul class="list-group list-group-flush">
+                                      <li class="list-group-item"><b><h3>Package Information</h3></b></li>
                                       <li class="list-group-item">Package ID : {{txn.txn_id}}</li>
                                       {% if current_user.role != 'RETAIL_STORE' %}<li class="list-group-item">Buyer Name : {{txn.buyer_name}}</li>{% endif %}
-                                      <li class="list-group-item">Quantity : {{txn.quantity}}</li>
-                                      <li class="list-group-item">Price : {{txn.price}}</li>
-                                      {% if current_user.role == 'FPC' %}<li class="list-group-item">Grade : {{txn.grade}}</li>{% endif %}
+                                      <li class="list-group-item">Total Purchased Quantity : {{txn.quantity}} kgs</li>
+                                      <li class="list-group-item">Price : Rs. {{txn.price}}</li>
+                                      {% if txn.seller_type == 1 %}<li class="list-group-item">Grade : {{txn.grade}}</li>{% endif %}
+
+                                      {% if txn.seller_type != 3 %}
+                                      <li class="list-group-item"><b><h3>Logistics Information</h3></b></li>
+                                      <li class="list-group-item">Vehicle Type : {{txn.vehicle_type}}</li>
+                                      <li class="list-group-item">Vehicle Number: {{txn.vehicle_number}}</li>
+                                      <li class="list-group-item">Driver Name : {{txn.driver_name}}</li>
+                                      <li class="list-group-item">Driver Contact : {{txn.driver_contact}}</li>
+                                      <li class="list-group-item">Dispatched On : {{txn.dispatch_date}}</li>
+                                      {% endif %}
+
                                       {% if not txn.isActive %}
                                       <button type="button submit" class="btn btn-lg btn-secondary" style="margin-right: 10px; padding: 10px" name="printButton" onclick="printCard('printable{{txn.txn_id}}')"><h4>Print Receipt</h4></button>
                                       {% endif %}

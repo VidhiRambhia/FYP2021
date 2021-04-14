@@ -229,10 +229,9 @@ def displayTransactions():
     for txnId in transactionIds:
         transactionDetails = transactionDetails_contract_instance.functions.getTxnEntityDetails(txnId).call()
         transactionCropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(txnId).call()
-        logisticsDetails = logisticsDetails_contract_instance.functions.getLog(txnId)
         prev_package_id = transactionDetails_contract_instance.functions.getPrevId(txnId).call()
         isActive = transactionDetails_contract_instance.functions.getActiveStatus(txnId).call()
-        #print(prev_package_id)
+
         txn = {
             'txn_id': txnId,
             'seller_type':transactionDetails[0],
@@ -244,9 +243,25 @@ def displayTransactions():
             'grade': transactionCropDetails[2],
             'price' : transactionCropDetails[3],
             'quantity' : transactionCropDetails[4],
-            'remainingQuantity': transactionCropDetails[5],
+            'remaining_quantity': transactionCropDetails[5],
             'isActive': isActive,
+            'vehicle_type': None,
+            'vehicle_number':None,
+            'driver_name':None,
+            'driver_contact':None,
+            'dispatch_date':None,
+
         }
+        if transactionDetails[0] != 3:
+            logisticsDetails = logisticsDetails_contract_instance.functions.getLog(txnId).call()
+            dispatch_date = list(str(logisticsDetails[5]))
+            dispatch_date = ''.join(dispatch_date[6:8]) + '-'  + ''.join(dispatch_date[4:6]) +  '-' + ''.join(dispatch_date[0:4]) 
+            txn['vehicle_type'] = logisticsDetails[1]
+            txn['vehicle_number']= logisticsDetails[2]
+            txn['driver_name']= logisticsDetails[3]
+            txn['driver_contact']= logisticsDetails[4]
+            txn['dispatch_date']= dispatch_date
+
         print(txn)
         txns.append(txn)
     if request.method == "POST":
@@ -265,11 +280,6 @@ def displayTransactions():
                     txnsFiltered.append(txn)
             return render_template('displayTransactions.html', current_user=current_user,txns=txnsFiltered,txnFilter=txnFilter)
 
-
-    # logIds = logisticsDetails_contract_instance.functions.getAllLogs().call()
-    # for logId in logIds:
-    #    logisticsData = logisticsDetails_contract_instance.functions.getLog(logId).call()
-    #    print(logisticsData)
     return render_template('displayTransactions.html', current_user=current_user,txns=txns,txnFilter=txnFilter)
 
 @mod_common.route("/tracking", methods=["GET", "POST"])
