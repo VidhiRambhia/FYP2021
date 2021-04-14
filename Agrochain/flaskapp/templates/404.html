@@ -1,7 +1,39 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        {% include "headerlinks.html" %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="../static/css/track.css" rel="stylesheet" type="text/css">
     </head>
-    <body>
-        Error
+
+    <!-- ======= Navbar ======= -->
+    <header id="header" class="fixed-top">
+        <div class="container d-flex">
+            <div class="logo mr-auto">
+                <h1 class="text-light"><a href="home">
+                  <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid"></a>Agrichain
+                </a></h1>
+                <!-- Uncomment below if you prefer to use an image logo -->
+              </div>
+          <nav class="nav-menu d-none d-lg-block">
+            <ul>
+              <li><a href="home">Home</a></li>
+              <li><a href="/#about">About</a></li>
+              <li><a href="/#steps">Model</a></li>
+              <li class="active"><a href="login">Login</a></li>
+              <li><a href="chooseRole">Register</a></li>
+              <li><a href="/#team">Team</a></li>
+            </ul>
+          </nav><!-- .nav-menu -->
+        </div>
+    </header><!-- End Navbar -->
+
+    <body class="form-v10">
+        <div class="page-content">  
+            <div class="form-v10-content" style=width:750px; >
+                <h2 style="margin: 5%; text-align:center;">Opps you entered the wrong Tracking ID</h2>
+                <h3 style="margin: 5%; text-align:center;"><a href="/tracking">Go Back</a></h3>
+            </div>
+        </div>
     </body>
 </html>
