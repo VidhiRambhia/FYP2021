@@ -180,6 +180,8 @@ def addTransactionDetails():
 
         if 'next' in request.form:
             return redirect(url_for('common.logistics', package_id=package_id))
+        
+        return displayTransactions()
     
     return render_template('addTransactionDetails.html', current_user=current_user, sellers=sellers)
 
