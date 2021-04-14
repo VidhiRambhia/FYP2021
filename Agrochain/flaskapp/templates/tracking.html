@@ -45,7 +45,7 @@
                     <div class="form-row ">
                         <div class="col-md-12 text-center">
                             <button id="submitbutton" name="submitbutton" class="btn btn-dark"
-                            style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
+                            style="padding: 5px; width: 20%;"><h3>Track</h3></button>
                         </div>
                     </div>  
                 </form>
@@ -87,7 +87,7 @@
                                 Farmer
                             </div>
                             </div>
-                            <div class="timeline__event__content ">
+                            <div class="timeline__event__content">
                             <div class="timeline__event__title">
                                 {{txn_log.f2h.soldBy}}
                             </div>
@@ -157,14 +157,14 @@
                 </div>
             </div>
             <!--Modal ends-->
-
-            {% block javascript %}
-            <script type="text/javascript">
-                var cName = "{{txn_log.cropDetails.cropName}}";
-                if(cName != ""){
-                document.getElementById("exampleModal").style.visibility = "visible";
-                }        
-            </script>
-            {% endblock %}
     </body>
+    <script>
+        var displayModal = {{displayModal}};
+        console.log(displayModal)
+        if(displayModal==1)
+        {
+            $("#exampleModal").modal("show");
+        }
+
+    </script>
 </html>

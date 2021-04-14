@@ -284,6 +284,7 @@ def displayTransactions():
 
 @mod_common.route("/tracking", methods=["GET", "POST"])
 def tracking():
+    displayModal = 0
     txn_log = {}
     txn_log['cropDetails'] = {
         'cropName' : '',
@@ -309,6 +310,7 @@ def tracking():
         'soldBy' : ''
     }
     if request.method == 'POST':
+        displayModal = 1
         r2c_id = request.form.get('t_id')
         print(r2c_id)
         h2r_id = transactionDetails_contract_instance.functions.getPrevId(r2c_id).call()
@@ -364,4 +366,4 @@ def tracking():
         }
         #print(txn_log)
     #time.sleep(10)
-    return render_template('customer.html', txn_log= txn_log)
+    return render_template('tracking.html', txn_log= txn_log, displayModal = displayModal)
