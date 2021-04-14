@@ -284,16 +284,18 @@ def tracking():
         print(h2r_id)
         f2h_id = transactionDetails_contract_instance.functions.getPrevId(h2r_id).call()
         print(f2h_id)
-        cropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(h2r_id).call()
-
 
         # farmer side details
         f2h_logistics = logisticsDetails_contract_instance.functions.getLog(f2h_id).call()
         f2h_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(f2h_id).call()
+        cropId = transactionDetails_contract_instance.functions.getTxnCropDetails(f2h_id).call()[0]
+        cropDetailsFarmer = cropDetails_contract_instance.functions.getCrop2(f2h_entities[4], cropId).call()
+        # print(cropDetailsFarmer)
 
         # fpc side details
         h2r_logistics = logisticsDetails_contract_instance.functions.getLog(h2r_id).call()
         h2r_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(h2r_id).call()
+        cropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(h2r_id).call()
 
         # retailer side details
         r2c_crop = transactionDetails_contract_instance.functions.getTxnCropDetails(r2c_id).call()
@@ -301,7 +303,10 @@ def tracking():
         
         txn_log['cropDetails'] = {
             'cropName' : cropDetails[1],
-            'cropGrade' : cropDetails[2]    
+            'cropGrade' : cropDetails[2],
+            'fertilizerUsed' : cropDetailsFarmer[0],
+            'sowingDate' : str(cropDetailsFarmer[2])[:4] + '-' + str(cropDetailsFarmer[2])[4:6] + '-' + str(cropDetailsFarmer[2])[6:],
+            'harvestDate' : str(cropDetailsFarmer[3])[:4] + '-' + str(cropDetailsFarmer[3])[4:6] + '-' + str(cropDetailsFarmer[3])[6:],  
         }
 
         txn_log['f2h'] = {

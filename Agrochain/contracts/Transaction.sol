@@ -18,6 +18,7 @@ struct Transaction{
     string prevId;
     string nextId;
     bool active;
+    address sellerAddress;
 }
 
 contract TransactionDetails{
@@ -30,7 +31,7 @@ contract TransactionDetails{
 
     function f2hTransaction(address seller, address buyer, string memory _packageId, string memory _sellerName, string memory _buyerName, uint _cropId, string memory _cropName, uint _price, uint _quantity)
     public {
-        Transaction memory new_txn = Transaction(_packageId, 0, _sellerName, 1, _buyerName, _cropId, _cropName,"", _price, _quantity, _quantity, "", "", true);
+        Transaction memory new_txn = Transaction(_packageId, 0, _sellerName, 1, _buyerName, _cropId, _cropName,"", _price, _quantity, _quantity, "", "", true, seller);
 
         // new_txn.packageId = _packageId;
         // new_txn.sellerType = 0;
@@ -51,7 +52,7 @@ contract TransactionDetails{
 
     function h2rTransaction(address seller, address buyer, string memory _packageId, string memory _sellerName, string memory _buyerName, uint _cropId, string memory _cropName,string memory _grade, uint _price, uint _quantity, string memory _prevId)
     public {
-        Transaction memory new_txn = Transaction(_packageId, 1, _sellerName, 2, _buyerName, _cropId, _cropName,_grade, _price, _quantity, _quantity, _prevId, "", true);
+        Transaction memory new_txn = Transaction(_packageId, 1, _sellerName, 2, _buyerName, _cropId, _cropName,_grade, _price, _quantity, _quantity, _prevId, "", true, seller);
         txns[_prevId].remainingQuantity = txns[_prevId].remainingQuantity - _quantity;
 
         if(txns[_prevId].remainingQuantity == 0){
@@ -78,7 +79,7 @@ contract TransactionDetails{
 
     function r2cTransaction(address seller, string memory _packageId, string memory _sellerName, uint _cropId, string memory _cropName, uint _price, uint _quantity, string memory _prevId)
     public {
-        Transaction memory new_txn = Transaction(_packageId, 2, _sellerName, 3, "", _cropId, _cropName , "",  _price, _quantity, 0, _prevId, "", false);
+        Transaction memory new_txn = Transaction(_packageId, 2, _sellerName, 3, "", _cropId, _cropName , "",  _price, _quantity, 0, _prevId, "", false, seller);
         txns[_prevId].remainingQuantity = txns[_prevId].remainingQuantity - _quantity;
         //if all crop quantity is exhausted, make prev h2r txn inactive
         if(txns[_prevId].remainingQuantity == 0){
@@ -102,8 +103,8 @@ contract TransactionDetails{
     }
 
     function getTxnEntityDetails(string memory tid) view public
-    returns(uint, string memory, uint, string memory){
-        return(txns[tid].sellerType, txns[tid].sellerName, txns[tid].buyerType, txns[tid].buyerName);
+    returns(uint, string memory, uint, string memory, address _address){
+        return(txns[tid].sellerType, txns[tid].sellerName, txns[tid].buyerType, txns[tid].buyerName, txns[tid].sellerAddress);
     }
 
     function getPrevId(string memory tid) view public
