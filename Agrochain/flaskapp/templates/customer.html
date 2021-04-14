@@ -44,7 +44,8 @@
                         </div>
                     <div class="form-row ">
                         <div class="col-md-12 text-center">
-                            <button id="submitbutton" name="submitbutton"  class="btn btn-dark" style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
+                            <button id="submitbutton" name="submitbutton" class="btn btn-dark"
+                            style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
                         </div>
                     </div>  
                 </form>
@@ -159,10 +160,10 @@
 
             {% block javascript %}
             <script type="text/javascript">
-                var cName = "{{txn_log.f2h.txn_id}}";
+                var cName = "{{txn_log.cropDetails.cropName}}";
                 if(cName != ""){
                 document.getElementById("exampleModal").style.visibility = "visible";
-                }               
+                }        
             </script>
             {% endblock %}
     </body>
