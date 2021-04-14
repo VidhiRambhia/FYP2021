@@ -32,6 +32,15 @@
 </header><!-- End Navbar -->
         
 <body>
+  <script>
+    function printCard(divName) {
+      var printContents = document.getElementById(divName).innerHTML;
+      var originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    }
+</script>
     <div class="page-wrapper chiller-theme toggled">
         <body class="form-v10">
             <div class="page-content">
@@ -41,7 +50,7 @@
                 {% if txns %}
                     <div class="row">
                         {% for txn in txns %}
-                            <div class="card" style="width: 60%; margin: 3%">
+                            <div class="card" style="width: 60%; margin: 3%" id="printable{{txn.txn_id}}">
                                 <div class="row card-body" style="padding: 18px 24px">
                                   <div class="col-md-6 ">
                                     <h5 class="card-title">Crop Name : {{txn.crop_name}}</h5>
@@ -59,7 +68,7 @@
                                         See more details
                                       </a>
                                       {% if current_user.role != 'FARMER' and txn.isActive and txn.buyer_name == current_user.name %}
-                                      <a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.quantity}}&crop_name={{txn.crop_name}}&prev_package_id={{txn.txn_id}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
+                                      <a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.remainingQuantity}}&crop_name={{txn.crop_name}}&prev_package_id={{txn.txn_id}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
                                       {% else %}<button disabled type="button" style="font-size: medium;margin:3%" class="btn btn-success">Sold</button>
                                       {% endif %}
                                     </div>
@@ -74,7 +83,10 @@
                                       <li class="list-group-item">Quantity : {{txn.quantity}}</li>
                                       <li class="list-group-item">Price : {{txn.price}}</li>
                                       {% if current_user.role == 'FPC' %}<li class="list-group-item">Grade : {{txn.grade}}</li>{% endif %}
-                                      </ul>
+                                      {% if not txn.isActive %}
+                                      <button type="button submit" class="btn btn-lg btn-secondary" style="margin-right: 10px; padding: 10px" name="printButton" onclick="printCard('printable{{txn.txn_id}}')"><h4>Print Receipt</h4></button>
+                                      {% endif %}
+                                    </ul>
                                   </div>
                                 </div>
                             </div>

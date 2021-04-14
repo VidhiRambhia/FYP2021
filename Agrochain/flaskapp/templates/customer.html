@@ -31,9 +31,9 @@
     <body class="form-v10">
         <div class="page-content">  
             <div class="form-v10-content" style=width:750px; >
-                <form class="form-detail" action="" method="POST" id="myform">
+                <form class="form-detail" action="/tracking" method="POST" id="myform">
                     <div class="form-left">
-                            <h2 style="text-align: center;"><b>Customer : {{current_user.email}}</b></h2>
+                            <h2 style="text-align: center;"><b>Customer</b></h2>
                         <div class="form-group">
                             <div class="form-row form-row-1">
                                 <p style="font-size: large;">Enter the tracking ID to trace product path</p>
@@ -44,7 +44,7 @@
                         </div>
                     <div class="form-row ">
                         <div class="col-md-12 text-center">
-                            <button type="button submit" class="btn btn-dark" style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
+                            <button id="submitbutton" name="submitbutton" type="submit" class="btn btn-dark" style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
                         </div>
                     </div>  
                 </form>
@@ -56,51 +56,93 @@
                     <div class="modal-body">
                         <h2 style="font-weight: 600;">Product Tracking</h2>
                         <div class="timeline">
-                        <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type1">
+                            <div class="timeline__event  animated fadeInUp delay-4s timeline__event--type1">
+                                <div class="timeline__event__icon ">
+                                <i class="lni-cake"></i>
+                                <div class="timeline__event__date">
+                                    01
+                                </div>
+                                </div>
+                                <div class="timeline__event__content ">
+                                <div class="timeline__event__title">
+                                    Crop : {{txn_log.cropDetails.cropName}}
+                                </div>
+                                <div class="timeline__event__description">
+                                    <p>
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item">Grade : {{txn_log.cropDetails.cropGrade}}</li>
+                                            <li class="list-group-item">Fertilizer Used : {{txn_log.cropDetails.fertilizerUsed}}</li>
+                                            <li class="list-group-item">Sowing Date : {{txn_log.cropDetails.sowingDate}}</li>
+                                            <li class="list-group-item">Harvesting Date : {{txn_log.cropDetails.harvestDate}}</li>
+                                        </ul>
+                                    </p>
+                                </div>
+                                </div>
+                            </div>
+                        <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type2">
                             <div class="timeline__event__icon ">
                             <i class="lni-cake"></i>
-                            <div class="timeline__event__date">
-                                01
-                            </div>
-                            </div>
-                            <div class="timeline__event__content ">
-                            <div class="timeline__event__title">
-                                Farmer
-                            </div>
-                            <div class="timeline__event__description">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="timeline__event animated fadeInUp delay-2s timeline__event--type2">
-                            <div class="timeline__event__icon">
-                            <i class="lni-burger"></i>
                             <div class="timeline__event__date">
                                 02
                             </div>
                             </div>
-                            <div class="timeline__event__content">
+                            <div class="timeline__event__content ">
                             <div class="timeline__event__title">
-                                FPC
+                                Farmer : {{txn_log.f2h.soldBy}}
                             </div>
                             <div class="timeline__event__description">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                                <p>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Transaction ID : {{txn_log.f2h.txn_id}}</li>
+                                        <li class="list-group-item">Date of Selling : {{txn_log.f2h.dateOfTransaction}}</li>
+                                        <li class="list-group-item">Vehicle Type : {{txn_log.f2h.vehicleType}}</li>
+                                    </ul>
+                                </p>
                             </div>
                             </div>
                         </div>
-                        <div class="timeline__event animated fadeInUp delay-1s timeline__event--type3">
+                        <div class="timeline__event animated fadeInUp delay-2s timeline__event--type3">
                             <div class="timeline__event__icon">
-                            <i class="lni-slim"></i>
+                            <i class="lni-burger"></i>
                             <div class="timeline__event__date">
                                 03
                             </div>
                             </div>
                             <div class="timeline__event__content">
                             <div class="timeline__event__title">
-                                Retailer
+                                FPC  : {{txn_log.h2r.soldBy}}
                             </div>
                             <div class="timeline__event__description">
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel, nam! Nam eveniet ut aliquam ab asperiores, accusamus iure veniam corporis incidunt reprehenderit accusantium id aut architecto harum quidem dolorem in!</p>
+                                <p>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Transaction ID : {{txn_log.h2r.txn_id}}</li>
+                                        <li class="list-group-item">Date of Selling : {{txn_log.h2r.dateOfTransaction}}</li>
+                                        <li class="list-group-item">Vehicle Type : {{txn_log.h2r.vehicleType}}</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+                        <div class="timeline__event animated fadeInUp delay-1s timeline__event--type4">
+                            <div class="timeline__event__icon">
+                            <i class="lni-slim"></i>
+                            <div class="timeline__event__date">
+                                04
+                            </div>
+                            </div>
+                            <div class="timeline__event__content">
+                            <div class="timeline__event__title">
+                                Retailer : {{txn_log.r2c.soldBy}}
+                            </div>
+                            <div class="timeline__event__description">
+                                <p>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Transaction ID : {{txn_log.r2c.txn_id}}</li>
+                                        <li class="list-group-item">Price : {{txn_log.r2c.price}}</li>
+                                        <li class="list-group-item">Quantity : {{txn_log.r2c.quantity}}</li>
+                                        <li class="list-group-item"></li>
+                                    </ul>
+                                </p>
                             </div>   
                             </div>
                         </div>
