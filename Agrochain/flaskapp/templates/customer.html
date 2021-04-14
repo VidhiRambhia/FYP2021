@@ -44,13 +44,13 @@
                         </div>
                     <div class="form-row ">
                         <div class="col-md-12 text-center">
-                            <button id="submitbutton" name="submitbutton" type="submit" class="btn btn-dark" style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
+                            <button id="submitbutton" name="submitbutton"  class="btn btn-dark" style="padding: 5px; width: 20%;" data-toggle="modal" data-target="#exampleModal"><h3>Track</h3></button>
                         </div>
                     </div>  
                 </form>
             </div>
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
                 <div class="modal-dialog" role="document">
                 <div class="modal-content">       
                     <div class="modal-body">
@@ -60,12 +60,12 @@
                                 <div class="timeline__event__icon ">
                                 <i class="lni-cake"></i>
                                 <div class="timeline__event__date">
-                                    01
+                                    Crop
                                 </div>
                                 </div>
                                 <div class="timeline__event__content ">
                                 <div class="timeline__event__title">
-                                    Crop : {{txn_log.cropDetails.cropName}}
+                                    {{txn_log.cropDetails.cropName}}
                                 </div>
                                 <div class="timeline__event__description">
                                     <p>
@@ -83,12 +83,12 @@
                             <div class="timeline__event__icon ">
                             <i class="lni-cake"></i>
                             <div class="timeline__event__date">
-                                02
+                                Farmer
                             </div>
                             </div>
                             <div class="timeline__event__content ">
                             <div class="timeline__event__title">
-                                Farmer : {{txn_log.f2h.soldBy}}
+                                {{txn_log.f2h.soldBy}}
                             </div>
                             <div class="timeline__event__description">
                                 <p>
@@ -105,12 +105,12 @@
                             <div class="timeline__event__icon">
                             <i class="lni-burger"></i>
                             <div class="timeline__event__date">
-                                03
+                                FPC
                             </div>
                             </div>
                             <div class="timeline__event__content">
                             <div class="timeline__event__title">
-                                FPC  : {{txn_log.h2r.soldBy}}
+                                {{txn_log.h2r.soldBy}}
                             </div>
                             <div class="timeline__event__description">
                                 <p>
@@ -127,12 +127,12 @@
                             <div class="timeline__event__icon">
                             <i class="lni-slim"></i>
                             <div class="timeline__event__date">
-                                04
+                                Retailer
                             </div>
                             </div>
                             <div class="timeline__event__content">
                             <div class="timeline__event__title">
-                                Retailer : {{txn_log.r2c.soldBy}}
+                                {{txn_log.r2c.soldBy}}
                             </div>
                             <div class="timeline__event__description">
                                 <p>
@@ -156,5 +156,14 @@
                 </div>
             </div>
             <!--Modal ends-->
+
+            {% block javascript %}
+            <script type="text/javascript">
+                var cName = "{{txn_log.f2h.txn_id}}";
+                if(cName != ""){
+                document.getElementById("exampleModal").style.visibility = "visible";
+                }               
+            </script>
+            {% endblock %}
     </body>
 </html>

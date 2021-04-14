@@ -1,6 +1,7 @@
 import json
 import sys
 import datetime
+import time
 import hashlib
 import os
 from web3 import Web3, HTTPProvider, IPCProvider
@@ -330,4 +331,5 @@ def tracking():
             'soldBy' : r2c_entities[1]
         }
         print(txn_log)
+    #time.sleep()
     return render_template('customer.html', txn_log= txn_log)
