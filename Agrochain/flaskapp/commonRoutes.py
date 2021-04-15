@@ -369,4 +369,4 @@ def tracking():
             prev_id = transactionDetails_contract_instance.functions.getPrevId(t_ids[-1]).call()
             t_ids.append(prev_id)
             end_seller_type -= 1
-    return render_template('tracking.html', txn_log= txn_log, displayModal = displayModal, role=role)
+    return render_template('tracking.html', txn_log= txn_log, displayModal = displayModal, role=role, current_user=current_user)
