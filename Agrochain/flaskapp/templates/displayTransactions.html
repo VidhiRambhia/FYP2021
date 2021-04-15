@@ -46,11 +46,11 @@
         <body class="form-v10">
             <div class="page-content">
 
-              <div class="form-v10-content" style="width: 87%;">
+              <div class="form-v10-content" style="width: 67%;">
               <h2 style="text-align: center; margin-bottom: 10%;"><b>Your Transaction List</b></h2>
-              <form class="form-detail" style=" margin-left: 20%;" action="/displayTransactions" method="POST" id="filterForm">
-                  <div class="form-left">
-                    <div class="form-group" >
+              <form class="form-detail" style=" margin-left: 23%;margin-bottom:0px" action="/displayTransactions" method="POST" id="filterForm">
+                  <div class="form-left" style="margin-bottom:0px">
+                    <div class="form-group" style="margin-bottom:0px" >
                       <div style="padding: 0%;">
                         <div style="color:black; margin-top: 20px;"><h3><b>Filter By:</b></h3></div> 
                       </div>
@@ -61,7 +61,7 @@
                           {% if txnFilter == "sold" %}<option selected="true" value="sold">Sold Items</option>{% else %}<option value="sold">Sold Items</option>{% endif %}
                         </select>
                       </div>
-                      <div class="form-row px-0 mt-3">
+                      <div class="form-row px-4 mt-3">
                         <button type="button submit" class="btn btn-info btn-sm px-4" id="next" name="next"><h3>Select</h3></button>
                       </div>
                     </div>
