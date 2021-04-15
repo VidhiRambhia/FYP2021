@@ -4,6 +4,9 @@
         {% include "headerlinks.html" %}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="../static/css/track.css" rel="stylesheet" type="text/css">
+    <style>
+    .timeline__event__icon {flex-basis: 110px;}
+    </style>
     </head>
 
     <!-- ======= Navbar ======= -->
@@ -94,9 +97,7 @@
                                         <ul class="list-group list-group-flush">
                                             {% if role >= 1 %}
                                             <li class="list-group-item">Crop Grade : {{txn_log.cropDetails.cropGrade}}
-                                                {% for counter in range(1,30) %}
-                                                &nbsp;
-                                                {% endfor %}
+
                                             </li>
                                             {% endif %}
                                             <li class="list-group-item">Fertilizer Used : {{txn_log.cropDetails.fertilizerUsed}}</li>
@@ -134,7 +135,7 @@
                             <div class="timeline__event__icon">
                                 <i class="far fa-building"></i>
                             <div class="timeline__event__date">
-                                FPC
+                               &nbsp FPC &nbsp &nbsp 
                             </div>
                             </div>
                             <div class="timeline__event__content">
