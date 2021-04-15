@@ -171,5 +171,12 @@
             $("#exampleModal").modal("show");
         }
 
+        $(document).ready(function() {
+
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            document.getElementById('t_id').value = url.searchParams.get("t_id");
+        });
+
     </script>
 </html>

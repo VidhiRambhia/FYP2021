@@ -100,6 +100,7 @@
                                       <a href="/addTransactionDetails?crop_id={{txn.crop_id}}&crop_quantity={{txn.remaining_quantity}}&crop_name={{txn.crop_name}}&prev_package_id={{txn.txn_id}}" class="btn btn-lg btn-danger" style="font-size: medium;margin:3%">Sell</a>
                                       {% else %}<button disabled type="button" style="font-size: medium;margin:3%" class="btn btn-success">Sold</button>
                                       {% endif %}
+                                      <a href="/tracking?t_id={{txn.txn_id}}" class="btn btn-lg btn-warning" style="font-size: medium;margin:3%">Track</a>
                                     </div>
                                   </div>
                                 </div>

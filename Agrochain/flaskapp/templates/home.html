@@ -60,7 +60,7 @@
       {% if not current_user.is_authenticated %}
       <a href="login" class="btn-get-started scrollto">Login</a>
       <a href="chooseRole" class="btn-get-started scrollto">Register</a>
-      <a href="/tracking" class="btn-get-started scrollto">I'm a Customer</a>
+      <a href="/tracking" class="btn-get-started scrollto">Track My Product</a>
       {% elif current_user.role=='FARMER' %}
       <a href="farmerPage" class="btn-get-started scrollto">Go to your Dashboard</a>
       {% elif current_user.role=='FPC' %}
