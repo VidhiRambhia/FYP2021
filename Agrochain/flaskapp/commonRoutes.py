@@ -143,7 +143,7 @@ def addTransactionDetails():
         cost = int(request.form.get('cost'))
         quantity =  int(request.form.get('quantity'))
         crop_id = int(request.form.get('crop_id'))
-        package_id = buyer_name[:2].upper() + seller_name[:2].upper() + str(random.randint(1, 100000))
+        package_id = buyer_name[:2].upper() + seller_name[:2].upper() + str(time.time()) + str(random.randint(1, 100000))
         print(buyer_address)
 
         txn_dict = {
@@ -252,7 +252,7 @@ def displayTransactions():
             'dispatch_date':None,
 
         }
-        if transactionDetails[0] != 3:
+        if transactionDetails[2] != 3:
             logisticsDetails = logisticsDetails_contract_instance.functions.getLog(txnId).call()
             dispatch_date = list(str(logisticsDetails[5]))
             dispatch_date = ''.join(dispatch_date[6:8]) + '-'  + ''.join(dispatch_date[4:6]) +  '-' + ''.join(dispatch_date[0:4]) 
@@ -285,10 +285,14 @@ def displayTransactions():
 @mod_common.route("/tracking", methods=["GET", "POST"])
 def tracking():
     displayModal = 0
+    role = -1
     txn_log = {}
     txn_log['cropDetails'] = {
         'cropName' : '',
-        'cropGrade' : ''
+        'cropGrade' : '',
+        'fertilizerUsed' : '',
+        'sowingDate' : '',
+        'harvestDate' : ''
     }
 
     txn_log['f2h'] = {
@@ -311,59 +315,58 @@ def tracking():
     }
     if request.method == 'POST':
         displayModal = 1
-        r2c_id = request.form.get('t_id')
-        print(r2c_id)
-        h2r_id = transactionDetails_contract_instance.functions.getPrevId(r2c_id).call()
-        print(h2r_id)
-        f2h_id = transactionDetails_contract_instance.functions.getPrevId(h2r_id).call()
-        print(f2h_id)
-
-        if(h2r_id =="" or f2h_id ==""):
+        cropGrade = ''
+        t_id = request.form.get('t_id')
+        end_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(t_id).call()
+        # Wrong tracking ID
+        if(end_entities[0] == 0 and end_entities[2] == 0):
             return render_template('404.html')
-        # farmer side details
-        f2h_logistics = logisticsDetails_contract_instance.functions.getLog(f2h_id).call()
-        f2h_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(f2h_id).call()
-        cropId = transactionDetails_contract_instance.functions.getTxnCropDetails(f2h_id).call()[0]
-        cropDetailsFarmer = cropDetails_contract_instance.functions.getCrop2(f2h_entities[4], cropId).call()
-        # print(cropDetailsFarmer)
-
-        # fpc side details
-        h2r_logistics = logisticsDetails_contract_instance.functions.getLog(h2r_id).call()
-        h2r_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(h2r_id).call()
-        cropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(h2r_id).call()
-
-        # retailer side details
-        r2c_crop = transactionDetails_contract_instance.functions.getTxnCropDetails(r2c_id).call()
-        r2c_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(r2c_id).call()
         
-        txn_log['cropDetails'] = {
-            'cropName' : cropDetails[1],
-            'cropGrade' : cropDetails[2],
-            'fertilizerUsed' : cropDetailsFarmer[0],
-            'sowingDate' : str(cropDetailsFarmer[2])[:4] + '-' + str(cropDetailsFarmer[2])[4:6] + '-' + str(cropDetailsFarmer[2])[6:],
-            'harvestDate' : str(cropDetailsFarmer[3])[:4] + '-' + str(cropDetailsFarmer[3])[4:6] + '-' + str(cropDetailsFarmer[3])[6:],  
-        }
+        end_seller_type = end_entities[0]
+        role = end_seller_type
+        t_ids = []
+        t_ids.append(t_id)
+        
+        while end_seller_type > -1:
+            if end_seller_type == 2:
+                r2c_crop = transactionDetails_contract_instance.functions.getTxnCropDetails(t_ids[-1]).call()
+                r2c_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(t_ids[-1]).call()
+                txn_log['r2c'] = {
+                    'txn_id' : t_ids[-1],
+                    'price' : r2c_crop[3],
+                    'quantity' : r2c_crop[4],
+                    'soldBy' : r2c_entities[1]
+                }
+            elif end_seller_type >=1:
+                h2r_logistics = logisticsDetails_contract_instance.functions.getLog(t_ids[-1]).call()
+                h2r_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(t_ids[-1]).call()
+                cropGrade = transactionDetails_contract_instance.functions.getTxnCropDetails(t_ids[-1]).call()[2]
+                txn_log['h2r'] = {
+                    'txn_id' : t_ids[-1],
+                    'dateOfTransaction' : str(h2r_logistics[5])[:4] + '-' + str(h2r_logistics[5])[4:6] + '-' + str(h2r_logistics[5])[6:],
+                    'soldBy' : h2r_entities[1],
+                    'vehicleType' : h2r_logistics[1]
+                }
+            elif end_seller_type >=0:
+                f2h_logistics = logisticsDetails_contract_instance.functions.getLog(t_ids[-1]).call()
+                f2h_entities = transactionDetails_contract_instance.functions.getTxnEntityDetails(t_ids[-1]).call()
+                cropDetails = transactionDetails_contract_instance.functions.getTxnCropDetails(t_ids[-1]).call()
+                cropDetailsFarmer = cropDetails_contract_instance.functions.getCrop2(f2h_entities[4], cropDetails[0]).call()
+                txn_log['cropDetails'] = {
+                    'cropName' : cropDetails[1],
+                    'cropGrade' : cropGrade,
+                    'fertilizerUsed' : cropDetailsFarmer[0],
+                    'sowingDate' : str(cropDetailsFarmer[2])[:4] + '-' + str(cropDetailsFarmer[2])[4:6] + '-' + str(cropDetailsFarmer[2])[6:],
+                    'harvestDate' : str(cropDetailsFarmer[3])[:4] + '-' + str(cropDetailsFarmer[3])[4:6] + '-' + str(cropDetailsFarmer[3])[6:]
+                }
 
-        txn_log['f2h'] = {
-            'txn_id' : f2h_id,
-            'dateOfTransaction' : str(f2h_logistics[5])[:4] + '-' + str(f2h_logistics[5])[4:6] + '-' + str(f2h_logistics[5])[6:],
-            'soldBy' : f2h_entities[1],
-            'vehicleType' : f2h_logistics[1]
-        }
-
-        txn_log['h2r'] = {
-            'txn_id' : h2r_id,
-            'dateOfTransaction' : str(h2r_logistics[5])[:4] + '-' + str(h2r_logistics[5])[4:6] + '-' + str(h2r_logistics[5])[6:],
-            'soldBy' : h2r_entities[1],
-            'vehicleType' : h2r_logistics[1]
-        }
-
-        txn_log['r2c'] = {
-            'txn_id' : r2c_id,
-            'price' : r2c_crop[3],
-            'quantity' : r2c_crop[4],
-            'soldBy' : r2c_entities[1]
-        }
-        #print(txn_log)
-    #time.sleep(10)
-    return render_template('tracking.html', txn_log= txn_log, displayModal = displayModal)
+                txn_log['f2h'] = {
+                    'txn_id' : t_ids[-1],
+                    'dateOfTransaction' : str(f2h_logistics[5])[:4] + '-' + str(f2h_logistics[5])[4:6] + '-' + str(f2h_logistics[5])[6:],
+                    'soldBy' : f2h_entities[1],
+                    'vehicleType' : f2h_logistics[1]
+                }
+            prev_id = transactionDetails_contract_instance.functions.getPrevId(t_ids[-1]).call()
+            t_ids.append(prev_id)
+            end_seller_type -= 1
+    return render_template('tracking.html', txn_log= txn_log, displayModal = displayModal, role=role)

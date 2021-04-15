@@ -57,7 +57,7 @@
                     <div class="modal-body">
                         <h2 style="font-weight: 600;">Product Tracking</h2>
                         <div class="timeline">
-                            <div class="timeline__event  animated fadeInUp delay-4s timeline__event--type1">
+                            <div class="timeline__event  animated fadeInUp delay-2s timeline__event--type3">
                                 <div class="timeline__event__icon ">
                                 <i class="lni-cake"></i>
                                 <div class="timeline__event__date">
@@ -71,7 +71,9 @@
                                 <div class="timeline__event__description">
                                     <p>
                                         <ul class="list-group list-group-flush">
+                                            {% if role >= 1 %}
                                             <li class="list-group-item">Grade : {{txn_log.cropDetails.cropGrade}}</li>
+                                            {% endif %}
                                             <li class="list-group-item">Fertilizer Used : {{txn_log.cropDetails.fertilizerUsed}}</li>
                                             <li class="list-group-item">Sowing Date : {{txn_log.cropDetails.sowingDate}}</li>
                                             <li class="list-group-item">Harvesting Date : {{txn_log.cropDetails.harvestDate}}</li>
@@ -102,6 +104,7 @@
                             </div>
                             </div>
                         </div>
+                        {% if role >= 1 %}
                         <div class="timeline__event animated fadeInUp delay-2s timeline__event--type3">
                             <div class="timeline__event__icon">
                             <i class="lni-burger"></i>
@@ -124,7 +127,9 @@
                             </div>
                             </div>
                         </div>
-                        <div class="timeline__event animated fadeInUp delay-1s timeline__event--type4">
+                        {% endif %}
+                        {% if role == 2 %}
+                        <div class="timeline__event animated fadeInUp delay-3s timeline__event--type2">
                             <div class="timeline__event__icon">
                             <i class="lni-slim"></i>
                             <div class="timeline__event__date">
@@ -138,7 +143,7 @@
                             <div class="timeline__event__description">
                                 <p>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Transaction ID : {{txn_log.r2c.txn_id}}</li>
+                                        <li class="list-group-item">ID : {{txn_log.r2c.txn_id}}</li>
                                         <li class="list-group-item">Price : {{txn_log.r2c.price}}</li>
                                         <li class="list-group-item">Quantity : {{txn_log.r2c.quantity}}</li>
                                         <li class="list-group-item"></li>
@@ -147,7 +152,7 @@
                             </div>   
                             </div>
                         </div>
-                        
+                        {% endif %}
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -159,12 +164,19 @@
             <!--Modal ends-->
     </body>
     <script>
-        var displayModal = {{displayModal}};
+        var displayModal = "{{displayModal}}";
         console.log(displayModal)
         if(displayModal==1)
         {
             $("#exampleModal").modal("show");
         }
+
+        $(document).ready(function() {
+
+            var url_string = window.location.href;
+            var url = new URL(url_string);
+            document.getElementById('t_id').value = url.searchParams.get("t_id");
+        });
 
     </script>
 </html>
