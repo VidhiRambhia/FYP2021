@@ -7,15 +7,33 @@
     </head>
 
     <!-- ======= Navbar ======= -->
-    <header id="header" class="fixed-top">
-        <div class="container d-flex">
-            <div class="logo mr-auto">
-                <h1 class="text-light"><a href="home">
-                  <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid"></a>Agrichain
-                </a></h1>
-                <!-- Uncomment below if you prefer to use an image logo -->
-              </div>
-          <nav class="nav-menu d-none d-lg-block">
+<header id="header" class="fixed-top">
+    <div class="container d-flex">
+
+        <div class="logo mr-auto">
+            <h1 class="text-light"><a href="home">
+              <a href="home"><img src="static/img/logo.png" alt="" class="img-fluid"></a>Agrichain
+            </a></h1>
+          </div>
+
+        {% if current_user.role == "FARMER" or  current_user.role == "FPC" or current_user.role == "RETAIL_STORE" %}
+        <nav class="nav-menu d-none d-lg-block">
+            <ul>
+                <li class="active"><a href="home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#steps">Model</a></li>
+                {% if not current_user.is_authenticated %}
+                <li><a href="/login">Login</a></li>
+                <li><a href="chooseRole">Register</a></li>
+                {% endif %}
+                <li><a href="#team">Team</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a href="/logout">Logout</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% else %}
+        <nav class="nav-menu d-none d-lg-block">
             <ul>
               <li><a href="home">Home</a></li>
               <li><a href="/#about">About</a></li>
@@ -30,9 +48,12 @@
               {% endif %}
               
             </ul>
-          </nav><!-- .nav-menu -->
-        </div>
-    </header><!-- End Navbar -->
+          </nav>
+        {% endif %}
+        <!-- .nav-menu -->
+
+    </div>
+</header><!-- End Navbar -->
 
     <body class="form-v10">
         <div class="page-content">  
@@ -65,7 +86,7 @@
                         <div class="timeline">
                             <div class="timeline__event  animated fadeInUp delay-2s timeline__event--type3">
                                 <div class="timeline__event__icon ">
-                                <i class="lni-cake"></i>
+                                    <i class="fab fa-pagelines"></i>
                                 <div class="timeline__event__date">
                                     Crop
                                 </div>
@@ -78,7 +99,11 @@
                                     <p>
                                         <ul class="list-group list-group-flush">
                                             {% if role >= 1 %}
-                                            <li class="list-group-item">Grade : {{txn_log.cropDetails.cropGrade}}</li>
+                                            <li class="list-group-item">Crop Grade : {{txn_log.cropDetails.cropGrade}}
+                                                {% for counter in range(1,30) %}
+                                                &nbsp;
+                                                {% endfor %}
+                                            </li>
                                             {% endif %}
                                             <li class="list-group-item">Fertilizer Used : {{txn_log.cropDetails.fertilizerUsed}}</li>
                                             <li class="list-group-item">Sowing Date : {{txn_log.cropDetails.sowingDate}}</li>
@@ -90,7 +115,7 @@
                             </div>
                         <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type2">
                             <div class="timeline__event__icon ">
-                            <i class="lni-cake"></i>
+                                <i class="fas fa-user"></i>
                             <div class="timeline__event__date">
                                 Farmer
                             </div>
@@ -113,7 +138,7 @@
                         {% if role >= 1 %}
                         <div class="timeline__event animated fadeInUp delay-2s timeline__event--type3">
                             <div class="timeline__event__icon">
-                            <i class="lni-burger"></i>
+                                <i class="far fa-building"></i>
                             <div class="timeline__event__date">
                                 FPC
                             </div>
@@ -137,7 +162,7 @@
                         {% if role == 2 %}
                         <div class="timeline__event animated fadeInUp delay-3s timeline__event--type2">
                             <div class="timeline__event__icon">
-                            <i class="lni-slim"></i>
+                                <i class="fas fa-building"></i>
                             <div class="timeline__event__date">
                                 Retailer
                             </div>
@@ -149,7 +174,7 @@
                             <div class="timeline__event__description">
                                 <p>
                                     <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">ID : {{txn_log.r2c.txn_id}}</li>
+                                        <li class="list-group-item">Transaction ID : {{txn_log.r2c.txn_id}}</li>
                                         <li class="list-group-item">Price : {{txn_log.r2c.price}}</li>
                                         <li class="list-group-item">Quantity : {{txn_log.r2c.quantity}}</li>
                                         <li class="list-group-item"></li>
