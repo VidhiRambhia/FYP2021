@@ -104,9 +104,9 @@ def addCropDetails():
     crop = None
     if crop_id:
         cropData = cropDetails_contract_instance.functions.crops(current_user.address,int(crop_id)).call()
-        crop_sowing_date = list(str(cropData[6]))
-        crop_harvesting_date = list(str(cropData[7]))
-        crop_sowing_date =  ''.join(crop_sowing_date[0:4]) + '-' + ''.join(crop_sowing_date[4:6]) +  '-' + ''.join(crop_sowing_date[6:8])
+        # crop_sowing_date = list(str(cropData[6]))
+        crop_harvesting_date = list(str(cropData[6]))
+        # crop_sowing_date =  ''.join(crop_sowing_date[0:4]) + '-' + ''.join(crop_sowing_date[4:6]) +  '-' + ''.join(crop_sowing_date[6:8])
         crop_harvesting_date = ''.join(crop_harvesting_date[0:4]) + '-' +  ''.join(crop_harvesting_date[4:6])+ '-' +  ''.join(crop_harvesting_date[6:8])  
         crop = {
             "crop_id": cropData[0],
@@ -115,7 +115,6 @@ def addCropDetails():
             "crop_fertilizer":cropData[3],
             "crop_source_tag_number":cropData[4],
             "crop_quantity": cropData[5],
-            "crop_sowing_date" : crop_sowing_date,
             "crop_harvesting_date": crop_harvesting_date
         }
     print(crop)
@@ -142,7 +141,7 @@ def addCropDetails():
         fertilizer = request.form.get('fertilizer')
         quantity = int(request.form.get('quantity'))
         source_tag_number = request.form.get('source_tag_number')
-        sowing_date = request.form.get('sowing_date')
+        # sowing_date = request.form.get('sowing_date')
         harvesting_date = datetime.datetime.now()
         harvesting_date_int = int(harvesting_date.strftime('%Y%m%d'))
         if request.form.get('harvesting_date'):
@@ -157,11 +156,11 @@ def addCropDetails():
                 'gasPrice': w3.toWei('40', 'gwei')
                 }
         farmer_address = current_user.address #get address
-        sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
-        sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
+        # sowing_date = datetime.datetime(*[int(item) for item in sowing_date.split('-')])
+        # sowing_date_int = int(sowing_date.strftime('%Y%m%d'))
         crop_id = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).call()
         txn_hash = cropDetails_contract_instance.functions.addCrop1(crop_type,crop_name,source_tag_number,current_user.address).transact(txn_dict)
-        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,sowing_date_int,harvesting_date_int, current_user.address).transact(txn_dict)
+        txn_hash = cropDetails_contract_instance.functions.addCrop2(int(crop_id),fertilizer,quantity,harvesting_date_int, current_user.address).transact(txn_dict)
         #print(txn_hash)
         print(crop_id)
         return redirect(url_for('farmer.getCrops'))
@@ -258,9 +257,9 @@ def getCrops():
     while True:
         try:
             cropData = cropDetails_contract_instance.functions.crops(current_user.address,i).call()
-            crop_sowing_date = list(str(cropData[6]))
-            crop_harvesting_date = list(str(cropData[7]))
-            crop_sowing_date = ''.join(crop_sowing_date[6:8]) + '-'  + ''.join(crop_sowing_date[4:6]) +  '-' + ''.join(crop_sowing_date[0:4]) 
+            # crop_sowing_date = list(str(cropData[6]))
+            crop_harvesting_date = list(str(cropData[6]))
+            # crop_sowing_date = ''.join(crop_sowing_date[6:8]) + '-'  + ''.join(crop_sowing_date[4:6]) +  '-' + ''.join(crop_sowing_date[0:4]) 
             crop_harvesting_date = ''.join(crop_harvesting_date[6:8]) + '-'  + ''.join(crop_harvesting_date[4:6]) +  '-' + ''.join(crop_harvesting_date[0:4])
             crop = {
                 "crop_id": cropData[0],
@@ -269,9 +268,8 @@ def getCrops():
                 "crop_fertilizer":cropData[3],
                 "crop_source_tag_number":cropData[4],
                 "crop_quantity": cropData[5],
-                "crop_sowing_date" : crop_sowing_date,
                 "crop_harvesting_date": crop_harvesting_date,
-                "sold": cropData[8]
+                "sold": cropData[7]
             }
             crops.append(crop)
             i = i+1

@@ -291,7 +291,7 @@ def tracking():
         'cropName' : '',
         'cropGrade' : '',
         'fertilizerUsed' : '',
-        'sowingDate' : '',
+        # 'sowingDate' : '',
         'harvestDate' : ''
     }
 
@@ -356,8 +356,8 @@ def tracking():
                     'cropName' : cropDetails[1],
                     'cropGrade' : cropGrade,
                     'fertilizerUsed' : cropDetailsFarmer[0],
-                    'sowingDate' : str(cropDetailsFarmer[2])[:4] + '-' + str(cropDetailsFarmer[2])[4:6] + '-' + str(cropDetailsFarmer[2])[6:],
-                    'harvestDate' : str(cropDetailsFarmer[3])[:4] + '-' + str(cropDetailsFarmer[3])[4:6] + '-' + str(cropDetailsFarmer[3])[6:]
+                    # 'sowingDate' : str(cropDetailsFarmer[2])[:4] + '-' + str(cropDetailsFarmer[2])[4:6] + '-' + str(cropDetailsFarmer[2])[6:],
+                    'harvestDate' : str(cropDetailsFarmer[2])[:4] + '-' + str(cropDetailsFarmer[2])[4:6] + '-' + str(cropDetailsFarmer[2])[6:]
                 }
 
                 txn_log['f2h'] = {

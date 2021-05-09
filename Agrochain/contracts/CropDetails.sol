@@ -8,7 +8,7 @@ struct Crop{
     string fertiliser;
     string sourceTagNo;
     uint quantity;
-    uint256 DateSowed;
+    //uint256 DateSowed;
     uint256 DateHarvested;
     bool sold;
 }
@@ -32,12 +32,12 @@ contract CropDetails{
             return crop.cropID;
         }
         
-    function addCrop2(uint cropID, string memory fertiliser, uint quantity, uint256 DateSowed,
+    function addCrop2(uint cropID, string memory fertiliser, uint quantity,
         uint256 DateHarvested, address farmerAddr) public{
             Crop storage crop = crops[farmerAddr][cropID];
             crop.fertiliser = fertiliser;
             crop.quantity = quantity;
-            crop.DateSowed = DateSowed;
+            //crop.DateSowed = DateSowed;
             crop.DateHarvested = DateHarvested;
             crop.sold = false;
             emit CropAdded(farmerAddr);
@@ -58,9 +58,9 @@ contract CropDetails{
     }
         
     function getCrop2(address farmerAddr, uint cropID) view public returns (string memory fertiliser,uint quantity,
-        uint256 DateSowed, uint256 DateHarvested){
+         uint256 DateHarvested){
             return (crops[farmerAddr][cropID].fertiliser, crops[farmerAddr][cropID].quantity,
-                crops[farmerAddr][cropID].DateSowed, crops[farmerAddr][cropID].DateHarvested);
+                crops[farmerAddr][cropID].DateHarvested);
     }
 
     function setSold(uint cropID, address farmerAddr) public{
