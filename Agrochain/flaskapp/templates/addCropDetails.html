@@ -53,7 +53,11 @@
                         <div class="form-row form-row-2">
                           <label for="">Choose Crop Type</label>
                           <select name="crop_type" {% if crop %} disabled  {% endif %} required>
-                            <option {% if crop %} value = "{{crop.crop_type}}"  {% else %} value = "Choose Crop Type" {% endif %}>Type</option>
+                            {% if crop %}
+                            <option value = "{{crop.crop_type}}">{{crop.crop_type}}</option>  
+                            {% else %} 
+                            <option disabled value = "Choose Crop Type" >Type</option>
+                            {% endif %}                            
                             <option value="fruits">Fruits</option>
                             <option value="vegetables">Vegetables</option>
                           </select>
